@@ -28,10 +28,11 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 30, 56, 206)),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Ser Manos'),
     );
   }
 }
@@ -105,13 +106,98 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Card(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: double.infinity, // Full width of the card
+                    height: 200.0, // Fixed height for the card
+                    child: Image.network(
+                      'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
+                      fit: BoxFit
+                          .cover, // Maintain aspect ratio and cover the space
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text('Accion Social'),
+                          const Text('Un Techo para mi pais',
+                              style: TextStyle(
+                                  fontSize: 20.0, color: Colors.black)),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                // color: Color.fromARGB(255, 152, 217, 247),
+                                // color: const Color.fromARGB(255, 226, 119, 47),
+                                padding: const EdgeInsets.only(
+                                    left: 10.0,
+                                    right: 10.0,
+                                    top: 5.0,
+                                    bottom: 5.0),
+                                decoration: BoxDecoration(
+                                    color: const Color.fromARGB(
+                                        255, 176, 222, 243),
+                                    border: Border.all(
+                                      color: const Color.fromARGB(
+                                          255, 176, 222, 243),
+                                    ),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(5))),
+                                child: const Row(
+                                  children: [
+                                    Text(
+                                      'Vacantes: ',
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                    Icon(
+                                      Icons.person,
+                                      color: Color.fromRGBO(3, 71, 161, 1),
+                                      size: 20.0,
+                                    ),
+                                    Text('10',
+                                        style: TextStyle(
+                                            color:
+                                                Color.fromRGBO(3, 71, 161, 1),
+                                            fontSize: 16)),
+                                  ],
+                                ),
+                              ),
+                              const Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Icon(
+                                    Icons.favorite_border,
+                                    color: Colors.green,
+                                    size: 30.0,
+                                  ),
+                                  Icon(
+                                    Icons.location_on,
+                                    color: Colors.green,
+                                    size: 30.0,
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        ]),
+                  )
+                ],
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+            // const Text(
+            //   'You have pushed the button this many times:',
+            // ),
+            // Text(
+            //   '$_counter',
+            //   style: Theme.of(context).textTheme.headlineMedium,
+            // ),
           ],
         ),
       ),
