@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ser_manos/design_system/molecules/buttons/Loading_frame.dart';
 
 import '../../tokens/colours/colours.dart';
 import '../../tokens/font/font.dart';
@@ -38,21 +39,11 @@ class CtaButton extends StatelessWidget {
             ),
             onPressed: loading | !enabled ? null : onPressed,
             child: Center(
-              child: loading
-                  ? const SizedBox(
-                      height: 20.0,
-                      width: 20.0,
-                      child: CircularProgressIndicator(
-                        color: SermanosColors.neutral0,
-                      ),
-                    )
-                  : Text(
-                      text,
-                      style: SermanosTypography.button(
-                        color: textColor,
-                      ),
-                    ),
-            ),
+                child: LoadingFrame(
+                    loading: loading,
+                    boxColor: SermanosColors.neutral0,
+                    text: text,
+                    textColor: textColor)),
           )
         : TextButton(
             style: TextButton.styleFrom(
@@ -68,21 +59,11 @@ class CtaButton extends StatelessWidget {
             ),
             onPressed: loading | !enabled ? null : onPressed,
             child: Center(
-              child: loading
-                  ? const SizedBox(
-                      height: 20.0,
-                      width: 20.0,
-                      child: CircularProgressIndicator(
-                        color: SermanosColors.neutral0,
-                      ),
-                    )
-                  : Text(
-                      text,
-                      style: SermanosTypography.button(
-                        color: textColor,
-                      ),
-                    ),
-            ),
+                child: LoadingFrame(
+                    loading: loading,
+                    boxColor: SermanosColors.neutral0,
+                    text: text,
+                    textColor: textColor)),
           );
   }
 }
