@@ -3,6 +3,15 @@ import 'package:flutter/material.dart';
 import '../colours/colours.dart';
 
 class SermanosTypography extends TextStyle {
+  static const _headline01 = 24.0;
+  static const _headline02 = 20.0;
+  static const _subtitle01 = 16.0;
+  static const _body01 = 14.0;
+  static const _body02 = 12.0;
+  static const _button = 14.0;
+  static const _caption = 12.0;
+  static const _overline = 10.0;
+
   const SermanosTypography(
       {required Color color,
       required FontWeight fontWeight,
@@ -16,15 +25,6 @@ class SermanosTypography extends TextStyle {
             color: color,
             letterSpacing: letterSpacing,
             height: height);
-
-  static const _headline01 = 24.0;
-  static const _headline02 = 20.0;
-  static const _subtitle01 = 16.0;
-  static const _body01 = 14.0;
-  static const _body02 = 12.0;
-  static const _button = 14.0;
-  static const _caption = 12.0;
-  static const _overline = 10.0;
 
   const SermanosTypography.headline01({
     Color color = SermanosColors.neutral100,

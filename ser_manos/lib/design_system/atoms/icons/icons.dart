@@ -107,7 +107,7 @@ class SermanosIcons extends Icon {
           status: status,
         );
 
-  /// Check Icon
+  /// radio button Icon
   SermanosIcons.check({
     Key? key,
     required SermanosIconStatus status,
@@ -185,7 +185,6 @@ class SermanosIcons extends Icon {
   }) : this(
           key: key,
           icon: Icons.error,
-          color: SermanosColors.neutral75,
           status: status,
         );
 
@@ -222,14 +221,22 @@ class SermanosIcons extends Icon {
 }
 
 enum SermanosIconStatus {
-  enabled(SermanosColors.neutral0),
+  // Standard colour combination.
   enabledSecondary(SermanosColors.neutral75),
   disabled(SermanosColors.neutral25),
-  disabledSecondary(SermanosColors.secondary80),
   activated(SermanosColors.primary100),
+
+  // mini-person icon (when enabled use enabledSecondary)
+  disabledSecondary(SermanosColors.secondary80),
   activatedSecondary(SermanosColors.secondary200),
+
+  // big-person icon
   activatedTerciary(SermanosColors.secondary100),
+
+  enabled(SermanosColors.neutral0),
+
   error(SermanosColors.error100),
+
   back(SermanosColors.neutral0);
 
   final Color color;
