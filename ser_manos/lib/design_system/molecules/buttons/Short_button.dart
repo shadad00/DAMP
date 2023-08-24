@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '/design_system/tokens/colours/colours.dart';
-import '/design_system/tokens/font/font.dart';
+import 'package:ser_manos/design_system/molecules/buttons/Loading_frame.dart';
 
 class ShortButton extends StatelessWidget {
   const ShortButton({
@@ -42,21 +42,11 @@ class ShortButton extends StatelessWidget {
                   ),
                 ),
                 label: Center(
-                  child: loading
-                      ? SizedBox(
-                          height: 20.0,
-                          width: 20.0,
-                          child: CircularProgressIndicator(
-                            color: textColor,
-                          ),
-                        )
-                      : Text(
-                          text,
-                          style: SermanosTypography.button(
-                            color: textColor,
-                          ),
-                        ),
-                ),
+                    child: LoadingFrame(
+                        loading: loading,
+                        boxColor: textColor,
+                        text: text,
+                        textColor: textColor)),
               )
             : filled
                 ? FilledButton(
@@ -72,21 +62,11 @@ class ShortButton extends StatelessWidget {
                     ),
                     onPressed: loading | !enabled ? null : onPressed,
                     child: Center(
-                      child: loading
-                          ? SizedBox(
-                              height: 20.0,
-                              width: 20.0,
-                              child: CircularProgressIndicator(
-                                color: textColor,
-                              ),
-                            )
-                          : Text(
-                              text,
-                              style: SermanosTypography.button(
-                                color: textColor,
-                              ),
-                            ),
-                    ),
+                        child: LoadingFrame(
+                            loading: loading,
+                            boxColor: textColor,
+                            text: text,
+                            textColor: textColor)),
                   )
                 : TextButton(
                     onPressed: loading | !enabled ? null : onPressed,
@@ -99,21 +79,11 @@ class ShortButton extends StatelessWidget {
                       ),
                     ),
                     child: Center(
-                      child: loading
-                          ? SizedBox(
-                              height: 20.0,
-                              width: 20.0,
-                              child: CircularProgressIndicator(
-                                color: textColor,
-                              ),
-                            )
-                          : Text(
-                              text,
-                              style: SermanosTypography.button(
-                                color: textColor,
-                              ),
-                            ),
-                    ),
+                        child: LoadingFrame(
+                            loading: loading,
+                            boxColor: textColor,
+                            text: text,
+                            textColor: textColor)),
                   ),
       ],
     );
