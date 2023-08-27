@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '/design_system/tokens/colours/colours.dart';
-import 'package:ser_manos/design_system/molecules/buttons/Loading_frame.dart';
+import 'package:ser_manos/design_system/molecules/buttons/Button_utils.dart';
 
 class ShortButton extends StatelessWidget {
   const ShortButton({
@@ -49,42 +49,20 @@ class ShortButton extends StatelessWidget {
                         textColor: textColor)),
               )
             : filled
-                ? FilledButton(
-                    style: FilledButton.styleFrom(
-                      backgroundColor: SermanosColors.primary100,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 12,
-                        horizontal: 8,
-                      ),
-                    ),
-                    onPressed: loading | !enabled ? null : onPressed,
-                    child: Center(
-                        child: LoadingFrame(
-                            loading: loading,
-                            boxColor: textColor,
-                            text: text,
-                            textColor: textColor)),
-                  )
-                : TextButton(
-                    onPressed: loading | !enabled ? null : onPressed,
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4), // <-- Radius
-                      ),
-                      padding: const EdgeInsets.all(
-                        12.0,
-                      ),
-                    ),
-                    child: Center(
-                        child: LoadingFrame(
-                            loading: loading,
-                            boxColor: textColor,
-                            text: text,
-                            textColor: textColor)),
-                  ),
+                ? SerManosFilledButton(
+                    enabled: enabled,
+                    loading: loading,
+                    text: text,
+                    onPressed: onPressed,
+                    textColor: textColor,
+                    backgroundColor: SermanosColors.primary100,
+                    boxColor: textColor)
+                : SerManosTextButton.elevated(
+                    enabled: enabled,
+                    loading: loading,
+                    text: text,
+                    onPressed: onPressed,
+                    textColor: textColor)
       ],
     );
   }

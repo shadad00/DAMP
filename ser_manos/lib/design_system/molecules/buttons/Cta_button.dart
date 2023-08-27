@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ser_manos/design_system/molecules/buttons/Loading_frame.dart';
+import 'package:ser_manos/design_system/molecules/buttons/Button_utils.dart';
 
 import '../../tokens/colours/colours.dart';
-import '../../tokens/font/font.dart';
 
 class CtaButton extends StatelessWidget {
   const CtaButton({
@@ -25,45 +24,21 @@ class CtaButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return filled
-        ? FilledButton(
-            style: FilledButton.styleFrom(
-              minimumSize: const Size.fromHeight(40),
-              backgroundColor: SermanosColors.primary100,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4),
-              ),
-              padding: const EdgeInsets.symmetric(
-                vertical: 12,
-                horizontal: 8,
-              ),
-            ),
-            onPressed: loading | !enabled ? null : onPressed,
-            child: Center(
-                child: LoadingFrame(
-                    loading: loading,
-                    boxColor: SermanosColors.neutral0,
-                    text: text,
-                    textColor: textColor)),
-          )
-        : TextButton(
-            style: TextButton.styleFrom(
-              minimumSize: const Size.fromHeight(40),
-              backgroundColor: Colors.transparent,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4),
-              ),
-              padding: const EdgeInsets.symmetric(
-                vertical: 8,
-                horizontal: 12,
-              ),
-            ),
-            onPressed: loading | !enabled ? null : onPressed,
-            child: Center(
-                child: LoadingFrame(
-                    loading: loading,
-                    boxColor: SermanosColors.neutral0,
-                    text: text,
-                    textColor: textColor)),
-          );
+        ? SerManosFilledButton(
+            enabled: enabled,
+            loading: loading,
+            text: text,
+            onPressed: onPressed,
+            textColor: textColor,
+            backgroundColor: SermanosColors.primary100,
+            boxColor: SermanosColors.neutral0)
+        : SerManosTextButton.notElevated(
+            enabled: enabled,
+            loading: loading,
+            text: text,
+            onPressed: onPressed,
+            textColor: textColor,
+            backgroundColor: Colors.transparent,
+            boxColor: SermanosColors.neutral0);
   }
 }
