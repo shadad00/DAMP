@@ -25,7 +25,7 @@ class ExtendedUploadProfilePicture extends StatelessWidget {
       child: Row(
         children: [
           Flexible(
-            flex:2,
+            flex: 2,
             child:Column(children: [
               const Text(
                 "Foto de perfil",

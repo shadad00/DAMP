@@ -4,7 +4,7 @@ import 'package:ser_manos/design_system/molecules/components/vacancies.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/design_system/tokens/shadows/shadows.dart';
 import 'package:ser_manos/model/Volunteering.dart';
-import '../../tokens/colours/colours.dart';
+import '../../../tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/utils/NetworkImageWrapper.dart';
 
 class VolunteeringCard extends StatelessWidget {
