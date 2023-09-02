@@ -21,7 +21,8 @@ class NewsCard extends StatelessWidget {
             children: [
               NetworkImageWrapper(imageUrl: news.imageUrl)
             ],
-          ), 
+          ),
+          const SizedBox(width: 16),  // space between cols. 
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
