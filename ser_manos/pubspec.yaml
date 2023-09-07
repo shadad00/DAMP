@@ -33,6 +33,12 @@ dependencies:
   shimmer: ^3.0.0
   cached_network_image: ^3.2.3
   equatable: ^2.0.0
+  flutter_form_builder: ^9.0.0
+  form_builder_validators: ^9.0.0
+  flutter_riverpod: ^2.3.6
+  flutter_hooks: ^0.18.6
+
+
 
 
 

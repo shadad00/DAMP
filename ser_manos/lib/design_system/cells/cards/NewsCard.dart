@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Short_button.dart';

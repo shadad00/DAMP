@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ser_manos/design_system/atoms/icons/icons.dart';
-import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
-import 'package:ser_manos/design_system/molecules/buttons/floating_button.dart';
+
+import 'package:ser_manos/design_system/molecules/inputs/SermanosTextField.dart';
+import 'package:ser_manos/design_system/molecules/inputs/ValidatedField.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,15 +27,26 @@ class MyHomePage extends StatelessWidget {
 
   final String title;
 
+  String? hola(String? param) {
+    print("validando"); 
+    return "error";
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 100,
-      width: 100,
-      child: FloatingButton(
-          icon: SermanosIcons.calendarFilled(
-              status: SermanosIconStatus.activated),
-          onPressed: () => {}),
+    final List<String? Function(String?)> list = List.unmodifiable([hola]);
+
+    return Material(
+      child: SizedBox(
+          width: 100,
+          height: 100,
+          child: SermanosTextField(
+              formName: "formName",
+              initialValue: "initialValue",
+              password: true,
+              label: "label",
+              placeholder: "placeholder",
+              validators: list)),
     );
   }
 }
