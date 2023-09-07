@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:ser_manos/design_system/molecules/inputs/SermanosInputBorder.dart';
 import 'package:ser_manos/design_system/molecules/inputs/ValidatedField.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/atoms/icons/icons.dart';
 
 class SermanosTextField extends HookWidget {
-  SermanosTextField({
+  const SermanosTextField({
     super.key,
     required this.formName,
     this.initialValue,
@@ -104,34 +105,10 @@ class SermanosTextField extends HookWidget {
                       : SermanosColors.neutral75
                   : SermanosColors.neutral50,
             ),
-            disabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                width: 1,
-                color: SermanosColors.neutral50,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(4)),
-            ),
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                width: 2,
-                color: SermanosColors.secondary200,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(4)),
-            ),
-            enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                width: 1,
-                color: SermanosColors.neutral75,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(4)),
-            ),
-            errorBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                width: 2,
-                color: SermanosColors.error100,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(4)),
-            ),
+            disabledBorder: SermanosInputBorder.disabled().inputBorder,
+            focusedBorder: SermanosInputBorder.focused().inputBorder,
+            enabledBorder: SermanosInputBorder.enabled().inputBorder,
+            errorBorder: SermanosInputBorder.error().inputBorder,
             errorStyle: const SermanosTypography.body01(
               color: SermanosColors.error100,
             ),
