@@ -11,14 +11,14 @@ class ValidatedField extends HookWidget {
       this.autovalidateMode = AutovalidateMode.onUserInteraction, 
       this.validator,
       required this.builder,
-      required this.onReset});
+      this.onReset});
 
   final String formName;
   final String? initialValue;
   final AutovalidateMode autovalidateMode; 
   final String? Function(String?)? validator;
   final Widget Function(FormFieldState<String>) builder;
-  final void Function() onReset;
+  final void Function()? onReset;
 
   @override
   Widget build(BuildContext context) {
