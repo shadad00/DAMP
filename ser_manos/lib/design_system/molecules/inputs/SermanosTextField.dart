@@ -152,15 +152,9 @@ class SermanosTextField extends HookWidget {
                                 },
                               ),
           ),
-          onTapOutside: (e) {
-            focusNode.unfocus();
-          },
-          onEditingComplete: () {
-            focusNode.unfocus();
-          },
-          onSubmitted: (value) {
-            focusNode.unfocus();
-          },
+          onTapOutside: (e) => focusNode.unfocus(),
+          onEditingComplete: () => focusNode.unfocus(),
+          onSubmitted: (value) => focusNode.unfocus(),
         );
 
   }
