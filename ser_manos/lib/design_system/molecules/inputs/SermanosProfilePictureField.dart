@@ -11,9 +11,9 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 
 
 
-class SermanosProfileField extends HookWidget {
+class SermanosProfilePictureField extends HookWidget {
   
-  const SermanosProfileField({
+  const SermanosProfilePictureField({
     super.key,
     required this.formName,
     required this.initialValue,

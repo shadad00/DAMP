@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ser_manos/design_system/cells/forms/LoginForm.dart';
+import 'package:ser_manos/model/User.dart';
+import 'package:ser_manos/model/Gender.dart';
+import 'package:ser_manos/design_system/cells/forms/ProfileDataForm.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,11 +27,26 @@ class MyHomePage extends StatelessWidget {
 
   final String title;
 
-
   @override
   Widget build(BuildContext context) {
-    return const Material(
-      child: LoginForm()
+    const User user = User(
+      id: '1234567890',
+      name: 'John',
+      surname: 'Doe',
+      email: 'johndoe@gmail.com',
+      phone: '1234567890',
+      gender: Gender.male,
+      profileImageUrl: 'https://example.com/image.jpg',
+      emailContact: 'johndoe@gmail.com',
     );
+
+
+    return const Material(
+        child: ProfileDataForm(
+      user: user,
+      imageField: "hlola",
+      genderField: "hola",
+      birthdateField: "hola",
+    ));
   }
 }

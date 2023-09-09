@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:ser_manos/design_system/cells/cards/Gender.dart';
+import 'package:ser_manos/model/Gender.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 
-class SermanosRadioGroup extends HookWidget {
-  const SermanosRadioGroup({
+class GenderRadioCard extends HookWidget {
+  const GenderRadioCard({
     super.key,
     required this.formName,
     required this.initialValue,
