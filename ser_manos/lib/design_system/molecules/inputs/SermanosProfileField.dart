@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:ser_manos/design_system/cells/cards/ProfilePictureCards/ExtendedUploadProfilePicture.dart';
+import 'package:ser_manos/design_system/cells/cards/ProfilePictureCards/UploadProfilePicture.dart';
 import 'package:ser_manos/design_system/molecules/inputs/ValidatedField.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
@@ -38,8 +40,11 @@ class SermanosProfileField extends HookWidget {
         ); 
   }
 
-  Widget getBuilder(FormFieldState field, bool enabled,
-      String? imageUrl, String? initialValue) {
+  Widget getBuilder(
+    FormFieldState field,
+    bool enabled,
+    String? imageUrl,
+    String? initialValue) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -51,59 +56,8 @@ class SermanosProfileField extends HookWidget {
           ),
           width: double.infinity,
           child: imageUrl == null
-              ? Row(
-                  children: [
-                    const Expanded(
-                      child: Text(
-                        "Foto de perfil",
-                        style: SermanosTypography.subtitle01(
-                            color: SermanosColors.neutral100),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    ShortButton(
-                      text: "Subir foto",
-                      onPressed: () => {},
-                      filled: true,
-                      enabled: enabled,
-                    )
-                  ],
-                )
-              : Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Foto de perfil",
-                          style: SermanosTypography.subtitle01(
-                              color: SermanosColors.neutral100),
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        ShortButton(
-                          text: "Cambiar foto",
-                          onPressed: () => {},
-                          filled: true,
-                          enabled: enabled,
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    ProfileImage(
-                      imageUrl: imageUrl,
-                      height: 84,
-                      width: 84,
-                      fromNetwork: imageUrl == initialValue,
-                    )
-                  ],
-                ),
+              ? const UploadProfilePictureCard()
+              : ExtendedUploadProfilePicture(imageUrl: imageUrl)
         ),
         if (field.errorText != null)
           Padding(

@@ -9,10 +9,10 @@ class UploadProfilePictureCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: SermanosColors.secondary25,
-      padding: const EdgeInsets.fromLTRB(8, 16, 8, 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
+        color: SermanosColors.secondary25,
       ),
       child: Row(
         children: [
