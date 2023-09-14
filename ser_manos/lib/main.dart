@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/model/Gender.dart';
 import 'package:ser_manos/design_system/cells/forms/ProfileDataForm.dart';
+import 'package:ser_manos/design_system/tokens/font/font.dart';
+import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,13 +43,21 @@ class MyHomePage extends StatelessWidget {
       emailContact: 'johndoe@gmail.com',
     );
 
-
-    return const Material(
-        child: ProfileDataForm(
-      user: user,
-      imageField: "hlola",
-      genderField: "hola",
-      birthdateField: "hola",
-    ));
+    return Scaffold(
+        appBar: AppBar(title: const Text('Ser manos')),
+        body:  const Padding(
+          padding:  EdgeInsets.only(
+            top: 16,
+            left: 16,
+            right: 16,
+            bottom: 32,
+          ),
+          child: ProfileDataForm(
+            user: user,
+            genderField: "genderField",
+            birthdateField: "birthdateField",
+            imageField: "imageField")
+        )
+      );
   }
 }

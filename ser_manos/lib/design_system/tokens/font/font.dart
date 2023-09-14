@@ -16,8 +16,8 @@ class SermanosTypography extends TextStyle {
       {required Color color,
       required FontWeight fontWeight,
       required double fontSize,
-      required double letterSpacing,
-      required double height})
+      double? letterSpacing,
+      double? height})
       : super(
             fontFamily: 'Roboto',
             fontSize: fontSize,
@@ -31,18 +31,16 @@ class SermanosTypography extends TextStyle {
   }) : this(
             fontSize: _headline01,
             fontWeight: FontWeight.w400,
-            color: color,
-            letterSpacing: 0.18,
-            height: 24);
+            color: color
+            );
 
   const SermanosTypography.headline02({
     Color color = SermanosColors.neutral100,
   }) : this(
             fontSize: _headline02,
             fontWeight: FontWeight.w500,
-            color: color,
-            letterSpacing: 0.15,
-            height: 24);
+            color: color
+            );
 
   const SermanosTypography.subtitle01({
     Color color = SermanosColors.neutral100,
@@ -50,8 +48,7 @@ class SermanosTypography extends TextStyle {
             fontSize: _subtitle01,
             fontWeight: FontWeight.w400,
             color: color,
-            letterSpacing: 0.15,
-            height: 24);
+            );
 
   const SermanosTypography.body01({
     Color color = SermanosColors.neutral100,
@@ -59,8 +56,7 @@ class SermanosTypography extends TextStyle {
             fontSize: _body01,
             fontWeight: FontWeight.w400,
             color: color,
-            letterSpacing: 0.25,
-            height: 20);
+            );
 
   const SermanosTypography.body02({
     Color color = SermanosColors.neutral100,
@@ -68,8 +64,7 @@ class SermanosTypography extends TextStyle {
             fontSize: _body02,
             fontWeight: FontWeight.w400,
             color: color,
-            letterSpacing: 0.4,
-            height: 16);
+            );
 
   const SermanosTypography.button({
     Color color = SermanosColors.neutral100,
@@ -77,8 +72,7 @@ class SermanosTypography extends TextStyle {
             fontSize: _button,
             fontWeight: FontWeight.w500,
             color: color,
-            letterSpacing: 0.1,
-            height: 20);
+            );
 
   const SermanosTypography.caption({
     Color color = SermanosColors.neutral100,
@@ -86,8 +80,7 @@ class SermanosTypography extends TextStyle {
             fontSize: _caption,
             fontWeight: FontWeight.w400,
             color: color,
-            letterSpacing: 0.4,
-            height: 16);
+            );
 
   const SermanosTypography.overline({
     Color color = SermanosColors.neutral100,
@@ -95,6 +88,5 @@ class SermanosTypography extends TextStyle {
             fontSize: _overline,
             fontWeight: FontWeight.w500,
             color: color,
-            letterSpacing: 1.5,
-            height: 16);
+            );
 }
