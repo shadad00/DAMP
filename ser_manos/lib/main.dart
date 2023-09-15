@@ -32,6 +32,8 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const image = 'http://pawserver.it.itba.edu.ar/paw-2023a-01/images/153'; 
+
     const User user = User(
       id: '1234567890',
       name: 'John',
@@ -39,25 +41,17 @@ class MyHomePage extends StatelessWidget {
       email: 'johndoe@gmail.com',
       phone: '1234567890',
       gender: Gender.male,
-      profileImageUrl: 'https://example.com/image.jpg',
+      profileImageUrl:
+          null,
       emailContact: 'johndoe@gmail.com',
     );
 
     return Scaffold(
         appBar: AppBar(title: const Text('Ser manos')),
-        body:  const Padding(
-          padding:  EdgeInsets.only(
-            top: 16,
-            left: 16,
-            right: 16,
-            bottom: 32,
-          ),
-          child: ProfileDataForm(
+        body: const ProfileDataForm(
             user: user,
             genderField: "genderField",
             birthdateField: "birthdateField",
-            imageField: "imageField")
-        )
-      );
+            imageField: "imageField"));
   }
 }

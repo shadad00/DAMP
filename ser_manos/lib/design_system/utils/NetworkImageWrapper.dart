@@ -3,8 +3,7 @@ import '../tokens/shimmer/PictureShimmer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class NetworkImageWrapper extends StatelessWidget {
-  const NetworkImageWrapper({Key? key, required this.imageUrl})
-      : super(key: key);
+  const NetworkImageWrapper({super.key, required this.imageUrl});
 
   final String imageUrl;
 
@@ -14,7 +13,7 @@ class NetworkImageWrapper extends StatelessWidget {
       imageUrl: imageUrl,
       fit: BoxFit.cover,
       errorWidget: (BuildContext context, String url, dynamic error) {
-        return Image.asset("assets/images/sermanos_image_not_found.png");
+        return Image.asset("assets/images/notFound.png");
       },
       placeholder: (BuildContext context, String url) {
         return const PictureShimmer(rounded: false);

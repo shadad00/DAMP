@@ -41,16 +41,9 @@ class SermanosProfilePictureField extends HookWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            // decoration: const BoxDecoration(
-            //   borderRadius: BorderRadius.all(Radius.circular(4)),
-            //   color: SermanosColors.secondary25,
-            // ),
-            width: double.infinity,
-            child: imageUrl == null
+         imageUrl == null
                 ? const UploadProfilePictureCard()
-                : ExtendedUploadProfilePicture(imageUrl: imageUrl)),
+                : ExtendedUploadProfilePicture(imageUrl: imageUrl),
         if (field.errorText != null)
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),

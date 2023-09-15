@@ -15,23 +15,18 @@ class UploadProfilePictureCard extends StatelessWidget {
         color: SermanosColors.secondary25,
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Flexible(
-              flex: 2,
-              child: Text(
+            const Text(
                 "Foto de perfil",
                 style: SermanosTypography.subtitle01(
                   color: SermanosColors.neutral100,
                 ),
-              )
-        ),
-        Flexible(
-          flex: 1,
-          child: ShortButton(
+              ),
+        ShortButton(
             text: "Subir foto",
             onPressed: () => {}
             )
-        )
       ],
       ),
     );

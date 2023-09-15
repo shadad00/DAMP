@@ -35,7 +35,7 @@ class ProfileImage extends StatelessWidget {
                       errorBuilder: (BuildContext context, Object error,
                           StackTrace? stackTrace) {
                         return Image.asset(
-                            "assets/images/sermanos_image_not_found.png");
+                            "assets/images/notFound.png");
                       },
                     ),
             ),

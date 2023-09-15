@@ -25,7 +25,7 @@ class SerManosFilledButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FilledButton(
       style: FilledButton.styleFrom(
-        minimumSize: const Size.fromHeight(40),
+        // minimumSize: const Size.fromHeight(40),
         backgroundColor: backgroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4),
@@ -41,7 +41,8 @@ class SerManosFilledButton extends StatelessWidget {
               loading: loading,
               boxColor: boxColor,
               text: text,
-              textColor: textColor)),
+              textColor: textColor)
+            ),
     );
   }
 }

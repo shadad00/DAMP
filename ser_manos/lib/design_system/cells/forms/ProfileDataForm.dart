@@ -33,7 +33,6 @@ class ProfileDataForm extends ConsumerWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisSize: MainAxisSize.min,
       children: [
         const Text(
           "Datos de perfil",
@@ -129,18 +128,14 @@ class ProfileDataForm extends ConsumerWidget {
         const SizedBox(
           height: 24,
         ),
-        SermanosProfilePictureField(
+     SermanosProfilePictureField(
             formName: imageField,
             initialValue: user.profileImageUrl,
             enabled: enabled,
             validators: [
               (value) {
-                if (value == null) {
-                  if (user.profileImageUrl == null) {
+                if (value == null && user.profileImageUrl == null) {
                     return "Ingrese una foto de perfil";
-                  } else {
-                    return null;
-                  }
                 }
                 return null;
               }
