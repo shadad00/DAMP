@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:ser_manos/design_system/cells/forms/ContactDataForm.dart';
+import 'package:ser_manos/design_system/cells/forms/LoginForm.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/model/Gender.dart';
 import 'package:ser_manos/design_system/cells/forms/ProfileDataForm.dart';
@@ -48,10 +50,8 @@ class MyHomePage extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(title: const Text('Ser manos')),
-        body: const ProfileDataForm(
-            user: user,
-            genderField: "genderField",
-            birthdateField: "birthdateField",
-            imageField: "imageField"));
+        body: const ContactDataForm()
+        
+      );
   }
 }
