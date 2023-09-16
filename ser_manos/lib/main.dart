@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ser_manos/design_system/cells/forms/ContactDataForm.dart';
-import 'package:ser_manos/design_system/cells/forms/LoginForm.dart';
+import 'package:ser_manos/design_system/cells/header.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/model/Gender.dart';
-import 'package:ser_manos/design_system/cells/forms/ProfileDataForm.dart';
-import 'package:ser_manos/design_system/tokens/font/font.dart';
-import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,36 +19,34 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Ser Manos'),
+      home: const MyHomePage()
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required this.title});
+class MyHomePage extends HookWidget {
+  const MyHomePage({super.key});
 
-  final String title;
 
   @override
   Widget build(BuildContext context) {
-    const image = 'http://pawserver.it.itba.edu.ar/paw-2023a-01/images/153'; 
-
-    const User user = User(
-      id: '1234567890',
-      name: 'John',
-      surname: 'Doe',
-      email: 'johndoe@gmail.com',
-      phone: '1234567890',
-      gender: Gender.male,
-      profileImageUrl:
-          null,
-      emailContact: 'johndoe@gmail.com',
-    );
+    final tabController = useTabController(initialLength: 3);
 
     return Scaffold(
-        appBar: AppBar(title: const Text('Ser manos')),
-        body: const ContactDataForm()
-        
-      );
+        appBar: SermanosHeader.tabsHeader(controller: tabController), 
+        body: const ContactDataForm());
   }
 }
+
+const image = 'http://pawserver.it.itba.edu.ar/paw-2023a-01/images/153';
+
+const User user = User(
+  id: '1234567890',
+  name: 'John',
+  surname: 'Doe',
+  email: 'johndoe@gmail.com',
+  phone: '1234567890',
+  gender: Gender.male,
+  profileImageUrl: null,
+  emailContact: 'johndoe@gmail.com',
+);
