@@ -20,34 +20,26 @@ class InformationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(4), topRight: Radius.circular(4)),
-      child: Column(
+    return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Flexible(
-            flex: 1,
-            child: Container(
-                color: SermanosColors.secondary25,
+          Container(
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                height: 40,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(4), topRight: Radius.circular(4)),
+                  color: SermanosColors.secondary25,
+                ),
                 child: Text(
                   title,
                   style: const SermanosTypography.subtitle01(
                       color: Colors.black //check
                       ),
-                )),
+                )
           ),
-          Flexible(
-            flex: 2,
-            child: Column(
-              children: [
-                InformationCardUtil(title: firsTitle, subtitle: firstSubtitle),
-                InformationCardUtil(
-                    title: secondTitle, subtitle: secondSubtitle)
-              ],
-            ),
-          )
+          InformationCardUtil(title: firsTitle, subtitle: firstSubtitle),
+          InformationCardUtil(title: secondTitle, subtitle: secondSubtitle)
         ],
-      ),
-    );
+      );
   }
 }

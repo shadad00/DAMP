@@ -11,7 +11,20 @@ class InformationCardUtil extends StatelessWidget {
 
   @override
   Widget build(Object context) {
-    return Column(
+    return Container(
+      padding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 8,
+            ),
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(4),
+                  bottomLeft: Radius.circular(4)),
+              color: SermanosColors.neutral10,
+            ),
+            width: double.infinity,
+      child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,
@@ -24,6 +37,7 @@ class InformationCardUtil extends StatelessWidget {
           style: const SermanosTypography.body01(
             color: Colors.black
           ),)
-    ]); 
+    ]),
+    ); 
   }
 }
