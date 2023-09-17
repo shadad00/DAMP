@@ -4,6 +4,7 @@ import 'package:ser_manos/design_system/cells/forms/ContactDataForm.dart';
 import 'package:ser_manos/design_system/cells/header.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/model/Gender.dart';
+import 'package:ser_manos/screens/HomeScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,17 +25,13 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends HookWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
 
   @override
   Widget build(BuildContext context) {
-    final tabController = useTabController(initialLength: 3);
-
-    return Scaffold(
-        appBar: SermanosHeader.tabsHeader(controller: tabController), 
-        body: const ContactDataForm());
+    return const HomeScreen();
   }
 }
 

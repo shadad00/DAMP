@@ -8,14 +8,15 @@ import '../../../tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/utils/NetworkImageWrapper.dart';
 
 class VolunteeringCard extends StatelessWidget {
+  
   final Volunteering volunteeringInformation; 
 
   const VolunteeringCard({
-    Key? key,
+    super.key,
     required this.volunteeringInformation
-  }):super(key: key);
+  });
 
-  
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
