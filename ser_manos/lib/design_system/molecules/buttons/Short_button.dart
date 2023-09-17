@@ -12,6 +12,7 @@ class ShortButton extends StatelessWidget {
     this.textColor = SermanosColors.neutral0,
     this.enabled = true,
     this.loading = false,
+    this.boxColor
   }) : super(key: key);
 
   final Icon? icon;
@@ -21,6 +22,7 @@ class ShortButton extends StatelessWidget {
   final bool enabled;
   final bool loading;
   final Color textColor;
+  final Color? boxColor;
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +59,7 @@ class ShortButton extends StatelessWidget {
                     backgroundColor: SermanosColors.primary100,
                     boxColor: textColor)
                 : SerManosTextButton.elevated(
+                    boxColor: boxColor,
                     enabled: enabled,
                     loading: loading,
                     text: text,

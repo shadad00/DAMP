@@ -5,6 +5,7 @@ import 'package:ser_manos/design_system/cells/header.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/model/Gender.dart';
 import 'package:ser_manos/screens/HomeScreen.dart';
+import 'package:ser_manos/screens/NewsScreen.dart';
 import 'package:ser_manos/screens/ProfileScreen.dart';
 
 void main() {
@@ -32,7 +33,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ProfileScreen();
+    return const NewsScreen();
   }
 }
 

@@ -108,7 +108,9 @@ class SerManosTextButton extends StatelessWidget {
       required loading,
       required text,
       required onPressed,
-      required textColor})
+      required textColor,
+      required boxColor  
+    })
       : this(
             key: key,
             enabled: enabled,
@@ -116,6 +118,7 @@ class SerManosTextButton extends StatelessWidget {
             text: text,
             onPressed: onPressed,
             textColor: textColor,
+            boxColor: boxColor,
             buttonStyle: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4), // <-- Radius
