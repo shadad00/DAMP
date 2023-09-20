@@ -8,6 +8,7 @@ import 'package:ser_manos/screens/CompleteProfileScreen.dart';
 import 'package:ser_manos/screens/HomeScreen.dart';
 import 'package:ser_manos/screens/NewsScreen.dart';
 import 'package:ser_manos/screens/EditProfileScreen.dart';
+import 'package:ser_manos/screens/WelcomeScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,7 +35,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CompleteProfileScreen();
+    return const WelcomeScreen();
   }
 }
 

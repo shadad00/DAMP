@@ -45,6 +45,7 @@ class CompleteProfileScreen extends HookWidget {
                     color: SermanosColors.neutral100)),
             const Text(
                 "¡Completá tu perfil para tener acceso a mejores oportunidades!",
+                textAlign: TextAlign.center,
                 style:
                     SermanosTypography.body01(color: SermanosColors.neutral75))
           ],
