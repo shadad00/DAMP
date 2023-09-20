@@ -4,8 +4,8 @@ import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/design_system/atoms/icons/logo.dart';
 
-class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({super.key});
+class IncomeScreen extends StatelessWidget {
+  const IncomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
