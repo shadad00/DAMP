@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ser_manos/design_system/cells/cards/InformationCards/InformationCard.dart';
 import 'package:ser_manos/design_system/cells/header.dart';
+import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/design_system/molecules/components/profile_image.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
@@ -57,7 +58,11 @@ class ProfileScreen extends HookWidget {
                   firsTitle: "TELÈFONO",
                   firstSubtitle: mockedUser.phone!,
                   secondTitle: "E-MAIL",
-                  secondSubtitle: mockedUser.email)
+                  secondSubtitle: mockedUser.email),
+              const SizedBox(height: 16),
+              CtaButton(text: "EditarPerfil", onPressed: () {}, filled: true),
+              const SizedBox(height: 8),
+              CtaButton(text: "Cerrar Sesión", onPressed: () {}, filled: false)
             ],
           ),
         ));
