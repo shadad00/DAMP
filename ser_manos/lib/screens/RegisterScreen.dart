@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ser_manos/design_system/cells/forms/LoginForm.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/atoms/icons/logo.dart';
+import 'package:ser_manos/design_system/cells/forms/RegisterForm.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,21 +19,21 @@ class LoginScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-              SermanosLogos.square(logoUrl: "assets/images/SquareLogo.png"),
+                SermanosLogos.square(logoUrl: "assets/images/SquareLogo.png"),
                 SizedBox(height: 32),
-                LoginForm(),
+                RegisterForm(),
               ],
             ),
-            const SizedBox(height: 160),
+            const SizedBox(height: 90),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 CtaButton(
-                    text: "Iniciar sesión", onPressed: () {}, filled: true),
+                    text: "Registrarse", onPressed: () {}, filled: true),
                 const SizedBox(height: 16),
                 CtaButton(
-                  text: 'No tengo cuenta',
+                  text: 'Ya tengo cuenta',
                   onPressed: () {},
                   textColor: SermanosColors.primary100,
                   filled: false,

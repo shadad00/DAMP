@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:ser_manos/design_system/cells/forms/ContactDataForm.dart';
-import 'package:ser_manos/design_system/cells/header.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/model/Gender.dart';
-import 'package:ser_manos/screens/CompleteProfileScreen.dart';
-import 'package:ser_manos/screens/HomeScreen.dart';
 import 'package:ser_manos/screens/LoginScreen.dart';
-import 'package:ser_manos/screens/NewsScreen.dart';
-import 'package:ser_manos/screens/EditProfileScreen.dart';
-import 'package:ser_manos/screens/WelcomeScreen.dart';
+import 'package:ser_manos/screens/RegisterScreen.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -36,7 +30,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const LoginScreen();
+    return const RegisterScreen();
   }
 }
 
