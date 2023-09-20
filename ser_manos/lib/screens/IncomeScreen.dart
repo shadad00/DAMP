@@ -9,7 +9,7 @@ class IncomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // todo: add the status bar. 
+    // todo: add the status bar.
     return Scaffold(
         body: Padding(
       padding: const EdgeInsets.all(16),
@@ -20,6 +20,9 @@ class IncomeScreen extends StatelessWidget {
           children: [
             const Column(children: [
               SermanosLogos.square(logoUrl: "assets/images/SquareLogo.png"),
+              SizedBox(
+                height: 32,
+              ),
               Text(
                   "El esfuerzo desinteresado para llevar alegría a los demás será el comienzo de una vida más feliz para nosotros",
                   textAlign: TextAlign.center,
@@ -30,6 +33,9 @@ class IncomeScreen extends StatelessWidget {
               children: [
                 CtaButton(
                     text: "Iniciar Sesión", onPressed: () {}, filled: true),
+                const SizedBox(
+                  height: 16,
+                ),
                 CtaButton(
                   text: "Registrarse",
                   onPressed: () {},

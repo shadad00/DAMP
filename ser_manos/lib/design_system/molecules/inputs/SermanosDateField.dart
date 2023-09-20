@@ -71,114 +71,114 @@ class SermanosDateField extends HookWidget {
     return SizedBox(
       height: 56,
       child: TextField(
-      style: const TextStyle(height: 20),
-      keyboardType: TextInputType.datetime,
-      inputFormatters: [LengthLimitingTextInputFormatter(10)],
-      enabled: enabled,
-      onChanged: (value) => field.didChange(value),
-      focusNode: focusNode,
-      controller: controller,
-      decoration: InputDecoration(
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 12,
-        ),
-        hintText: placeholder,
-        hintStyle: SermanosTypography.subtitle01(
-          color: enabled ? SermanosColors.neutral50 : SermanosColors.neutral25,
-        ),
-        labelText: label,
-        labelStyle: SermanosTypography.subtitle01(
-          color: enabled
-              ? focusNode.hasFocus
-                  ? SermanosColors.secondary200
-                  : SermanosColors.neutral75
-              : SermanosColors.neutral50,
-        ),
-        floatingLabelBehavior: floatingLabelBehavior,
-        floatingLabelStyle: SermanosTypography.caption(
-          color: enabled
-              ? focusNode.hasFocus
-                  ? SermanosColors.secondary200
-                  : SermanosColors.neutral75
-              : SermanosColors.neutral50,
-        ),
-        disabledBorder: SermanosInputBorder.disabled().inputBorder,
-        focusedBorder: SermanosInputBorder.focused().inputBorder,
-        enabledBorder: SermanosInputBorder.enabled().inputBorder,
-        errorBorder: SermanosInputBorder.error().inputBorder,
-        errorStyle: const SermanosTypography.body01(
-          color: SermanosColors.error100,
-        ),
-        errorMaxLines: 3,
-        errorText: field.errorText,
-        suffixIcon: !enabled
-            ? null
-            : field.hasError
-                ? IconButton(
-                    icon: SermanosIcons.errorFilled(
-                      status: SermanosIconStatus.error,
-                    ),
-                    onPressed: () {
-                      if (!isEmpty) {
-                        controller.clear();
-                        field.reset();
-                      }
-                    },
-                  )
-                : IconButton(
-                    disabledColor: SermanosColors.neutral25,
-                    icon: SermanosIcons.calendarFilled(
-                      status: enabled
-                          ? SermanosIconStatus.activated
-                          : SermanosIconStatus.disabled,
-                    ),
-                    onPressed: !enabled
-                        ? null
-                        : () async {
-                            DateTime? datetime = await showDatePicker(
-                                context: context,
-                                initialDate: initialDate ?? actualDate,
-                                firstDate: minDate,
-                                lastDate: maxDate,
-                                fieldLabelText: "Seleccionar fecha",
-                                helpText: "Seleccionar fecha",
-                                cancelText: "Cancelar".toUpperCase(),
-                                confirmText: "Ok".toUpperCase(),
-                                builder: (context, child) {
-                                  return Theme(
-                                    data: Theme.of(context).copyWith(
-                                      colorScheme: const ColorScheme.light(
-                                        primary: SermanosColors.primary100,
-                                        onPrimary: SermanosColors.neutral0,
-                                        onSurface: SermanosColors.primary100,
-                                      ),
-                                      textButtonTheme: TextButtonThemeData(
-                                        style: TextButton.styleFrom(
-                                          textStyle:
-                                              const SermanosTypography.button(
-                                                  color: SermanosColors
-                                                      .primary100),
-                                          // button text color
+        // style: const TextStyle(height: 16),
+        keyboardType: TextInputType.datetime,
+        inputFormatters: [LengthLimitingTextInputFormatter(10)],
+        enabled: enabled,
+        onChanged: (value) => field.didChange(value),
+        focusNode: focusNode,
+        controller: controller,
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 12,
+          ),
+          hintText: placeholder,
+          hintStyle: SermanosTypography.subtitle01(
+            color:
+                enabled ? SermanosColors.neutral50 : SermanosColors.neutral25,
+          ),
+          labelText: label,
+          labelStyle: SermanosTypography.subtitle01(
+            color: enabled
+                ? focusNode.hasFocus
+                    ? SermanosColors.secondary200
+                    : SermanosColors.neutral75
+                : SermanosColors.neutral50,
+          ),
+          floatingLabelBehavior: floatingLabelBehavior,
+          floatingLabelStyle: SermanosTypography.caption(
+            color: enabled
+                ? focusNode.hasFocus
+                    ? SermanosColors.secondary200
+                    : SermanosColors.neutral75
+                : SermanosColors.neutral50,
+          ),
+          disabledBorder: SermanosInputBorder.disabled().inputBorder,
+          focusedBorder: SermanosInputBorder.focused().inputBorder,
+          enabledBorder: SermanosInputBorder.enabled().inputBorder,
+          errorBorder: SermanosInputBorder.error().inputBorder,
+          errorStyle: const SermanosTypography.body01(
+            color: SermanosColors.error100,
+          ),
+          errorMaxLines: 3,
+          errorText: field.errorText,
+          suffixIcon: !enabled
+              ? null
+              : field.hasError
+                  ? IconButton(
+                      icon: SermanosIcons.errorFilled(
+                        status: SermanosIconStatus.error,
+                      ),
+                      onPressed: () {
+                        if (!isEmpty) {
+                          controller.clear();
+                          field.reset();
+                        }
+                      },
+                    )
+                  : IconButton(
+                      disabledColor: SermanosColors.neutral25,
+                      icon: SermanosIcons.calendarFilled(
+                        status: enabled
+                            ? SermanosIconStatus.activated
+                            : SermanosIconStatus.disabled,
+                      ),
+                      onPressed: !enabled
+                          ? null
+                          : () async {
+                              DateTime? datetime = await showDatePicker(
+                                  context: context,
+                                  initialDate: initialDate ?? actualDate,
+                                  firstDate: minDate,
+                                  lastDate: maxDate,
+                                  fieldLabelText: "Seleccionar fecha",
+                                  helpText: "Seleccionar fecha",
+                                  cancelText: "Cancelar".toUpperCase(),
+                                  confirmText: "Ok".toUpperCase(),
+                                  builder: (context, child) {
+                                    return Theme(
+                                      data: Theme.of(context).copyWith(
+                                        colorScheme: const ColorScheme.light(
+                                          primary: SermanosColors.primary100,
+                                          onPrimary: SermanosColors.neutral0,
+                                          onSurface: SermanosColors.primary100,
+                                        ),
+                                        textButtonTheme: TextButtonThemeData(
+                                          style: TextButton.styleFrom(
+                                            textStyle:
+                                                const SermanosTypography.button(
+                                                    color: SermanosColors
+                                                        .primary100),
+                                            // button text color
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    child: child!,
-                                  );
-                                });
-                            if (datetime != null) {
-                              String date = dateFormat.format(datetime);
-                              field.didChange(date);
-                              controller.text = date;
-                            }
-                          },
-                  ),
+                                      child: child!,
+                                    );
+                                  });
+                              if (datetime != null) {
+                                String date = dateFormat.format(datetime);
+                                field.didChange(date);
+                                controller.text = date;
+                              }
+                            },
+                    ),
+        ),
+        onTapOutside: (e) => focusNode.unfocus(),
+        onEditingComplete: () => focusNode.unfocus(),
+        onSubmitted: (value) => focusNode.unfocus(),
       ),
-      onTapOutside: (e) => focusNode.unfocus(),
-      onEditingComplete: () => focusNode.unfocus(),
-      onSubmitted: (value) => focusNode.unfocus(),
-    ),
-
     );
   }
 

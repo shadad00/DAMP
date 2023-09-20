@@ -41,7 +41,7 @@ class ProfileDataForm extends ConsumerWidget {
           ),
         ),
         const SizedBox(
-          height: 16,
+          height: 24,
         ),
         SizedBox(
           height: 56,
