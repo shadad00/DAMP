@@ -37,7 +37,7 @@ class CtaButton extends StatelessWidget {
             loading: loading,
             text: text,
             onPressed: onPressed,
-            textColor: SermanosColors.error100,
+            textColor: SermanosColors.primary100,
             backgroundColor: Colors.transparent,
             boxColor: SermanosColors.neutral0);
   }
