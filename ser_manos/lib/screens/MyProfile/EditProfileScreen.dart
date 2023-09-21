@@ -6,7 +6,7 @@ import 'package:ser_manos/model/Gender.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import '../design_system/cells/forms/ContactDataForm.dart';
+import '../../design_system/cells/forms/ContactDataForm.dart';
 
 class EditProfileModal extends StatelessWidget {
   const EditProfileModal({super.key});

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/model/Gender.dart';
-import 'package:ser_manos/screens/CompleteProfileScreen.dart';
-import 'package:ser_manos/screens/EditProfileModal.dart';
-import 'package:ser_manos/screens/EditProfileScreen.dart';
-import 'package:ser_manos/screens/IncomeScreen.dart';
-import 'package:ser_manos/screens/NewsScreen.dart';
-import 'package:ser_manos/screens/WelcomeScreen.dart';
+import 'package:ser_manos/screens/MyProfile/CompleteProfileScreen.dart';
+import 'package:ser_manos/screens/MyProfile/EditProfileScreen.dart';
+import 'package:ser_manos/screens/MyProfile/ProfileInformationScreen.dart';
+import 'package:ser_manos/screens/Authentication/IncomeScreen.dart';
+import 'package:ser_manos/screens/News/NewDescriptionScreen.dart';
+import 'package:ser_manos/screens/News/NewsScreen.dart';
+import 'package:ser_manos/screens/Authentication/WelcomeScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +32,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const EditProfileModal();
+    return const NewDescriptionScreen();
   }
 }
 

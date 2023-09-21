@@ -12,6 +12,7 @@ class NewsScreen extends HookWidget {
         reportId: 0,
         category: "REPORTE 2820",
         title: "Ser donante voluntario",
+        subTitle: "subtitle",
         content:
             "Desde el Hospital Centenario recalcan la importancia de la donación voluntaria de Sangre",
         imageUrl: 'http://pawserver.it.itba.edu.ar/paw-2023a-01/images/153'),
@@ -19,11 +20,13 @@ class NewsScreen extends HookWidget {
         reportId: 1,
         category: "NOTICIAS DE CUYO",
         title: "Juntamos residuos",
+        subTitle: "subtitle",
         content:
             "Voluntarios de Godoy Cruz, se sumaron a la limpieza de un cauce  en las inmediaciones.",
         imageUrl: 'http://pawserver.it.itba.edu.ar/paw-2023a-01/images/153'),
     const News(
         reportId: 2,
+        subTitle: "subtitle",
         category: "DIARIO LA NACIÓN",
         title: "Adoptar mascotas",
         content:
