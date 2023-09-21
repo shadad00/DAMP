@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/model/Gender.dart';
+import 'package:ser_manos/screens/Home/VolunteeringDescriptionScreen.dart';
 import 'package:ser_manos/screens/MyProfile/CompleteProfileScreen.dart';
 import 'package:ser_manos/screens/MyProfile/EditProfileScreen.dart';
 import 'package:ser_manos/screens/MyProfile/ProfileInformationScreen.dart';
@@ -32,7 +33,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const NewDescriptionScreen();
+    return const VolunteeringDescriptionScreen();
   }
 }
 

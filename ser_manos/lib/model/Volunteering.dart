@@ -33,6 +33,7 @@ class Volunteering extends Equatable {
   @override
   List<Object?> get props => [id];
 
+
   bool isFull() {
     return capacity == volunteerQuantity;
   }
