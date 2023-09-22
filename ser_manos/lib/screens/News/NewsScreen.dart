@@ -39,13 +39,15 @@ class NewsScreen extends HookWidget {
     final controler = useTabController(initialLength: 3);
 
     return Scaffold(
-      appBar: SermanosHeader.tabsHeader(controller: controler),
+      appBar: SermanosHeader.tabsHeader(
+        controller: controler,
+      ),
       body: ListView.builder(
           itemCount: newList.length,
           itemBuilder: (context, index) {
             return Container(
                 padding: const EdgeInsets.all(16),
-                child: NewsCard(news: newList[index])); 
+                child: NewsCard(news: newList[index]));
           }),
     );
   }

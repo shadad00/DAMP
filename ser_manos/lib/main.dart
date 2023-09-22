@@ -1,6 +1,8 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/model/Gender.dart';
+import 'package:ser_manos/navigation/navigation.dart';
 import 'package:ser_manos/screens/Home/VolunteeringDescriptionScreen.dart';
 import 'package:ser_manos/screens/MyProfile/CompleteProfileScreen.dart';
 import 'package:ser_manos/screens/MyProfile/EditProfileScreen.dart';
@@ -19,21 +21,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Flutter Demo',
+    return MaterialApp.router(
+        title: 'ser manos',
         theme: ThemeData(
           useMaterial3: true,
         ),
-        home: const MyHomePage());
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const VolunteeringDescriptionScreen();
+        routeInformationParser: BeamerParser(),
+        routerDelegate: delegate,
+    );
   }
 }
 

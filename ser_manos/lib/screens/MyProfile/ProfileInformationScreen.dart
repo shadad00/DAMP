@@ -28,7 +28,9 @@ class ProfileScreen extends HookWidget {
     final controller = useTabController(initialLength: 3);
 
     return Scaffold(
-        appBar: SermanosHeader.tabsHeader(controller: controller),
+        appBar: SermanosHeader.tabsHeader(
+          controller: controller,
+        ),
         body: Padding(
           padding: const EdgeInsets.only(left: 32, right: 32),
           child: Column(
