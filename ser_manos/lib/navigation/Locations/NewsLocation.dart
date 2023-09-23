@@ -2,7 +2,6 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:ser_manos/screens/MainScreen.dart';
 import 'package:ser_manos/screens/News/NewDescriptionScreen.dart';
-import 'package:ser_manos/screens/News/NewsScreen.dart';
 
 class NewsLocation extends BeamLocation<BeamState> {
   NewsLocation(RouteInformation super.routeInformation);

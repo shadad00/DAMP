@@ -76,7 +76,7 @@ class MainScreen extends HookWidget {
               controller: tabController,
               physics: const NeverScrollableScrollPhysics(),
               children: const <Widget>[
-                HomeScreen(),
+                VolunteeringScreen(),
                 ProfileScreen(),
                 NewsScreen(),
               ],
@@ -97,7 +97,7 @@ class MainScreen extends HookWidget {
         configuration: RouteInformation(
           location: _getCurrentLocationPath(newIndex),
         ),
-        rebuild: true,
+        rebuild: false,
       );
     }
   }
@@ -117,7 +117,7 @@ class MainScreen extends HookWidget {
 
   int _getCurrentTabIndex(String? tab) {
     Map<String, int> map = {"volunteering": 0, "profile": 1, "news": 2};
-    if (tab == null || !map.containsKey(tab)) return -1; 
+    if (tab == null || !map.containsKey(tab)) return -1;
     return map[tab]!;
   }
 

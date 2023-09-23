@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Volunteering extends Equatable {
-  final String id;
+  final int id;
   final String name;
   final String category;
   final String description;

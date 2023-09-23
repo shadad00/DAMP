@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Short_button.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
@@ -69,7 +70,8 @@ class NewsCard extends StatelessWidget {
                               boxColor: SermanosColors.neutral0,
                               loading: false,
                               filled: false,
-                              onPressed: () => {},
+                              onPressed: () =>
+                                  {context.beamToNamed('/news/${news.reportId}')},
                               text: "Leer Más",
                               textColor: SermanosColors.primary100,
                             )

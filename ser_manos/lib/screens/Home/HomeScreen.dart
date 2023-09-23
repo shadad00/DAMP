@@ -8,12 +8,12 @@ import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/model/Volunteering.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class VolunteeringScreen extends StatelessWidget {
+  const VolunteeringScreen({super.key});
 
   static final List<Volunteering> volunteersList = List.from([
     Volunteering(
-        id: "0",
+        id: 1,
         name: "Un techo para mi pais",
         category: "Accion social",
         description: "Es para construir casas.",
@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
         volunteerQuantity: 54,
         creationTime: DateTime.now()),
     Volunteering(
-        id: "0",
+        id: 2,
         name: "Manos caritativas",
         category: "Accion social",
         description: "Es para usar las manos .",

@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:ser_manos/design_system/atoms/icons/icons.dart';
 import 'package:ser_manos/design_system/molecules/components/vacancies.dart';
@@ -8,19 +9,15 @@ import '../../../tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/utils/NetworkImageWrapper.dart';
 
 class VolunteeringCard extends StatelessWidget {
-  
-  final Volunteering volunteeringInformation; 
+  final Volunteering volunteeringInformation;
 
-  const VolunteeringCard({
-    super.key,
-    required this.volunteeringInformation
-  });
-
+  const VolunteeringCard({super.key, required this.volunteeringInformation});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () =>
+          {context.beamToNamed('/volunteering/${volunteeringInformation.id}')},
       child: Container(
         decoration: BoxDecoration(
           color: SermanosColors.neutral0,
@@ -59,7 +56,7 @@ class VolunteeringCard extends StatelessWidget {
                           ),
                           Vacancies(
                             vacancy: volunteeringInformation.capacity -
-                                volunteeringInformation.volunteerQuantity,                             
+                                volunteeringInformation.volunteerQuantity,
                           ),
                         ],
                       ),
@@ -67,8 +64,8 @@ class VolunteeringCard extends StatelessWidget {
                     Row(
                       children: [
                         SermanosIcons.favoriteFilled(
-                          // todo: view if the voluteering is one of the user's favourite. 
-                          status: SermanosIconStatus.activated , 
+                          // todo: view if the voluteering is one of the user's favourite.
+                          status: SermanosIconStatus.activated,
                         ),
                         const SizedBox(width: 23),
                         InkWell(
@@ -88,7 +85,4 @@ class VolunteeringCard extends StatelessWidget {
       ),
     );
   }
-
-
-
 }

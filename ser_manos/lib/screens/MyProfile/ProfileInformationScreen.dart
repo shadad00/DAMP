@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:ser_manos/design_system/cells/cards/InformationCards/InformationCard.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
@@ -54,7 +55,10 @@ class ProfileScreen extends StatelessWidget {
               secondTitle: "E-MAIL",
               secondSubtitle: mockedUser.email),
           const SizedBox(height: 16),
-          CtaButton(text: "EditarPerfil", onPressed: () {}, filled: true),
+          CtaButton(
+              text: "Editar Perfil",
+              onPressed: () => context.beamToNamed("/profile/edit"),
+              filled: true),
           const SizedBox(height: 8),
           CtaButton(text: "Cerrar Sesión", onPressed: () {}, filled: false)
         ],

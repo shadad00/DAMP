@@ -12,7 +12,7 @@ class VolunteeringDescriptionScreen extends StatelessWidget {
   const VolunteeringDescriptionScreen({super.key});
 
   static final Volunteering volunteeringInformation = Volunteering(
-      id: "0",
+      id: 1,
       name: "Un techo para mi País",
       category: "Accion social",
       description:

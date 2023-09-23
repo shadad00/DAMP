@@ -6,7 +6,7 @@ import 'package:ser_manos/navigation/Locations/VolunteeringLocation.dart';
 
 final BeamerDelegate delegate = BeamerDelegate(
   locationBuilder: _locationBuilder,
-  initialPath: "/volunteering"
+  initialPath: "/volunteering", 
   ); 
 
 BeamLocation<RouteInformationSerializable<dynamic>> _locationBuilder(
