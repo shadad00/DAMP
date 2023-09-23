@@ -3,14 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/model/Gender.dart';
 import 'package:ser_manos/navigation/navigation.dart';
-import 'package:ser_manos/screens/Home/VolunteeringDescriptionScreen.dart';
-import 'package:ser_manos/screens/MyProfile/CompleteProfileScreen.dart';
-import 'package:ser_manos/screens/MyProfile/EditProfileScreen.dart';
-import 'package:ser_manos/screens/MyProfile/ProfileInformationScreen.dart';
-import 'package:ser_manos/screens/Authentication/IncomeScreen.dart';
-import 'package:ser_manos/screens/News/NewDescriptionScreen.dart';
-import 'package:ser_manos/screens/News/NewsScreen.dart';
-import 'package:ser_manos/screens/Authentication/WelcomeScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,13 +13,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return BeamerProvider(
+      routerDelegate: delegate,
+      child: MaterialApp.router(
         title: 'ser manos',
         theme: ThemeData(
           useMaterial3: true,
         ),
         routeInformationParser: BeamerParser(),
         routerDelegate: delegate,
+      ),
     );
   }
 }

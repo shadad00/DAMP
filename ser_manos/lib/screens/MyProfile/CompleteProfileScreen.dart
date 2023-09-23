@@ -9,7 +9,7 @@ import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/model/Gender.dart';
 import 'package:ser_manos/model/User.dart';
 
-class CompleteProfileScreen extends HookWidget {
+class CompleteProfileScreen extends StatelessWidget {
   const CompleteProfileScreen({super.key});
 
   static User mockedUser = User(
@@ -25,40 +25,35 @@ class CompleteProfileScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = useTabController(initialLength: 3);
-
-    return Scaffold(
-      appBar: SermanosHeader.tabsHeader(controller: controller),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround, 
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-        Column(
-          children: [
-            ProfileImage(imageUrl: mockedUser.profileImageUrl),
-            const SizedBox(height: 16),
-            const Text("Voluntario",
-                style: SermanosTypography.overline(
-                    color: SermanosColors.neutral75)),
-            Text('${mockedUser.name} ${mockedUser.surname}',
-                style: const SermanosTypography.subtitle01(
-                    color: SermanosColors.neutral100)),
-            const Text(
-                "¡Completá tu perfil para tener acceso a mejores oportunidades!",
-                textAlign: TextAlign.center,
-                style:
-                    SermanosTypography.body01(color: SermanosColors.neutral75))
-          ],
-        ),
-        Column(
-          children: [
-            ShortButton(
-                text: "Completar",
-                icon: SermanosIcons.add(status: SermanosIconStatus.back),
-                onPressed: () {})
-          ],
-        )
-      ]),
-    );
+          Column(
+            children: [
+              ProfileImage(imageUrl: mockedUser.profileImageUrl),
+              const SizedBox(height: 16),
+              const Text("Voluntario",
+                  style: SermanosTypography.overline(
+                      color: SermanosColors.neutral75)),
+              Text('${mockedUser.name} ${mockedUser.surname}',
+                  style: const SermanosTypography.subtitle01(
+                      color: SermanosColors.neutral100)),
+              const Text(
+                  "¡Completá tu perfil para tener acceso a mejores oportunidades!",
+                  textAlign: TextAlign.center,
+                  style: SermanosTypography.body01(
+                      color: SermanosColors.neutral75))
+            ],
+          ),
+          Column(
+            children: [
+              ShortButton(
+                  text: "Completar",
+                  icon: SermanosIcons.add(status: SermanosIconStatus.back),
+                  onPressed: () {})
+            ],
+          )
+        ]);
   }
 }

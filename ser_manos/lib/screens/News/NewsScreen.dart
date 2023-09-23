@@ -4,7 +4,7 @@ import 'package:ser_manos/design_system/cells/cards/NewsCard.dart';
 import 'package:ser_manos/design_system/cells/header.dart';
 import 'package:ser_manos/model/News.dart';
 
-class NewsScreen extends HookWidget {
+class NewsScreen extends StatelessWidget {
   const NewsScreen({super.key});
 
   static final newList = List.from([
@@ -36,19 +36,12 @@ class NewsScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controler = useTabController(initialLength: 3);
-
-    return Scaffold(
-      appBar: SermanosHeader.tabsHeader(
-        controller: controler,
-      ),
-      body: ListView.builder(
-          itemCount: newList.length,
-          itemBuilder: (context, index) {
-            return Container(
-                padding: const EdgeInsets.all(16),
-                child: NewsCard(news: newList[index]));
-          }),
-    );
+    return ListView.builder(
+        itemCount: newList.length,
+        itemBuilder: (context, index) {
+          return Container(
+              padding: const EdgeInsets.all(16),
+              child: NewsCard(news: newList[index]));
+        });
   }
 }

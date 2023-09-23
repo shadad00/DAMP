@@ -8,7 +8,7 @@ import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/model/Volunteering.dart';
 
-class HomeScreen extends HookWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   static final List<Volunteering> volunteersList = List.from([
@@ -42,35 +42,37 @@ class HomeScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tabController = useTabController(initialLength: 3);
-
-    return Scaffold(
-        appBar: SermanosHeader.tabsHeader(controller: tabController),
-        body:   Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 16,),
-            SermanosSearchBar(
-              onChanged: (p0) => {},
-            ),
-            const SizedBox(height: 16,),
-            const Text(
-                "Voluntariados",
-                style: SermanosTypography.headline01(
-                  color: SermanosColors.neutral100)
-                ),
-            const SizedBox(height: 16,),
-            Expanded(
-                child: ListView.builder(
-                  itemCount: volunteersList.length,
-                  itemBuilder: (context, index) {
-                  return VolunteeringCard(
-                    volunteeringInformation: volunteersList[index]);
-              },
-            ))
-          ],
-        )
-        );
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(
+            height: 16,
+          ),
+          SermanosSearchBar(
+            onChanged: (p0) => {},
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          const Text("Voluntariados",
+              style: SermanosTypography.headline01(
+                  color: SermanosColors.neutral100)),
+          const SizedBox(
+            height: 16,
+          ),
+          Expanded(
+              child: ListView.builder(
+            itemCount: volunteersList.length,
+            itemBuilder: (context, index) {
+              return VolunteeringCard(
+                  volunteeringInformation: volunteersList[index]);
+            },
+          ))
+        ],
+      ),
+    );
   }
 }

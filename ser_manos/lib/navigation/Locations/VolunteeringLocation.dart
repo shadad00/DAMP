@@ -2,6 +2,7 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:ser_manos/screens/Home/HomeScreen.dart';
 import 'package:ser_manos/screens/Home/VolunteeringDescriptionScreen.dart';
+import 'package:ser_manos/screens/MainScreen.dart';
 
 class VolunteeringLocation extends BeamLocation<BeamState> {
 
@@ -19,7 +20,7 @@ class VolunteeringLocation extends BeamLocation<BeamState> {
       const BeamPage(
           key: ValueKey("volunteering"),
           title: "volunteering",
-          child: HomeScreen())
+          child: MainScreen())
     ];
 
     if (state.pathParameters.containsKey('id')) {
