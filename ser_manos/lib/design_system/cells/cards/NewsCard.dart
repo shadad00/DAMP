@@ -52,7 +52,7 @@ class NewsCard extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              news.content,
+                              news.summary,
                               softWrap: true,
                               style: const SermanosTypography.body02(
                                 color: SermanosColors.neutral75,

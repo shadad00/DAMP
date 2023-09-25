@@ -21,7 +21,7 @@ class NewDescriptionScreen extends StatelessWidget {
 La donación voluntaria de sangre desempeña un papel vital en el sistema de salud. A diferencia de la donación de sangre por reposición, donde se solicita a familiares y amigos donar para un paciente específico, la donación voluntaria se realiza sin ninguna conexión directa con un receptor particular. Esto garantiza un suministro constante y seguro de sangre y productos sanguíneos para todos aquellos que lo necesiten.
 Los beneficios de ser donante voluntario son numerosos. Además de la satisfacción de ayudar a quienes más lo necesitan, la donación de sangre tiene beneficios para la salud del propio donante. Al donar sangre, se realiza un chequeo médico que incluye pruebas para detectar enfermedades transmisibles, lo que puede proporcionar una evaluación temprana y ayuda en el diagnóstico de posibles problemas de salud.
 ''',
-      imageUrl: 'http://pawserver.it.itba.edu.ar/paw-2023a-01/images/153');
+      imageUrl: 'http://pawserver.it.itba.edu.ar/paw-2023a-01/images/153', summary: "Resumen");
 
   @override
   Widget build(BuildContext context) {

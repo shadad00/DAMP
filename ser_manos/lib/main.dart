@@ -1,5 +1,6 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/model/Gender.dart';
 import 'package:ser_manos/navigation/navigation.dart';
@@ -12,11 +13,7 @@ import 'model/News.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  List<News> list = await getNews();
-
-  print(list); 
-
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

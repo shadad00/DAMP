@@ -7,6 +7,7 @@ class News extends Equatable {
   final int reportId;
   final String content;
   final String imageUrl;
+  final String summary; 
 
   const News({
     required this.reportId,
@@ -15,6 +16,7 @@ class News extends Equatable {
     required this.title,
     required this.content,
     required this.imageUrl,
+    required this.summary
   });
 
   @override
