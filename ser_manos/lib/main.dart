@@ -4,7 +4,18 @@ import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/model/Gender.dart';
 import 'package:ser_manos/navigation/navigation.dart';
 
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+import 'package:ser_manos/services/newsService.dart';
+import 'firebase_options.dart';
+import 'model/News.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  List<News> list = await getNews();
+
+  print(list); 
+
   runApp(const MyApp());
 }
 

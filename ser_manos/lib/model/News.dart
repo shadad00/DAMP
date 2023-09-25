@@ -19,4 +19,9 @@ class News extends Equatable {
 
   @override
   List<Object?> get props => [reportId];
+
+  @override
+  String toString() {
+    return title;
+  }
 }

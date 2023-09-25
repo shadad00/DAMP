@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "849488909222",
+    "project_id": "sermanos-fe867",
+    "storage_bucket": "sermanos-fe867.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849488909222:android:98e68ccff075d09f32b567",
+        "android_client_info": {
+          "package_name": "com.example.ser_manos"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgWoJQ7BMRCt3DHuI5FKOWv8UmfS8z1Wc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

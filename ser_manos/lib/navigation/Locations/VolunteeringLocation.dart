@@ -8,7 +8,7 @@ class VolunteeringLocation extends BeamLocation<BeamState> {
 
   @override
   List<String> get pathPatterns => [
-        '/voluteering',
+        "/voluteering",
         '/voluteering/:id',
       ];
 
