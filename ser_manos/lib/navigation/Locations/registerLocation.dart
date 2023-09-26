@@ -1,6 +1,5 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
-import 'package:ser_manos/screens/Authentication/LoginScreen.dart';
 import 'package:ser_manos/screens/Authentication/RegisterScreen.dart';
 
 class RegisterLocation extends BeamLocation<BeamState> {
