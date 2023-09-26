@@ -5,6 +5,9 @@ import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import '../../molecules/inputs/SermanosTextField.dart';
 
+final loginFormKey = GlobalKey<FormBuilderState>();
+
+
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
 
@@ -14,6 +17,7 @@ class LoginForm extends StatelessWidget {
     String? errorText; 
 
     return FormBuilder(
+      key: loginFormKey,
       enabled: !isLoading,
       child: Column(
         children: [

@@ -10,7 +10,7 @@ final registerFormKey = GlobalKey<FormBuilderState>();
 
 
 class RegisterForm extends ConsumerWidget {
-  const RegisterForm({Key? key}) : super(key: key);
+  const RegisterForm({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
