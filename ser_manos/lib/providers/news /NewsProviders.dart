@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../model/News.dart';
-import '../../services/newsService.dart';
+import '../../services/NewsService.dart';
 
 final newsRepositoryProvider =
     Provider<newsService>((ref) => const newsService());
