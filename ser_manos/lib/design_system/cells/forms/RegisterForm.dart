@@ -6,6 +6,9 @@ import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/design_system/molecules/inputs/SermanosTextField.dart';
 
+final registerFormKey = GlobalKey<FormBuilderState>();
+
+
 class RegisterForm extends ConsumerWidget {
   const RegisterForm({Key? key}) : super(key: key);
 
@@ -15,6 +18,7 @@ class RegisterForm extends ConsumerWidget {
     String? errorText;
 
     return FormBuilder(
+      key: registerFormKey,
       enabled: !isLoading,
       child: Column(
         children: [
