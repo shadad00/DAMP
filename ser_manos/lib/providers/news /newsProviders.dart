@@ -15,7 +15,7 @@ final newsRetrieverProvider = FutureProvider<List<News>>((ref) async {
   return await newsRepository.getNews();
 }); 
 
-final newByIdRetrieverProvider = FutureProvider<News>((ref) async {
+final newByIdRetrieverProvider = FutureProvider.family<News, String>((ref, id) async {
   final newsRepository = ref.read(newsRepositoryProvider);
-  return await newsRepository.getNewById(id: "1");
+  return await newsRepository.getNewById(id: id);
 }); 
