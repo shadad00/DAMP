@@ -11,7 +11,7 @@ import '../../design_system/cells/forms/ContactDataForm.dart';
 class EditProfileModal extends StatelessWidget {
   const EditProfileModal({super.key});
 
-  static const User user = User(
+  static const ApplicationUser user = ApplicationUser(
     id: '1234567890',
     name: 'John',
     surname: 'Doe',

@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
 
 const image = 'http://pawserver.it.itba.edu.ar/paw-2023a-01/images/153';
 
-const User user = User(
+const ApplicationUser user = ApplicationUser(
   id: '1234567890',
   name: 'John',
   surname: 'Doe',

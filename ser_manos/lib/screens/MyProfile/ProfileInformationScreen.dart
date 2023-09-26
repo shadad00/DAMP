@@ -11,7 +11,7 @@ import 'package:ser_manos/model/User.dart';
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
-  static User mockedUser = User(
+  static ApplicationUser mockedUser = ApplicationUser(
     id: "0",
     name: "Juan Cruz",
     surname: "Gonzalez",

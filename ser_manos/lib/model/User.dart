@@ -1,8 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:ser_manos/model/Gender.dart';
 
-
-class User extends Equatable {
+class ApplicationUser extends Equatable {
   final String id;
   final String name;
   final String surname;
@@ -13,7 +12,7 @@ class User extends Equatable {
   final String? profileImageUrl;
   final String? emailContact;
 
-  const User({
+  const ApplicationUser({
     required this.id,
     required this.name,
     required this.surname,

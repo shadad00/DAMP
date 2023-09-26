@@ -11,7 +11,7 @@ import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 
 class ProfileDataForm extends ConsumerWidget {
-  final User user;
+  final ApplicationUser user;
   final String genderField;
   final String birthdateField;
   final String imageField;
@@ -128,19 +128,19 @@ class ProfileDataForm extends ConsumerWidget {
         const SizedBox(
           height: 24,
         ),
-     SermanosProfilePictureField(
-            formName: imageField,
-            initialValue: user.profileImageUrl,
-            enabled: enabled,
-            validators: [
-              (value) {
-                if (value == null && user.profileImageUrl == null) {
-                    return "Ingrese una foto de perfil";
-                }
-                return null;
+        SermanosProfilePictureField(
+          formName: imageField,
+          initialValue: user.profileImageUrl,
+          enabled: enabled,
+          validators: [
+            (value) {
+              if (value == null && user.profileImageUrl == null) {
+                return "Ingrese una foto de perfil";
               }
-            ],
-          ),
+              return null;
+            }
+          ],
+        ),
       ],
     );
   }

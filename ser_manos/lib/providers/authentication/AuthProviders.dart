@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:ser_manos/services/AuthService.dart';
@@ -28,17 +29,18 @@ class UserRegisterData extends UserLoginData {
   String get getSurname => surname;
 }
 
+final firebaseAuthProvider = Provider<FirebaseAuth>((ref) => FirebaseAuth.instance);
+
 final authRepositoryProvider = Provider<AuthService>((ref) => AuthService());
 
-final userState = StateProvider<User?>((ref) => null);
-
+final userState = StateProvider<ApplicationUser?>((ref) => null);
 
 // @riverpod
 final loginProvider =
     FutureProvider.family<void, UserLoginData>((ref, userData) async {
   final authRepository = ref.read(authRepositoryProvider);
   await authRepository.signIn(userLoginData: userData);
-  // ref.read(userState.notifier).state = 
+  // ref.read(userState.notifier).state =
 });
 
 final registerProvider =
@@ -46,5 +48,3 @@ final registerProvider =
   final authRepository = ref.read(authRepositoryProvider);
   return await authRepository.signUp(userRegisterData: userData);
 });
-
-
