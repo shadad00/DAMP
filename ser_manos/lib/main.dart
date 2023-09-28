@@ -6,7 +6,7 @@ import 'package:ser_manos/model/Gender.dart';
 import 'package:ser_manos/navigation/navigation.dart';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:ser_manos/services/NewsService.dart';
+import 'package:ser_manos/services/implementations/FirebaseNewsService.dart';
 import 'firebase_options.dart';
 import 'model/News.dart';
 
