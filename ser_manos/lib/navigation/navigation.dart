@@ -13,7 +13,7 @@ final BeamerDelegate delegate = BeamerDelegate(
     BeamGuard(
         pathPatterns: ["/login", "/register"],
         guardNonMatching: true,
-        check: (context, location) => false,
+        check: (context, location) => true,
         beamToNamed: (origin, target) => "/login")
   ],
   locationBuilder: _locationBuilder,

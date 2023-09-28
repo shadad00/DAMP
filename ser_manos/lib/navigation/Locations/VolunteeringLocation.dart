@@ -8,8 +8,8 @@ class VolunteeringLocation extends BeamLocation<BeamState> {
 
   @override
   List<String> get pathPatterns => [
-        "/voluteering",
-        '/voluteering/:id',
+        "/volunteering",
+        '/volunteering/:id',
       ];
 
   @override
@@ -28,7 +28,7 @@ class VolunteeringLocation extends BeamLocation<BeamState> {
         BeamPage(
           key: ValueKey('volunteering-$id'),
           title: 'volunteering $id',
-          child: const VolunteeringDescriptionScreen(),
+          child: const VolunteeringDescriptionScreen(volunteeringId: "1",),
         ),
       );
     }
