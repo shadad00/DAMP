@@ -1,17 +1,21 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 import 'package:ser_manos/design_system/cells/forms/LoginForm.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/atoms/icons/logo.dart';
+import 'package:ser_manos/logger/logger.dart';
 import 'package:ser_manos/providers/authentication/AuthProviders.dart';
 
-class LoginScreen extends StatelessWidget {
+import '../../services/interfaces /AuthService.dart';
+
+class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -33,28 +37,31 @@ class LoginScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Consumer(
-                      builder: (context, ref, child) => CtaButton(
-                          text: "Iniciar sesión",
-                          onPressed: () {
-                            if (!loginFormKey.currentState!.validate()) {
-                              print("Invalid");
-                              return;
-                            }
-                            final response =
-                                ref.watch(loginProvider(UserLoginData(
-                              email: loginFormKey
-                                  .currentState!.fields['email']!.value,
-                              password: loginFormKey
-                                  .currentState!.fields['password']!.value,
-                            )));
-                            response.when(
-                              data: (data) => context.beamToNamed("/welcome"),
-                              loading: () => const Text("Loading"),
-                              error: (error, stackTrace) => const Text("Error"),
-                            );
-                          },
-                          filled: true)),
+                  CtaButton(
+                      text: "Iniciar sesión",
+                      onPressed: () {
+                        if (!loginFormKey.currentState!.validate()) {
+                          return;
+                        }
+                        final response = ref.watch(loginProvider(UserLoginData(
+                          email:
+                              loginFormKey.currentState!.fields['email']!.value,
+                          password: loginFormKey
+                              .currentState!.fields['password']!.value,
+                        )));
+                        response.when(data: (data) {
+                          logger.d("dataaaaaaaaaaaaaaaaaaaaaaa");
+                          context.beamToNamed("/volunteering");
+                        }, loading: () {
+                          logger.d("loadinghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+                          // context.beamToNamed("/volunteering");
+                        }, error: (error, stackTrace) {
+                          logger.d(
+                              "errorerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+                          // context.beamToNamed("/volunteering");
+                        });
+                      },
+                      filled: true),
                   const SizedBox(height: 16),
                   CtaButton(
                     text: 'No tengo cuenta',

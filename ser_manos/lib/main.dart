@@ -4,23 +4,20 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/model/Gender.dart';
 import 'package:ser_manos/navigation/navigation.dart';
-
 import 'package:firebase_core/firebase_core.dart';
-import 'package:ser_manos/services/implementations/FirebaseNewsService.dart';
-import 'firebase_options.dart';
-import 'model/News.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(child: SerManos()));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class SerManos extends ConsumerWidget {
+  const SerManos({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final BeamerDelegate delegate = ref.watch(delegateProvider);
     return BeamerProvider(
       routerDelegate: delegate,
       child: MaterialApp.router(
@@ -37,16 +34,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-const image = 'http://pawserver.it.itba.edu.ar/paw-2023a-01/images/153';
-
-const ApplicationUser user = ApplicationUser(
-  id: '1234567890',
-  name: 'John',
-  surname: 'Doe',
-  email: 'johndoe@gmail.com',
-  phone: '1234567890',
-  gender: Gender.male,
-  profileImageUrl: null,
-  emailContact: 'johndoe@gmail.com',
-);
