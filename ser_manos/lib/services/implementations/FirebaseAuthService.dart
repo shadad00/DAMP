@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/providers/authentication/UserProvider.dart';
 import 'package:ser_manos/services/interfaces%20/UserService.dart';
 
@@ -12,35 +13,33 @@ class FirebaseAuthService implements AuthService {
   const FirebaseAuthService({required this.user, required this.userService});
 
   @override
-  Future<void> signIn({required UserLoginData userLoginData}) async {
+  Future<ApplicationUser?> signIn({required UserLoginData userLoginData}) async {
+    final userCredentials = await _firebaseAuth.signInWithEmailAndPassword(
+      email: userLoginData.email,
+      password: userLoginData.password,
+    );
 
-      final userCredentials = await _firebaseAuth.signInWithEmailAndPassword(
-        email: userLoginData.email,
-        password: userLoginData.password,
-      );
+    final retrievedUser =
+        await userService.getUserById(userId: userCredentials.user!.uid);
 
-      final retrievedUser =  await userService.getUserById(
-        userId: userCredentials.user!.uid
-      );
-      
-      user.set(retrievedUser);
- 
+    user.set(retrievedUser);
+    return retrievedUser; 
   }
 
   @override
-  Future<void> signUp({required UserRegisterData userRegisterData}) async {
-      final userCredentials = await _firebaseAuth.createUserWithEmailAndPassword(
-        email: userRegisterData.email,
-        password: userRegisterData.password,
-      );
+  Future<ApplicationUser?> signUp({required UserRegisterData userRegisterData}) async {
+    final userCredentials = await _firebaseAuth.createUserWithEmailAndPassword(
+      email: userRegisterData.email,
+      password: userRegisterData.password,
+    );
 
-      await userService.createUser(
-        name: userRegisterData.getName,
-        surname: userRegisterData.getSurname,
-        email: userCredentials.user!.email!,
-        userId: userCredentials.user!.uid,
-      );
-   }
+    return await userService.createUser(
+      name: userRegisterData.getName,
+      surname: userRegisterData.getSurname,
+      email: userCredentials.user!.email!,
+      userId: userCredentials.user!.uid,
+    );
+  }
 
   @override
   Future<void> signOut() async {

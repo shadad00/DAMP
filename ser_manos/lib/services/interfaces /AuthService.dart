@@ -1,6 +1,8 @@
+import 'package:ser_manos/model/User.dart';
+
 abstract interface class AuthService {
-  Future<void> signIn({required UserLoginData userLoginData});
-  Future<void> signUp({required UserRegisterData userRegisterData});
+  Future<ApplicationUser?> signIn({required UserLoginData userLoginData});
+  Future<ApplicationUser?> signUp({required UserRegisterData userRegisterData});
   Future<void> signOut(); 
 }
 

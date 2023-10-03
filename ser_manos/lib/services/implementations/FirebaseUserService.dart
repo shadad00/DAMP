@@ -4,8 +4,8 @@ import 'package:ser_manos/services/interfaces%20/UserService.dart';
 
 import '../../model/Gender.dart';
 
-class UserRemoteDataSourceImpl implements UserService{
-  const UserRemoteDataSourceImpl();
+class FirebaseUserService implements UserService{
+  const FirebaseUserService();
 
   static final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
