@@ -47,6 +47,6 @@ class AuthGuard extends BeamGuard {
           guardNonMatching: true,
           beamToNamed: (origin, target) => "/login",
           check: (context, location) =>
-              providerRef.read(currentUserProvider) == true,
+              providerRef.read(currentUserProvider.notifier).isLoggedIn(),
         );
 }

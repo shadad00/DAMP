@@ -1,13 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ser_manos/model/User.dart';
+import 'package:ser_manos/services/interfaces%20/UserService.dart';
 
-import '../model/Gender.dart';
+import '../../model/Gender.dart';
 
-class UserRemoteDataSourceImpl {
+class UserRemoteDataSourceImpl implements UserService{
   const UserRemoteDataSourceImpl();
 
   static final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
+  @override
   Future<ApplicationUser?> getUserById({
     required String userId,
   }) async {
@@ -37,6 +39,7 @@ class UserRemoteDataSourceImpl {
     }
   }
 
+  @override
   Future<ApplicationUser?> createUser({
     required String userId,
     required String name,
@@ -72,6 +75,7 @@ class UserRemoteDataSourceImpl {
     }
   }
 
+  @override
   Future<void> updateUser(
       {required String userId,
       required ApplicationUser user,

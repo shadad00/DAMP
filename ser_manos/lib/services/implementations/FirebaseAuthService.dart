@@ -1,29 +1,46 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ser_manos/logger/logger.dart';
 import 'package:ser_manos/providers/authentication/UserProvider.dart';
+import 'package:ser_manos/services/interfaces%20/UserService.dart';
 
 import '../interfaces /AuthService.dart';
 
 class FirebaseAuthService implements AuthService {
   static final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final CurrentUser user;
+  final UserService userService;
 
-  const FirebaseAuthService({required this.user});
+  const FirebaseAuthService({required this.user, required this.userService});
 
   @override
   Future<void> signIn({required UserLoginData userLoginData}) async {
-    final response = await _firebaseAuth.signInWithEmailAndPassword(
-        email: userLoginData.getEmail, password: userLoginData.getPassword);
-    logger.d("Received response from api $response" ); 
-    user.set(true); 
+
+      final userCredentials = await _firebaseAuth.signInWithEmailAndPassword(
+        email: userLoginData.email,
+        password: userLoginData.password,
+      );
+
+      final retrievedUser =  await userService.getUserById(
+        userId: userCredentials.user!.uid
+      );
+      
+      user.set(retrievedUser);
+ 
   }
 
   @override
   Future<void> signUp({required UserRegisterData userRegisterData}) async {
-    await _firebaseAuth.createUserWithEmailAndPassword(
-        email: userRegisterData.getEmail,
-        password: userRegisterData.getPassword);
-  }
+      final userCredentials = await _firebaseAuth.createUserWithEmailAndPassword(
+        email: userRegisterData.email,
+        password: userRegisterData.password,
+      );
+
+      await userService.createUser(
+        name: userRegisterData.getName,
+        surname: userRegisterData.getSurname,
+        email: userCredentials.user!.email!,
+        userId: userCredentials.user!.uid,
+      );
+   }
 
   @override
   Future<void> signOut() async {
