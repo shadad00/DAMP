@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/design_system/cells/header.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
-import 'package:ser_manos/providers/Future/news%20/NewsProviders.dart';
+import 'package:ser_manos/providers/Future/news%20/NewsProvider.dart';
 
 import '../../design_system/tokens/colours/colours.dart';
 
@@ -15,7 +15,7 @@ class NewDescriptionScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final newsRetriever = ref.watch(newByIdRetrieverProvider(id: newsId));
+    final newsRetriever = ref.watch(getNewByIdProvider(id: newsId));
 
     return newsRetriever.when(
         loading: () => const Text("Loading"),

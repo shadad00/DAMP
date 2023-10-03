@@ -18,7 +18,7 @@ class VolunteeringDescriptionScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final service = ref.watch(getVolunteeringsByIdProvider(volunteeringId));
+    final service = ref.watch(getVolunteeringByIdProvider(id: volunteeringId));
 
     return service.when(
         data: (volunteeringInformation) {

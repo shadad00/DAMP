@@ -1,27 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../NewsProviders.dart';
+part of '../NewsProvider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$newsRetrieverHash() => r'e6f41b5ed2c5157cc84ef0f4c45d4c50b921b0a9';
+String _$getNewsHash() => r'66773e971dfbb77af827f44a0a8b84020c2abd14';
 
-/// See also [newsRetriever].
-@ProviderFor(newsRetriever)
-final newsRetrieverProvider = FutureProvider<List<News>>.internal(
-  newsRetriever,
-  name: r'newsRetrieverProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$newsRetrieverHash,
+/// See also [getNews].
+@ProviderFor(getNews)
+final getNewsProvider = FutureProvider<List<News>>.internal(
+  getNews,
+  name: r'getNewsProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$getNewsHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef NewsRetrieverRef = FutureProviderRef<List<News>>;
-String _$newByIdRetrieverHash() => r'79883482fb314811b0edcdf59d9e57d351b949e9';
+typedef GetNewsRef = FutureProviderRef<List<News>>;
+String _$getNewByIdHash() => r'a7a4802c8bb475386575e1cb147ab58a1156c03b';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -44,27 +43,27 @@ class _SystemHash {
   }
 }
 
-/// See also [newByIdRetriever].
-@ProviderFor(newByIdRetriever)
-const newByIdRetrieverProvider = NewByIdRetrieverFamily();
+/// See also [getNewById].
+@ProviderFor(getNewById)
+const getNewByIdProvider = GetNewByIdFamily();
 
-/// See also [newByIdRetriever].
-class NewByIdRetrieverFamily extends Family<AsyncValue<News?>> {
-  /// See also [newByIdRetriever].
-  const NewByIdRetrieverFamily();
+/// See also [getNewById].
+class GetNewByIdFamily extends Family<AsyncValue<News?>> {
+  /// See also [getNewById].
+  const GetNewByIdFamily();
 
-  /// See also [newByIdRetriever].
-  NewByIdRetrieverProvider call({
+  /// See also [getNewById].
+  GetNewByIdProvider call({
     required String id,
   }) {
-    return NewByIdRetrieverProvider(
+    return GetNewByIdProvider(
       id: id,
     );
   }
 
   @override
-  NewByIdRetrieverProvider getProviderOverride(
-    covariant NewByIdRetrieverProvider provider,
+  GetNewByIdProvider getProviderOverride(
+    covariant GetNewByIdProvider provider,
   ) {
     return call(
       id: provider.id,
@@ -83,32 +82,32 @@ class NewByIdRetrieverFamily extends Family<AsyncValue<News?>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'newByIdRetrieverProvider';
+  String? get name => r'getNewByIdProvider';
 }
 
-/// See also [newByIdRetriever].
-class NewByIdRetrieverProvider extends FutureProvider<News?> {
-  /// See also [newByIdRetriever].
-  NewByIdRetrieverProvider({
+/// See also [getNewById].
+class GetNewByIdProvider extends FutureProvider<News?> {
+  /// See also [getNewById].
+  GetNewByIdProvider({
     required String id,
   }) : this._internal(
-          (ref) => newByIdRetriever(
-            ref as NewByIdRetrieverRef,
+          (ref) => getNewById(
+            ref as GetNewByIdRef,
             id: id,
           ),
-          from: newByIdRetrieverProvider,
-          name: r'newByIdRetrieverProvider',
+          from: getNewByIdProvider,
+          name: r'getNewByIdProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$newByIdRetrieverHash,
-          dependencies: NewByIdRetrieverFamily._dependencies,
+                  : _$getNewByIdHash,
+          dependencies: GetNewByIdFamily._dependencies,
           allTransitiveDependencies:
-              NewByIdRetrieverFamily._allTransitiveDependencies,
+              GetNewByIdFamily._allTransitiveDependencies,
           id: id,
         );
 
-  NewByIdRetrieverProvider._internal(
+  GetNewByIdProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -122,12 +121,12 @@ class NewByIdRetrieverProvider extends FutureProvider<News?> {
 
   @override
   Override overrideWith(
-    FutureOr<News?> Function(NewByIdRetrieverRef provider) create,
+    FutureOr<News?> Function(GetNewByIdRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: NewByIdRetrieverProvider._internal(
-        (ref) => create(ref as NewByIdRetrieverRef),
+      override: GetNewByIdProvider._internal(
+        (ref) => create(ref as GetNewByIdRef),
         from: from,
         name: null,
         dependencies: null,
@@ -140,12 +139,12 @@ class NewByIdRetrieverProvider extends FutureProvider<News?> {
 
   @override
   FutureProviderElement<News?> createElement() {
-    return _NewByIdRetrieverProviderElement(this);
+    return _GetNewByIdProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is NewByIdRetrieverProvider && other.id == id;
+    return other is GetNewByIdProvider && other.id == id;
   }
 
   @override
@@ -157,17 +156,17 @@ class NewByIdRetrieverProvider extends FutureProvider<News?> {
   }
 }
 
-mixin NewByIdRetrieverRef on FutureProviderRef<News?> {
+mixin GetNewByIdRef on FutureProviderRef<News?> {
   /// The parameter `id` of this provider.
   String get id;
 }
 
-class _NewByIdRetrieverProviderElement extends FutureProviderElement<News?>
-    with NewByIdRetrieverRef {
-  _NewByIdRetrieverProviderElement(super.provider);
+class _GetNewByIdProviderElement extends FutureProviderElement<News?>
+    with GetNewByIdRef {
+  _GetNewByIdProviderElement(super.provider);
 
   @override
-  String get id => (origin as NewByIdRetrieverProvider).id;
+  String get id => (origin as GetNewByIdProvider).id;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
