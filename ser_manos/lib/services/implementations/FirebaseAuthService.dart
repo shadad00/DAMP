@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ser_manos/model/User.dart';
-import 'package:ser_manos/providers/authentication/UserProvider.dart';
-import 'package:ser_manos/services/interfaces%20/UserService.dart';
+import 'package:ser_manos/services/interfaces/UserService.dart';
 
-import '../interfaces /AuthService.dart';
+import '../../providers/Notifier/UserProvider.dart';
+import '../interfaces/AuthService.dart';
 
 class FirebaseAuthService implements AuthService {
   static final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;

@@ -8,7 +8,7 @@ import 'package:ser_manos/design_system/molecules/components/vacancies.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/design_system/tokens/shimmer/PictureShimmer.dart';
-import 'package:ser_manos/providers/volunteering/VolunteeringProvider.dart';
+import 'package:ser_manos/providers/Future/volunteering/VolunteeringProvider.dart';
 
 class VolunteeringDescriptionScreen extends ConsumerWidget {
   final String volunteeringId;

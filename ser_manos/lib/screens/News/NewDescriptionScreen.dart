@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/design_system/cells/header.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
-import 'package:ser_manos/providers/news%20/NewsProviders.dart';
+import 'package:ser_manos/providers/Future/news%20/NewsProviders.dart';
 
 import '../../design_system/tokens/colours/colours.dart';
 
@@ -29,7 +29,7 @@ class NewDescriptionScreen extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                       Text(
-                        data.category.toUpperCase(),
+                        data!.category.toUpperCase(),
                         style: const SermanosTypography.overline(
                           color: SermanosColors.neutral75,
                         ),

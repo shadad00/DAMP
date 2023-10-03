@@ -8,8 +8,8 @@ import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/atoms/icons/logo.dart';
 import 'package:ser_manos/design_system/cells/forms/RegisterForm.dart';
 
-import '../../providers/authentication/AuthProviders.dart';
-import '../../services/interfaces /AuthService.dart';
+import '../../providers/Future/authentication/AuthProviders.dart';
+import '../../services/interfaces/AuthService.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});

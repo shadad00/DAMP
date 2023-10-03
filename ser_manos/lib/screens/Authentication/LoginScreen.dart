@@ -1,15 +1,14 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:logger/logger.dart';
 import 'package:ser_manos/design_system/cells/forms/LoginForm.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/atoms/icons/logo.dart';
 import 'package:ser_manos/logger/logger.dart';
-import 'package:ser_manos/providers/authentication/AuthProviders.dart';
 
-import '../../services/interfaces /AuthService.dart';
+import '../../providers/Future/authentication/AuthProviders.dart';
+import '../../services/interfaces/AuthService.dart';
 
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});

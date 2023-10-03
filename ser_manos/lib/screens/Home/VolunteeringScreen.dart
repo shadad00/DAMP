@@ -4,7 +4,7 @@ import 'package:ser_manos/design_system/cells/cards/VolunteeringCards/Volunteeri
 import 'package:ser_manos/design_system/molecules/inputs/SermanosSearchBar.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
-import 'package:ser_manos/providers/volunteering/VolunteeringProvider.dart';
+import 'package:ser_manos/providers/Future/volunteering/VolunteeringProvider.dart';
 
 
 class VolunteeringScreen extends ConsumerWidget {

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ser_manos/model/News.dart';
-import 'package:ser_manos/services/interfaces%20/NewsService.dart';
+import 'package:ser_manos/services/interfaces/NewsService.dart';
 
 class FirebaseNewsService implements NewsService {
   const FirebaseNewsService();

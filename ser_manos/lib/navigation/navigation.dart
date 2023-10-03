@@ -7,7 +7,8 @@ import 'package:ser_manos/navigation/Locations/ProfileLocation.dart';
 import 'package:ser_manos/navigation/Locations/VolunteeringLocation.dart';
 import 'package:ser_manos/navigation/Locations/loginLocation.dart';
 import 'package:ser_manos/navigation/Locations/registerLocation.dart';
-import 'package:ser_manos/providers/authentication/UserProvider.dart';
+
+import '../providers/Notifier/UserProvider.dart';
 
 part 'generated/navigation.g.dart';
 

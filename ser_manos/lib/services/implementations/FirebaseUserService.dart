@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ser_manos/model/User.dart';
-import 'package:ser_manos/services/interfaces%20/UserService.dart';
+import 'package:ser_manos/services/interfaces/UserService.dart';
 
 import '../../model/Gender.dart';
 

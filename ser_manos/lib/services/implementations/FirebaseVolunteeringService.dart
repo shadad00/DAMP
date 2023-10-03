@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ser_manos/model/Volunteering.dart';
-import '../interfaces /VolunteeringService.dart';
+import '../interfaces/VolunteeringService.dart';
 
 class FirebaseVolunteeringService implements VolunteeringService {
   const FirebaseVolunteeringService();

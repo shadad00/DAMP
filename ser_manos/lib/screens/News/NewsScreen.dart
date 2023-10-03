@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/design_system/cells/cards/NewsCard.dart';
 import 'package:ser_manos/model/News.dart';
-import 'package:ser_manos/providers/news%20/NewsProviders.dart';
+import 'package:ser_manos/providers/Future/news%20/NewsProviders.dart';
 import 'package:ser_manos/services/implementations/FirebaseNewsService.dart';
 
 class NewsScreen extends ConsumerWidget {
