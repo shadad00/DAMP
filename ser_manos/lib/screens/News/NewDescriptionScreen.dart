@@ -15,7 +15,7 @@ class NewDescriptionScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final newsRetriever = ref.watch(newByIdRetrieverProvider(newsId));
+    final newsRetriever = ref.watch(newByIdRetrieverProvider(id: newsId));
 
     return newsRetriever.when(
         loading: () => const Text("Loading"),
