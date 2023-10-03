@@ -5,20 +5,21 @@ import 'package:ser_manos/model/User.dart';
 import '../../../services/interfaces/AuthService.dart';
 import '../../Providers/Providers.dart';
 
+part 'generated/AuthProviders.g.dart';
+
 final firebaseAuthProvider =
     Provider<FirebaseAuth>((ref) => FirebaseAuth.instance);
 
-
-// @riverpod
-final loginProvider =
-    FutureProvider.family<ApplicationUser?, UserLoginData>((ref, userData) async {
+@riverpod
+Future<ApplicationUser?> login(LoginRef ref,
+    {required UserLoginData userLoginData}) async {
   final authRepository = ref.read(authServiceProvider);
-  await authRepository.signIn(userLoginData: userData);
-  // ref.read(delegateProvider).beamToNamed("/volunteering"); 
-});
+  return await authRepository.signIn(userLoginData: userLoginData);
+}
 
-final registerProvider =
-    FutureProvider.family<ApplicationUser?, UserRegisterData>((ref, userData) async {
+@riverpod
+Future<ApplicationUser?> register(RegisterRef ref,
+    {required UserRegisterData userRegisterData}) async {
   final authRepository = ref.read(authServiceProvider);
-  return await authRepository.signUp(userRegisterData: userData);
-});
+  return await authRepository.signUp(userRegisterData: userRegisterData);
+}

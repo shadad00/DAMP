@@ -42,7 +42,7 @@ class LoginScreen extends ConsumerWidget {
                         if (!loginFormKey.currentState!.validate()) {
                           return;
                         }
-                        final response = ref.watch(loginProvider(UserLoginData(
+                        final response = ref.watch(loginProvider(userLoginData: UserLoginData(
                           email:
                               loginFormKey.currentState!.fields['email']!.value,
                           password: loginFormKey

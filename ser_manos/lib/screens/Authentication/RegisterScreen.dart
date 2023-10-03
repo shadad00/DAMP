@@ -46,7 +46,7 @@ class RegisterScreen extends StatelessWidget {
                             return;
                           }
                           final response = ref.watch(registerProvider(
-                              UserRegisterData(
+                              userRegisterData: UserRegisterData(
                                   email: registerFormKey
                                       .currentState!.fields['email']!.value,
                                   password: registerFormKey
