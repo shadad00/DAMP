@@ -29,7 +29,7 @@ class FirebaseUserService implements UserService{
         surname: json['surname'],
         email: json['email'],
         gender: Gender.getGenderFromString(json['gender']),
-        birthdate: (json['birthdate'] as Timestamp).toDate(),
+        birthdate: json['birthdate'] != null ? (json['birthdate'] as Timestamp).toDate() : null,
         profileImageUrl: json['profileImage'],
         phone: json['phone'],
         emailContact: json['emailContact'],

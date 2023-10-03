@@ -38,27 +38,28 @@ class LoginScreen extends ConsumerWidget {
                 children: [
                   CtaButton(
                       text: "Iniciar sesión",
-                      onPressed: () {
+                      onPressed: () async {
                         if (!loginFormKey.currentState!.validate()) {
                           return;
                         }
-                        final response = ref.watch(loginProvider(userLoginData: UserLoginData(
+                        final response = ref.watch(loginProvider(
+                            userLoginData: UserLoginData(
                           email:
                               loginFormKey.currentState!.fields['email']!.value,
                           password: loginFormKey
                               .currentState!.fields['password']!.value,
                         )));
-                        response.when(data: (data) {
-                          logger.d("dataaaaaaaaaaaaaaaaaaaaaaa");
-                          context.beamToNamed("/volunteering");
-                        }, loading: () {
-                          logger.d("loadinghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
-                          // context.beamToNamed("/volunteering");
-                        }, error: (error, stackTrace) {
-                          logger.d(
-                              "errorerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
-                          // context.beamToNamed("/volunteering");
-                        });
+                        // response.when(data: (data) {
+                        //   logger.d("dataaaaaaaaaaaaaaaaaaaaaaa");
+                        //   context.beamToNamed("/volunteering");
+                        // }, loading: () {
+                        //   logger.d("loadinghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+                        //   // context.beamToNamed("/volunteering");
+                        // }, error: (error, stackTrace) {
+                        //   logger.d(
+                        //       "errorerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+                        //   // context.beamToNamed("/volunteering");
+                        // });
                       },
                       filled: true),
                   const SizedBox(height: 16),

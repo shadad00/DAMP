@@ -6,7 +6,7 @@ part of '../AuthProviders.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loginHash() => r'3c5f62e9c859a19e02798d01ea53e0177dff12d9';
+String _$loginHash() => r'769f9c7156cdc869e729c05bdd6f6a7dfa0a6923';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -34,7 +34,7 @@ class _SystemHash {
 const loginProvider = LoginFamily();
 
 /// See also [login].
-class LoginFamily extends Family<AsyncValue<ApplicationUser?>> {
+class LoginFamily extends Family<AsyncValue<void>> {
   /// See also [login].
   const LoginFamily();
 
@@ -72,7 +72,7 @@ class LoginFamily extends Family<AsyncValue<ApplicationUser?>> {
 }
 
 /// See also [login].
-class LoginProvider extends AutoDisposeFutureProvider<ApplicationUser?> {
+class LoginProvider extends AutoDisposeFutureProvider<void> {
   /// See also [login].
   LoginProvider({
     required UserLoginData userLoginData,
@@ -106,7 +106,7 @@ class LoginProvider extends AutoDisposeFutureProvider<ApplicationUser?> {
 
   @override
   Override overrideWith(
-    FutureOr<ApplicationUser?> Function(LoginRef provider) create,
+    FutureOr<void> Function(LoginRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -123,7 +123,7 @@ class LoginProvider extends AutoDisposeFutureProvider<ApplicationUser?> {
   }
 
   @override
-  AutoDisposeFutureProviderElement<ApplicationUser?> createElement() {
+  AutoDisposeFutureProviderElement<void> createElement() {
     return _LoginProviderElement(this);
   }
 
@@ -141,27 +141,27 @@ class LoginProvider extends AutoDisposeFutureProvider<ApplicationUser?> {
   }
 }
 
-mixin LoginRef on AutoDisposeFutureProviderRef<ApplicationUser?> {
+mixin LoginRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `userLoginData` of this provider.
   UserLoginData get userLoginData;
 }
 
-class _LoginProviderElement
-    extends AutoDisposeFutureProviderElement<ApplicationUser?> with LoginRef {
+class _LoginProviderElement extends AutoDisposeFutureProviderElement<void>
+    with LoginRef {
   _LoginProviderElement(super.provider);
 
   @override
   UserLoginData get userLoginData => (origin as LoginProvider).userLoginData;
 }
 
-String _$registerHash() => r'e7a60273016ad5bd1e4906f8d44085c6591d0724';
+String _$registerHash() => r'8be0f8aef87fe15cfcff14399ca8cf1af68af924';
 
 /// See also [register].
 @ProviderFor(register)
 const registerProvider = RegisterFamily();
 
 /// See also [register].
-class RegisterFamily extends Family<AsyncValue<ApplicationUser?>> {
+class RegisterFamily extends Family<AsyncValue<void>> {
   /// See also [register].
   const RegisterFamily();
 
@@ -199,7 +199,7 @@ class RegisterFamily extends Family<AsyncValue<ApplicationUser?>> {
 }
 
 /// See also [register].
-class RegisterProvider extends AutoDisposeFutureProvider<ApplicationUser?> {
+class RegisterProvider extends AutoDisposeFutureProvider<void> {
   /// See also [register].
   RegisterProvider({
     required UserRegisterData userRegisterData,
@@ -233,7 +233,7 @@ class RegisterProvider extends AutoDisposeFutureProvider<ApplicationUser?> {
 
   @override
   Override overrideWith(
-    FutureOr<ApplicationUser?> Function(RegisterRef provider) create,
+    FutureOr<void> Function(RegisterRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -250,7 +250,7 @@ class RegisterProvider extends AutoDisposeFutureProvider<ApplicationUser?> {
   }
 
   @override
-  AutoDisposeFutureProviderElement<ApplicationUser?> createElement() {
+  AutoDisposeFutureProviderElement<void> createElement() {
     return _RegisterProviderElement(this);
   }
 
@@ -269,13 +269,12 @@ class RegisterProvider extends AutoDisposeFutureProvider<ApplicationUser?> {
   }
 }
 
-mixin RegisterRef on AutoDisposeFutureProviderRef<ApplicationUser?> {
+mixin RegisterRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `userRegisterData` of this provider.
   UserRegisterData get userRegisterData;
 }
 
-class _RegisterProviderElement
-    extends AutoDisposeFutureProviderElement<ApplicationUser?>
+class _RegisterProviderElement extends AutoDisposeFutureProviderElement<void>
     with RegisterRef {
   _RegisterProviderElement(super.provider);
 

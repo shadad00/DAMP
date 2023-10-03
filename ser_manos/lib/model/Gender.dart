@@ -9,7 +9,8 @@ enum Gender {
 
   final String text;
 
-  static Gender? getGenderFromString(String value) {
+  static Gender? getGenderFromString(String? value) {
+    if (value == null) return null; 
     Gender? g = Gender.values
         .firstWhereOrNull((Gender element) => element.name == value);
     return g;
