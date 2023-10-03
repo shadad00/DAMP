@@ -5,22 +5,12 @@ import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/design_system/molecules/components/profile_image.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
-import 'package:ser_manos/model/Gender.dart';
 import 'package:ser_manos/model/User.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+class ProfileInformationScreen extends StatelessWidget {
+  final ApplicationUser user; 
 
-  static ApplicationUser mockedUser = ApplicationUser(
-    id: "0",
-    name: "Juan Cruz",
-    surname: "Gonzalez",
-    email: "mimail@gmail.com",
-    phone: "3875198135",
-    birthdate: DateTime(2000, 03, 03),
-    gender: Gender.male,
-    profileImageUrl: 'http://pawserver.it.itba.edu.ar/paw-2023a-01/images/153',
-  );
+  const ProfileInformationScreen({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -30,30 +20,30 @@ class ProfileScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(height: 16),
-          ProfileImage(imageUrl: mockedUser.profileImageUrl),
+          ProfileImage(imageUrl: user.profileImageUrl),
           const Text("Voluntario",
               style:
                   SermanosTypography.overline(color: SermanosColors.neutral75)),
-          Text('${mockedUser.name} ${mockedUser.surname}',
+          Text('${user.name} ${user.surname}',
               style: const SermanosTypography.subtitle01(
                   color: SermanosColors.neutral75)),
-          Text(mockedUser.email,
+          Text(user.email,
               style: const SermanosTypography.body01(
                   color: SermanosColors.secondary200)),
           const SizedBox(height: 16),
           InformationCard(
               title: "Información personal",
               firsTitle: "FECHA DE NACIMIENTO",
-              firstSubtitle: mockedUser.birthdate.toString(),
+              firstSubtitle: user.birthdate.toString(),
               secondTitle: "GÈNERO",
-              secondSubtitle: mockedUser.gender!.text),
+              secondSubtitle: user.gender!.text),
           const SizedBox(height: 16),
           InformationCard(
               title: "Datos de contacto",
               firsTitle: "TELÈFONO",
-              firstSubtitle: mockedUser.phone!,
+              firstSubtitle: user.phone!,
               secondTitle: "E-MAIL",
-              secondSubtitle: mockedUser.email),
+              secondSubtitle: user.email),
           const SizedBox(height: 16),
           CtaButton(
               text: "Editar Perfil",

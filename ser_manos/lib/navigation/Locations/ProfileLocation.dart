@@ -2,10 +2,10 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:ser_manos/screens/MainScreen.dart';
 import 'package:ser_manos/screens/MyProfile/EditProfileScreen.dart';
+import 'package:ser_manos/screens/MyProfile/ProfileScreen.dart';
 
 class ProfileLocation extends BeamLocation<BeamState> {
-
-  ProfileLocation(RouteInformation super.routeInformation); 
+  ProfileLocation(RouteInformation super.routeInformation);
 
   @override
   List<String> get pathPatterns => ["/profile", "/profile/edit"];
@@ -24,7 +24,7 @@ class ProfileLocation extends BeamLocation<BeamState> {
       pageStack.add(const BeamPage(
           key: ValueKey("edit-profile"),
           name: "edit-profile",
-          child: EditProfileModal()));
+          child: ProfileScreen()));
     }
 
     return pageStack;

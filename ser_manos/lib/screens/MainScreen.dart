@@ -6,7 +6,7 @@ import 'package:ser_manos/design_system/molecules/StatusBar.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/screens/Home/VolunteeringScreen.dart';
-import 'package:ser_manos/screens/MyProfile/ProfileInformationScreen.dart';
+import 'package:ser_manos/screens/MyProfile/ProfileScreen.dart';
 import 'package:ser_manos/screens/News/NewsScreen.dart';
 
 class MainScreen extends HookWidget {
