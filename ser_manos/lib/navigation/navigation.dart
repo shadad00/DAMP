@@ -7,6 +7,7 @@ import 'package:ser_manos/navigation/Locations/ProfileLocation.dart';
 import 'package:ser_manos/navigation/Locations/VolunteeringLocation.dart';
 import 'package:ser_manos/navigation/Locations/loginLocation.dart';
 import 'package:ser_manos/navigation/Locations/registerLocation.dart';
+import 'package:ser_manos/navigation/Locations/welcomeLocation.dart';
 
 import '../providers/Notifier/UserProvider.dart';
 
@@ -36,7 +37,10 @@ BeamLocation<RouteInformationSerializable<dynamic>> _locationBuilder(
   }
   if (routeInformation.location!.contains("/register")) {
     return RegisterLocation(routeInformation);
+  }sitif (routeInformation.location!.contains("/welcome")) {
+    return WelcomeLocation(routeInformation);
   }
+
   return VolunteeringLocation(routeInformation);
 }
 

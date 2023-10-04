@@ -23,9 +23,6 @@ Future<void> register(RegisterRef ref,
     {required UserRegisterData userRegisterData}) async {
   final authRepository = ref.read(authServiceProvider);
   await authRepository.signUp(userRegisterData: userRegisterData);
-  
-  // todo: Loguear al usuario. 
-
-  // final BeamerDelegate delegate = ref.read(delegateProvider);
-  // delegate.beamToNamed("/welcome");
+  final BeamerDelegate delegate = ref.read(delegateProvider);
+  delegate.beamToNamed("/welcome");
 }

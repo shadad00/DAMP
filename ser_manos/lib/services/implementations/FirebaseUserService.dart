@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:logger/logger.dart';
+import 'package:ser_manos/logger/logger.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/services/interfaces/UserService.dart';
 
 import '../../model/Gender.dart';
 
-class FirebaseUserService implements UserService{
+class FirebaseUserService implements UserService {
   const FirebaseUserService();
 
   static final FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -29,7 +31,9 @@ class FirebaseUserService implements UserService{
         surname: json['surname'],
         email: json['email'],
         gender: Gender.getGenderFromString(json['gender']),
-        birthdate: json['birthdate'] != null ? (json['birthdate'] as Timestamp).toDate() : null,
+        birthdate: json['birthdate'] != null
+            ? (json['birthdate'] as Timestamp).toDate()
+            : null,
         profileImageUrl: json['profileImage'],
         phone: json['phone'],
         emailContact: json['emailContact'],
@@ -57,7 +61,7 @@ class FirebaseUserService implements UserService{
 
       await query.set(userDataMap);
 
-      Map<String, dynamic> json = userDataMap; 
+      Map<String, dynamic> json = userDataMap;
 
       return ApplicationUser(
         id: userId,
@@ -65,12 +69,15 @@ class FirebaseUserService implements UserService{
         surname: json['surname'],
         email: json['email'],
         gender: Gender.getGenderFromString(json['gender']),
-        birthdate: (json['birthdate'] as Timestamp).toDate(),
+        birthdate: json['birthdate'] != null
+            ? (json['birthdate'] as Timestamp).toDate()
+            : null,
         profileImageUrl: json['profileImage'],
         phone: json['phone'],
         emailContact: json['emailContact'],
       );
     } catch (e) {
+      logger.e("unable to create user"); 
       return null;
     }
   }

@@ -13,7 +13,8 @@ class FirebaseAuthService implements AuthService {
   const FirebaseAuthService({required this.user, required this.userService});
 
   @override
-  Future<ApplicationUser?> signIn({required UserLoginData userLoginData}) async {
+  Future<ApplicationUser?> signIn(
+      {required UserLoginData userLoginData}) async {
     final userCredentials = await _firebaseAuth.signInWithEmailAndPassword(
       email: userLoginData.email,
       password: userLoginData.password,
@@ -23,22 +24,26 @@ class FirebaseAuthService implements AuthService {
         await userService.getUserById(userId: userCredentials.user!.uid);
 
     user.set(retrievedUser);
-    return retrievedUser; 
+    return retrievedUser;
   }
 
   @override
-  Future<ApplicationUser?> signUp({required UserRegisterData userRegisterData}) async {
+  Future<ApplicationUser?> signUp(
+      {required UserRegisterData userRegisterData}) async {
     final userCredentials = await _firebaseAuth.createUserWithEmailAndPassword(
       email: userRegisterData.email,
       password: userRegisterData.password,
     );
 
-    return await userService.createUser(
+    final createdUser = await userService.createUser(
       name: userRegisterData.getName,
       surname: userRegisterData.getSurname,
       email: userCredentials.user!.email!,
       userId: userCredentials.user!.uid,
     );
+
+    user.set(createdUser);
+    return createdUser; 
   }
 
   @override
