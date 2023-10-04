@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/design_system/cells/forms/ProfileDataForm.dart';
 import 'package:ser_manos/design_system/cells/header.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/model/User.dart';
+import 'package:ser_manos/providers/Notifier/UserProvider.dart';
 
 import '../../design_system/cells/forms/ContactDataForm.dart';
 
-class EditProfileScreen extends StatelessWidget {
-  final ApplicationUser user; 
-  const EditProfileScreen({super.key, required this.user});
+class EditProfileScreen extends ConsumerWidget {
+  const EditProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final ApplicationUser? user = ref.watch(currentUserProvider);
+  
     return Scaffold(
         appBar: SermanosHeader.modalHeader(),
         body: Padding(
@@ -20,7 +23,7 @@ class EditProfileScreen extends StatelessWidget {
               child: Column(
                 children: [
                   ProfileDataForm(
-                      user: user,
+                      user: user!,
                       genderField: "genderField",
                       birthdateField: "birthdateField",
                       imageField: "imageField"),

@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/providers/Notifier/UserProvider.dart';
 import 'package:ser_manos/screens/MyProfile/CompleteProfileScreen.dart';
-import 'package:ser_manos/screens/MyProfile/EditProfileScreen.dart';
 import 'package:ser_manos/screens/MyProfile/ProfileInformationScreen.dart';
 
 class ProfileScreen extends ConsumerWidget {
@@ -16,6 +15,6 @@ class ProfileScreen extends ConsumerWidget {
         ? ProfileInformationScreen(
             user: user,
           )
-        : CompleteProfileScreen(user: user);
+        : const CompleteProfileScreen();
   }
 }

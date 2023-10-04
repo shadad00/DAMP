@@ -24,7 +24,7 @@ class ProfileLocation extends BeamLocation<BeamState> {
       pageStack.add(const BeamPage(
           key: ValueKey("edit-profile"),
           name: "edit-profile",
-          child: ProfileScreen()));
+          child: EditProfileScreen()));
     }
 
     return pageStack;
