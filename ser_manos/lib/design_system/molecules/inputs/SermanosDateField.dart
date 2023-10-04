@@ -10,7 +10,7 @@ import 'package:ser_manos/design_system/atoms/icons/icons.dart';
 
 class SermanosDateField extends HookWidget {
   const SermanosDateField({
-    Key? key,
+    super.key,
     required this.formName,
     required this.initialDate,
     this.enabled = true,
@@ -21,7 +21,7 @@ class SermanosDateField extends HookWidget {
     required this.minDate,
     required this.maxDate,
     required this.actualDate,
-  }) : super(key: key);
+  });
 
   final String formName;
   final DateTime? initialDate;
@@ -38,7 +38,7 @@ class SermanosDateField extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final DateFormat dateFormat = DateFormat("dd/MM/yyyy");
+    final DateFormat dateFormat = DateFormat("dd/mm/yyyy");
     final String initialValue =
         initialDate == null ? '' : dateFormat.format(initialDate!);
 
@@ -71,7 +71,6 @@ class SermanosDateField extends HookWidget {
     return SizedBox(
       height: 56,
       child: TextField(
-        // style: const TextStyle(height: 16),
         keyboardType: TextInputType.datetime,
         inputFormatters: [LengthLimitingTextInputFormatter(10)],
         enabled: enabled,

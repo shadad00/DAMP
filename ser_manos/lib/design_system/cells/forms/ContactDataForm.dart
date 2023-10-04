@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import '../../molecules/inputs/SermanosTextField.dart';
+
+final contactDataFormKey = GlobalKey<FormBuilderState>();
 
 class ContactDataForm extends StatelessWidget {
   const ContactDataForm({super.key});
@@ -10,9 +13,8 @@ class ContactDataForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isLoading = false;
-    String? errorText;
-
     return FormBuilder(
+      key: contactDataFormKey,
       enabled: !isLoading,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,24 +38,34 @@ class ContactDataForm extends StatelessWidget {
             height: 24,
           ),
           SermanosTextField(
-              formName: 'Teléfono',
+              formName: 'phone',
               initialValue: '',
               label: 'Teléfono',
               enabled: !isLoading,
               keyboardType: TextInputType.phone,
               floatingLabelBehavior: FloatingLabelBehavior.always,
               placeholder: 'Ej: +541178445459',
-              validators: null),
+              validators: [
+                FormBuilderValidators.required(
+                    errorText: "Ingrese su teléfono"),
+                FormBuilderValidators.match(
+                  r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[0-9]*$',
+                  errorText: "Ingrese un teléfono válido",
+                ),
+              ]),
           const SizedBox(height: 24),
           SermanosTextField(
-              formName: 'Mail',
+              formName: 'email',
               initialValue: '',
               label: 'Mail',
-              password: true,
+              password: false,
               enabled: !isLoading,
               floatingLabelBehavior: FloatingLabelBehavior.always,
               placeholder: 'Ej: mimail@mail.com',
-              validators: null),
+              validators: [
+                FormBuilderValidators.required(errorText: "Ingrese su mail"),
+                FormBuilderValidators.email(errorText: "Ingrese un mail válido")
+              ]),
         ],
       ),
     );

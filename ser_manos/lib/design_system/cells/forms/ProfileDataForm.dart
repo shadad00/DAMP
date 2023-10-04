@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl/intl.dart';
 import 'package:ser_manos/design_system/molecules/inputs/SermanosDateField.dart';
-import 'package:ser_manos/design_system/molecules/inputs/SermanosProfilePictureField.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/model/Gender.dart';
 import 'package:ser_manos/design_system/cells/cards/GenderRadioCard.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 
+final profileDataFormKey= GlobalKey<FormBuilderState>();
+
 class ProfileDataForm extends ConsumerWidget {
   final ApplicationUser user;
   final String genderField;
   final String birthdateField;
-  final String imageField;
+  // final String imageField;
 
   const ProfileDataForm({
-    Key? key,
+    super.key,
     required this.user,
     required this.genderField,
     required this.birthdateField,
-    required this.imageField,
-  }) : super(key: key);
+    // required this.imageField,
+  }); 
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,7 +33,10 @@ class ProfileDataForm extends ConsumerWidget {
         DateTime(actualDate.year - 100, actualDate.month, actualDate.day);
     bool enabled = true;
 
-    return Column(
+    return FormBuilder(
+      key: profileDataFormKey,
+      enabled: enabled,
+      child: Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const Text(
@@ -124,24 +129,24 @@ class ProfileDataForm extends ConsumerWidget {
               ),
             ),
           ],
-        ),
-        const SizedBox(
-          height: 24,
-        ),
-        SermanosProfilePictureField(
-          formName: imageField,
-          initialValue: user.profileImageUrl,
-          enabled: enabled,
-          validators: [
-            (value) {
-              if (value == null && user.profileImageUrl == null) {
-                return "Ingrese una foto de perfil";
-              }
-              return null;
-            }
-          ],
-        ),
+        )
+        // const SizedBox(
+        //   height: 24,
+        // ),
+        // SermanosProfilePictureField(
+        //   formName: imageField,
+        //   initialValue: user.profileImageUrl,
+        //   enabled: enabled,
+        //   validators: [
+        //     (value) {
+        //       if (value == null && user.profileImageUrl == null) {
+        //         return "Ingrese una foto de perfil";
+        //       }
+        //       return null;
+        //     }
+        //   ],
+        // ),
       ],
-    );
+    ));
   }
 }

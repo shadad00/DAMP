@@ -37,7 +37,7 @@ BeamLocation<RouteInformationSerializable<dynamic>> _locationBuilder(
   }
   if (routeInformation.location!.contains("/register")) {
     return RegisterLocation(routeInformation);
-  }sitif (routeInformation.location!.contains("/welcome")) {
+  }if (routeInformation.location!.contains("/welcome")) {
     return WelcomeLocation(routeInformation);
   }
 
