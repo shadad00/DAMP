@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
@@ -27,7 +28,7 @@ class WelcomeScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: SermanosTypography.headline01(
                       color: SermanosColors.neutral100)),
-              const SizedBox(
+              SizedBox(
                 height: 48,
               ),
               Text(
@@ -38,7 +39,7 @@ class WelcomeScreen extends StatelessWidget {
             ]),
             Column(
               children: [
-                CtaButton(text: "Comenzar", onPressed: () {}, filled: true),
+                CtaButton(text: "Comenzar", onPressed: () => context.beamToNamed("/volunteering"), filled: true),
               ],
             )
           ],
