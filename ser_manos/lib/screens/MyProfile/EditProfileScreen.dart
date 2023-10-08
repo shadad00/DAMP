@@ -41,7 +41,7 @@ class EditProfileScreen extends ConsumerWidget {
                     // imageField: "image"
                   ),
                   const SizedBox(height: 32),
-                  const ContactDataForm(),
+                  ContactDataForm(user: user,),
                   const SizedBox(height: 32),
                   CtaButton(
                       loading: loading,
