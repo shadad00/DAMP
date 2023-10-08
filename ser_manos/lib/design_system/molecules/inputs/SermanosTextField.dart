@@ -17,7 +17,7 @@ class SermanosTextField extends HookWidget {
     this.label,
     this.placeholder,
     this.validators,
-    this.keyboardType = TextInputType.text,
+    required this.keyboardType,
   });
 
   final String formName;
@@ -79,6 +79,7 @@ class SermanosTextField extends HookWidget {
           onChanged: (value) => field.didChange(value),
           focusNode: focusNode,
           controller: controller,
+          keyboardType: keyboardType,
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 16,

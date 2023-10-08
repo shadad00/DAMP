@@ -58,6 +58,7 @@ class ContactDataForm extends StatelessWidget {
             enabled: !isLoading,
             floatingLabelBehavior: FloatingLabelBehavior.always,
             placeholder: 'Ej: mimail@mail.com',
+            keyboardType: TextInputType.emailAddress,
             validators: [
               FormBuilderValidators.required(errorText: "Ingrese su mail"),
               FormBuilderValidators.email(errorText: "Ingrese un mail válido")

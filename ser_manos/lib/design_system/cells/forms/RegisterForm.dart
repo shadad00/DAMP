@@ -29,6 +29,7 @@ class RegisterForm extends ConsumerWidget {
             formName: 'name',
             initialValue: '',
             enabled: !isLoading,
+            keyboardType: TextInputType.name,
             validators: [
               FormBuilderValidators.required(errorText: "Ingrese su nombre"),
             ],
@@ -41,6 +42,7 @@ class RegisterForm extends ConsumerWidget {
             formName: 'surname',
             initialValue: '',
             enabled: !isLoading,
+            keyboardType: TextInputType.name,
             validators: [
               FormBuilderValidators.required(errorText: "Ingrese su apellido"),
             ],
@@ -53,6 +55,7 @@ class RegisterForm extends ConsumerWidget {
             formName: 'email',
             initialValue: '',
             enabled: !isLoading,
+            keyboardType: TextInputType.emailAddress,
             validators: [
               FormBuilderValidators.required(errorText: "Ingrese su email"),
             ],
@@ -65,6 +68,7 @@ class RegisterForm extends ConsumerWidget {
             formName: 'password',
             initialValue: '',
             enabled: !isLoading,
+            keyboardType: TextInputType.text,
             validators: [
               FormBuilderValidators.required(
                   errorText: "Ingrese una contraseña"),

@@ -27,6 +27,7 @@ class LoginForm extends StatelessWidget {
               initialValue: '',
               label: 'Email',
               enabled: !isLoading,
+              keyboardType: TextInputType.emailAddress,
               validators: [
                 FormBuilderValidators.required(errorText: "Ingrese su email"),
                 FormBuilderValidators.email(
@@ -39,6 +40,7 @@ class LoginForm extends StatelessWidget {
               label: 'Contraseña',
               password: true,
               enabled: !isLoading,
+              keyboardType: TextInputType.text,
               validators: [
                 FormBuilderValidators.required(
                     errorText: "Ingrese su contraseña")
