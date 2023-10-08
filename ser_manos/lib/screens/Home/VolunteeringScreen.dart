@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ser_manos/design_system/cells/cards/VolunteeringCards/VolunteeringCard.dart';
 import 'package:ser_manos/design_system/molecules/inputs/SermanosSearchBar.dart';
+import 'package:ser_manos/design_system/tokens/SerManosLoading.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/providers/Future/volunteering/VolunteeringProvider.dart';
-
 
 class VolunteeringScreen extends ConsumerWidget {
   const VolunteeringScreen({super.key});
@@ -48,6 +48,6 @@ class VolunteeringScreen extends ConsumerWidget {
               ),
             ),
         error: (error, stackTrace) => const Text("error"),
-        loading: () => const Text("Loading"));
+        loading: () => const SerManosLoading());
   }
 }

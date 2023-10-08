@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/design_system/cells/header.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
+import 'package:ser_manos/design_system/tokens/SerManosLoading.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/providers/Future/news%20/NewsProvider.dart';
 
@@ -18,7 +19,7 @@ class NewDescriptionScreen extends ConsumerWidget {
     final newsRetriever = ref.watch(getNewByIdProvider(id: newsId));
 
     return newsRetriever.when(
-        loading: () => const Text("Loading"),
+        loading: () => const SerManosLoading(),
         error: (error, stackTrace) => const Text("Error"),
         data: (data) => Scaffold(
               appBar: SermanosHeader.sectionHeader(title: "Novedades"),
