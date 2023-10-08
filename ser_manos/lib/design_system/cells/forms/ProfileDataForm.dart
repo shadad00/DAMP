@@ -10,8 +10,6 @@ import 'package:ser_manos/design_system/cells/cards/GenderRadioCard.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 
-final profileDataFormKey= GlobalKey<FormBuilderState>();
-
 class ProfileDataForm extends ConsumerWidget {
   final ApplicationUser user;
   final String genderField;
@@ -33,10 +31,7 @@ class ProfileDataForm extends ConsumerWidget {
         DateTime(actualDate.year - 100, actualDate.month, actualDate.day);
     bool enabled = true;
 
-    return FormBuilder(
-      key: profileDataFormKey,
-      enabled: enabled,
-      child: Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const Text(
@@ -147,6 +142,6 @@ class ProfileDataForm extends ConsumerWidget {
         //   ],
         // ),
       ],
-    ));
+    );
   }
 }

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import '../../molecules/inputs/SermanosTextField.dart';
-
-final contactDataFormKey = GlobalKey<FormBuilderState>();
 
 class ContactDataForm extends StatelessWidget {
   const ContactDataForm({super.key});
@@ -13,10 +10,7 @@ class ContactDataForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isLoading = false;
-    return FormBuilder(
-      key: contactDataFormKey,
-      enabled: !isLoading,
-      child: Column(
+    return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
@@ -67,7 +61,6 @@ class ContactDataForm extends StatelessWidget {
                 FormBuilderValidators.email(errorText: "Ingrese un mail válido")
               ]),
         ],
-      ),
     );
   }
 }
