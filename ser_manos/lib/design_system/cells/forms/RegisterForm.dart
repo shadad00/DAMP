@@ -10,12 +10,15 @@ final registerFormKey = GlobalKey<FormBuilderState>();
 
 
 class RegisterForm extends ConsumerWidget {
-  const RegisterForm({super.key});
+
+    bool isLoading = false;
+    String? errorText;
+
+  RegisterForm({super.key, this.isLoading = false, this.errorText});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool isLoading = false;
-    String? errorText;
+
 
     return FormBuilder(
       key: registerFormKey,
@@ -82,7 +85,7 @@ class RegisterForm extends ConsumerWidget {
                   height: 20,
                 ),
                 Text(
-                  errorText,
+                  errorText!,
                   style: const SermanosTypography.caption(
                     color: SermanosColors.error100,
                   ),

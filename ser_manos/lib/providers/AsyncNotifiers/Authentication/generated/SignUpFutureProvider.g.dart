@@ -1,25 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../LoginAsyncNotifier.dart';
+part of '../SignUpFutureProvider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loginCacheHash() => r'af291377cc88449f7865f2910fff56d824b880ac';
+String _$signUpFutureHash() => r'c77b3048fa882cadc80f1a2986ca5151fa3389fd';
 
-/// See also [LoginCache].
-@ProviderFor(LoginCache)
-final loginCacheProvider =
-    AutoDisposeAsyncNotifierProvider<LoginCache, void>.internal(
-  LoginCache.new,
-  name: r'loginCacheProvider',
+/// See also [SignUpFuture].
+@ProviderFor(SignUpFuture)
+final signUpFutureProvider =
+    AutoDisposeAsyncNotifierProvider<SignUpFuture, void>.internal(
+  SignUpFuture.new,
+  name: r'signUpFutureProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$loginCacheHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$signUpFutureHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$LoginCache = AutoDisposeAsyncNotifier<void>;
+typedef _$SignUpFuture = AutoDisposeAsyncNotifier<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -7,15 +7,23 @@ import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/atoms/icons/logo.dart';
 import 'package:ser_manos/design_system/cells/forms/RegisterForm.dart';
-
-import '../../providers/Future/authentication/AuthProviders.dart';
+import 'package:ser_manos/providers/AsyncNotifiers/Authentication/SignUpFutureProvider.dart';
 import '../../services/interfaces/AuthService.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends ConsumerWidget {
   const RegisterScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    bool loading = false;
+    String? errorText;
+
+    ref.watch(signUpFutureProvider).maybeWhen(
+          orElse: () {},
+          loading: () => loading = true,
+          error: (error, stackTrace) => errorText = error.toString(),
+        );
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -23,13 +31,17 @@ class RegisterScreen extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 100),
-              const Column(
+              Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SermanosLogos.square(logoUrl: "assets/images/SquareLogo.png"),
-                  SizedBox(height: 32),
-                  RegisterForm(),
+                  const SermanosLogos.square(
+                      logoUrl: "assets/images/SquareLogo.png"),
+                  const SizedBox(height: 32),
+                  RegisterForm(
+                    isLoading: loading,
+                    errorText: errorText,
+                  ),
                 ],
               ),
               const SizedBox(height: 90),
@@ -42,24 +54,22 @@ class RegisterScreen extends StatelessWidget {
                         text: "Registrarse",
                         onPressed: () {
                           if (!registerFormKey.currentState!.validate()) {
-                            print("Invalid"); 
                             return;
                           }
-                          final response = ref.watch(registerProvider(
-                              userRegisterData: UserRegisterData(
+                          final UserRegisterData userRegisterData =
+                              UserRegisterData(
                                   email: registerFormKey
                                       .currentState!.fields['email']!.value,
                                   password: registerFormKey
                                       .currentState!.fields['password']!.value,
                                   name: registerFormKey
                                       .currentState!.fields['name']!.value,
-                                  surname: registerFormKey.currentState!
-                                      .fields['surname']!.value)));
-                          response.when(
-                            data: (data) => context.beamToNamed("/welcome"),
-                            loading: () => const Text("Loading"),
-                            error: (error, stackTrace) => const Text("Error"),
-                          );
+                                  surname: registerFormKey
+                                      .currentState!.fields['surname']!.value);
+
+                          ref
+                              .read(signUpFutureProvider.notifier)
+                              .singUp(userRegisterData: userRegisterData);
                         },
                         filled: true),
                   ),
