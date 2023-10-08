@@ -31,5 +31,5 @@ NewsService newsService(NewsServiceRef ref) {
 
 @Riverpod(keepAlive: true)
 VolunteeringService volunteeringService(VolunteeringServiceRef ref) {
-  return const FirebaseVolunteeringService(); 
+  return const FirebaseVolunteeringService();
 }

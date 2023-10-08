@@ -1,19 +1,21 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/design_system/cells/cards/InformationCards/InformationCard.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/design_system/molecules/components/profile_image.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/model/User.dart';
+import 'package:ser_manos/providers/Providers/Providers.dart';
 
-class ProfileInformationScreen extends StatelessWidget {
-  final ApplicationUser user; 
+class ProfileInformationScreen extends ConsumerWidget {
+  final ApplicationUser user;
 
   const ProfileInformationScreen({super.key, required this.user});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.only(left: 32, right: 32),
       child: Column(
@@ -50,7 +52,13 @@ class ProfileInformationScreen extends StatelessWidget {
               onPressed: () => context.beamToNamed("/profile/edit"),
               filled: true),
           const SizedBox(height: 8),
-          CtaButton(text: "Cerrar Sesión", onPressed: () {}, filled: false)
+          CtaButton(
+              text: "Cerrar Sesión",
+              onPressed: () {
+                ref.read(authServiceProvider).signOut();
+                context.beamToNamed("/login"); 
+              },
+              filled: false)
         ],
       ),
     );
