@@ -6,7 +6,7 @@ import 'package:ser_manos/design_system/cells/forms/ProfileDataForm.dart';
 import 'package:ser_manos/design_system/cells/header.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/model/User.dart';
-import 'package:ser_manos/providers/Notifier/UserProvider.dart';
+import 'package:ser_manos/providers/Notifier/Authentication/UserProvider.dart';
 import 'package:ser_manos/providers/Providers/Providers.dart';
 import 'package:ser_manos/services/interfaces/UserService.dart';
 

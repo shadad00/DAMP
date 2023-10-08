@@ -1,7 +1,7 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/model/User.dart';
-import 'package:ser_manos/providers/Notifier/UserProvider.dart';
+import 'package:ser_manos/providers/Notifier/Authentication/UserProvider.dart';
 import 'package:ser_manos/screens/MyProfile/CompleteProfileScreen.dart';
 import 'package:ser_manos/screens/MyProfile/ProfileInformationScreen.dart';
 

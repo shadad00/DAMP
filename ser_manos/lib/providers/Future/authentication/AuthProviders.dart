@@ -10,13 +10,13 @@ part 'generated/AuthProviders.g.dart';
 final firebaseAuthProvider =
     Provider<FirebaseAuth>((ref) => FirebaseAuth.instance);
 
-@riverpod
-Future<void> login(LoginRef ref, {required UserLoginData userLoginData}) async {
-  final authRepository = ref.read(authServiceProvider);
-  await authRepository.signIn(userLoginData: userLoginData);
-  final BeamerDelegate delegate = ref.read(delegateProvider);
-  delegate.beamToNamed("/volunteering");
-}
+// @riverpod
+// Future<void> login(LoginRef ref, {required UserLoginData userLoginData}) async {
+//   final authRepository = ref.read(authServiceProvider);
+//   await authRepository.signIn(userLoginData: userLoginData);
+//   final BeamerDelegate delegate = ref.read(delegateProvider);
+//   delegate.beamToNamed("/volunteering");
+// }
 
 @riverpod
 Future<void> register(RegisterRef ref,

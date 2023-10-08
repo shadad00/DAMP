@@ -9,7 +9,7 @@ import 'package:ser_manos/design_system/molecules/components/profile_image.dart'
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/model/User.dart';
-import 'package:ser_manos/providers/Notifier/UserProvider.dart';
+import 'package:ser_manos/providers/Notifier/Authentication/UserProvider.dart';
 
 class CompleteProfileScreen extends ConsumerWidget {
   const CompleteProfileScreen({super.key});

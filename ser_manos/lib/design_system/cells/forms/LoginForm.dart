@@ -7,14 +7,15 @@ import '../../molecules/inputs/SermanosTextField.dart';
 
 final loginFormKey = GlobalKey<FormBuilderState>();
 
-
 class LoginForm extends StatelessWidget {
-  const LoginForm({super.key});
+
+  bool isLoading;
+  String? errorText; 
+
+  LoginForm({super.key, this.isLoading = false, this.errorText});
 
   @override
   Widget build(BuildContext context) {
-    bool isLoading = false;
-    String? errorText; 
 
     return FormBuilder(
       key: loginFormKey,
@@ -49,7 +50,7 @@ class LoginForm extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  errorText,
+                  errorText!,
                   style: const SermanosTypography.caption(
                     color: SermanosColors.error100,
                   ),

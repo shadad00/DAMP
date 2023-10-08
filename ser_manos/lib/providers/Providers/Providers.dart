@@ -8,7 +8,7 @@ import '../../services/interfaces/AuthService.dart';
 import '../../services/interfaces/NewsService.dart';
 import '../../services/interfaces/UserService.dart';
 import '../../services/interfaces/VolunteeringService.dart';
-import '../Notifier/UserProvider.dart';
+import '../Notifier/Authentication/UserProvider.dart';
 
 part 'generated/Providers.g.dart';
 

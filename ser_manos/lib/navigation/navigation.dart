@@ -9,7 +9,7 @@ import 'package:ser_manos/navigation/Locations/loginLocation.dart';
 import 'package:ser_manos/navigation/Locations/registerLocation.dart';
 import 'package:ser_manos/navigation/Locations/welcomeLocation.dart';
 
-import '../providers/Notifier/UserProvider.dart';
+import '../providers/Notifier/Authentication/UserProvider.dart';
 
 part 'generated/navigation.g.dart';
 

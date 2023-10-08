@@ -5,9 +5,7 @@ import 'package:ser_manos/design_system/cells/forms/LoginForm.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/atoms/icons/logo.dart';
-import 'package:ser_manos/logger/logger.dart';
-
-import '../../providers/Future/authentication/AuthProviders.dart';
+import 'package:ser_manos/providers/AsyncNotifiers/Authentication/LoginAsyncNotifier.dart';
 import '../../services/interfaces/AuthService.dart';
 
 class LoginScreen extends ConsumerWidget {
@@ -15,8 +13,16 @@ class LoginScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    bool loading = false;
+    String? errorText;
 
-    
+    ref.watch(loginCacheProvider).maybeWhen(
+          loading: () => loading = true,
+          error: (error, stackTrace) => errorText = error.toString(),
+          orElse: () {},
+        );
+
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -24,13 +30,17 @@ class LoginScreen extends ConsumerWidget {
           child: Column(
             children: [
               const SizedBox(height: 100),
-              const Column(
+              Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SermanosLogos.square(logoUrl: "assets/images/SquareLogo.png"),
-                  SizedBox(height: 32),
-                  LoginForm(),
+                  const SermanosLogos.square(
+                      logoUrl: "assets/images/SquareLogo.png"),
+                  const SizedBox(height: 32),
+                  LoginForm(
+                    isLoading: loading,
+                    errorText: errorText,
+                  ),
                 ],
               ),
               const SizedBox(height: 160),
@@ -44,24 +54,16 @@ class LoginScreen extends ConsumerWidget {
                         if (!loginFormKey.currentState!.validate()) {
                           return;
                         }
-                        final response = ref.watch(loginProvider(
-                            userLoginData: UserLoginData(
+                        final UserLoginData userLoginData = UserLoginData(
                           email:
                               loginFormKey.currentState!.fields['email']!.value,
                           password: loginFormKey
                               .currentState!.fields['password']!.value,
-                        )));
-                        // response.when(data: (data) {
-                        //   logger.d("dataaaaaaaaaaaaaaaaaaaaaaa");
-                        //   context.beamToNamed("/volunteering");
-                        // }, loading: () {
-                        //   logger.d("loadinghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
-                        //   // context.beamToNamed("/volunteering");
-                        // }, error: (error, stackTrace) {
-                        //   logger.d(
-                        //       "errorerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
-                        //   // context.beamToNamed("/volunteering");
-                        // });
+                        );
+
+                        await ref
+                            .read(loginCacheProvider.notifier)
+                            .signIn(userLoginData: userLoginData);
                       },
                       filled: true),
                   const SizedBox(height: 16),

@@ -28,7 +28,7 @@ class ApplicationUser extends Equatable {
     return birthdate != null &&
         phone != null &&
         gender != null &&
-        profileImageUrl != null &&
+        // profileImageUrl != null &&
         emailContact != null;
   }
 

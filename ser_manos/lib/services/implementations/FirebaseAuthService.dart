@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/services/interfaces/UserService.dart';
 
-import '../../providers/Notifier/UserProvider.dart';
+import '../../providers/Notifier/Authentication/UserProvider.dart';
 import '../interfaces/AuthService.dart';
 
 class FirebaseAuthService implements AuthService {
