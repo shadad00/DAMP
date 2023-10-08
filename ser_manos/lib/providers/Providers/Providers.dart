@@ -14,7 +14,7 @@ part 'generated/Providers.g.dart';
 
 @Riverpod(keepAlive: true)
 UserService userService(UserServiceRef ref) {
-  return const FirebaseUserService();
+  return FirebaseUserService(ref);
 }
 
 @Riverpod(keepAlive: true)

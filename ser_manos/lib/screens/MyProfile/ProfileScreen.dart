@@ -12,9 +12,7 @@ class ProfileScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final ApplicationUser? user = ref.watch(currentUserProvider);
     return user!.isProfileFilled()
-        ? ProfileInformationScreen(
-            user: user,
-          )
+        ? const ProfileInformationScreen()
         : const CompleteProfileScreen();
   }
 }

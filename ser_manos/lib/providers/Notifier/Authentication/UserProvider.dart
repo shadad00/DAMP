@@ -1,6 +1,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:ser_manos/model/User.dart';
 
+import '../../../model/Gender.dart';
+
 part 'generated/UserProvider.g.dart';
 
 @Riverpod(keepAlive: true)
@@ -22,7 +24,7 @@ class CurrentUser extends _$CurrentUser {
     if (state != null) {
       state = state!.update(
           phone: map['phone'],
-          gender: map['gender'],
+          gender: Gender.getGenderFromString(map['gender'])!,
           birthdate: map['birthdate'],
           emailContact: map['emailContact']);
     }

@@ -1,13 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/logger/logger.dart';
 import 'package:ser_manos/model/User.dart';
+import 'package:ser_manos/providers/Notifier/Authentication/UserProvider.dart';
 import 'package:ser_manos/services/interfaces/UserService.dart';
 
 import '../../model/Gender.dart';
 
 class FirebaseUserService implements UserService {
-  const FirebaseUserService();
+  ProviderRef<UserService> ref;
+  FirebaseUserService(this.ref);
 
   static final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -101,6 +104,7 @@ class FirebaseUserService implements UserService {
       };
 
       await query.update(userDataMap);
+      ref.read(currentUserProvider.notifier).update(userDataMap); 
     } catch (e) {
       throw Exception();
     }

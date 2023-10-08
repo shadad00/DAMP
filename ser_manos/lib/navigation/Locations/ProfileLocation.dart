@@ -2,7 +2,6 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:ser_manos/screens/MainScreen.dart';
 import 'package:ser_manos/screens/MyProfile/EditProfileScreen.dart';
-import 'package:ser_manos/screens/MyProfile/ProfileScreen.dart';
 
 class ProfileLocation extends BeamLocation<BeamState> {
   ProfileLocation(RouteInformation super.routeInformation);

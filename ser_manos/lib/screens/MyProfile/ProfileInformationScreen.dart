@@ -7,22 +7,23 @@ import 'package:ser_manos/design_system/molecules/components/profile_image.dart'
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/model/User.dart';
+import 'package:ser_manos/providers/Notifier/Authentication/UserProvider.dart';
 import 'package:ser_manos/providers/Providers/Providers.dart';
 
 class ProfileInformationScreen extends ConsumerWidget {
-  final ApplicationUser user;
-
-  const ProfileInformationScreen({super.key, required this.user});
+  const ProfileInformationScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ApplicationUser? user = ref.watch(currentUserProvider); 
+
     return Padding(
       padding: const EdgeInsets.only(left: 32, right: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(height: 16),
-          ProfileImage(imageUrl: user.profileImageUrl),
+          ProfileImage(imageUrl: user!.profileImageUrl),
           const Text("Voluntario",
               style:
                   SermanosTypography.overline(color: SermanosColors.neutral75)),
@@ -56,7 +57,7 @@ class ProfileInformationScreen extends ConsumerWidget {
               text: "Cerrar Sesión",
               onPressed: () {
                 ref.read(authServiceProvider).signOut();
-                context.beamToNamed("/login"); 
+                context.beamToNamed("/login");
               },
               filled: false)
         ],
