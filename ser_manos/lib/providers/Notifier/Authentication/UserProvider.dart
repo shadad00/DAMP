@@ -15,6 +15,16 @@ class CurrentUser extends _$CurrentUser {
   }
 
   bool isLoggedIn() {
-    return state != null; 
+    return state != null;
+  }
+
+  void update(Map map) {
+    if (state != null) {
+      state = state!.update(
+          phone: map['phone'],
+          gender: map['gender'],
+          birthdate: map['birthdate'],
+          emailContact: map['emailContact']);
+    }
   }
 }

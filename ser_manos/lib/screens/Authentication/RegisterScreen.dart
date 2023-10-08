@@ -75,6 +75,7 @@ class RegisterScreen extends ConsumerWidget {
                   ),
                   const SizedBox(height: 16),
                   CtaButton(
+                    loading: loading,
                     text: 'Ya tengo cuenta',
                     onPressed: () => context.beamToNamed("/login"),
                     textColor: SermanosColors.primary100,

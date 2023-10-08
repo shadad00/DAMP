@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:logger/logger.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/logger/logger.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/services/interfaces/UserService.dart';
@@ -77,7 +77,7 @@ class FirebaseUserService implements UserService {
         emailContact: json['emailContact'],
       );
     } catch (e) {
-      logger.e("unable to create user"); 
+      logger.e("unable to create user");
       return null;
     }
   }

@@ -6,9 +6,8 @@ import 'package:ser_manos/design_system/cells/forms/ProfileDataForm.dart';
 import 'package:ser_manos/design_system/cells/header.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/model/User.dart';
+import 'package:ser_manos/providers/AsyncNotifiers/Profile/UpdateUserFuture.dart';
 import 'package:ser_manos/providers/Notifier/Authentication/UserProvider.dart';
-import 'package:ser_manos/providers/Providers/Providers.dart';
-import 'package:ser_manos/services/interfaces/UserService.dart';
 
 import '../../design_system/cells/forms/ContactDataForm.dart';
 
@@ -20,7 +19,11 @@ class EditProfileScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final ApplicationUser? user = ref.watch(currentUserProvider);
-    final UserService userService = ref.watch(userServiceProvider);
+    bool loading = false; 
+    
+    ref
+        .watch(updateUserFutureProvider)
+        .maybeWhen(loading: () => loading = true, orElse: () {});
 
     return Scaffold(
         appBar: SermanosHeader.modalHeader(),
@@ -41,13 +44,13 @@ class EditProfileScreen extends ConsumerWidget {
                   const ContactDataForm(),
                   const SizedBox(height: 32),
                   CtaButton(
+                      loading: loading,
                       text: "Guardar Datos",
                       onPressed: () async {
                         if (!profileForm.currentState!.validate()) {
                           return;
                         }
-
-                        await userService.updateUser(
+                        ref.read(updateUserFutureProvider.notifier).updateUser(
                             userId: user.id,
                             user: user,
                             phone: profileForm

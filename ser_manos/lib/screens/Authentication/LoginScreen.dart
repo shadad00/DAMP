@@ -68,6 +68,7 @@ class LoginScreen extends ConsumerWidget {
                       filled: true),
                   const SizedBox(height: 16),
                   CtaButton(
+                    loading: loading,
                     text: 'No tengo cuenta',
                     onPressed: () => context.beamToNamed("/register"),
                     textColor: SermanosColors.primary100,

@@ -36,6 +36,22 @@ class ApplicationUser extends Equatable {
     return '${name ?? ""} ${surname ?? ""}'.trim();
   }
 
+  ApplicationUser update(
+      {required String phone,
+      required Gender gender,
+      required DateTime birthdate,
+      required String emailContact}) {
+    return ApplicationUser(
+        id: id,
+        name: name,
+        surname: surname,
+        email: email,
+        phone: phone,
+        gender: gender,
+        birthdate: birthdate,
+        emailContact: emailContact);
+  }
+
   @override
   List<Object?> get props => [id, email];
 }
