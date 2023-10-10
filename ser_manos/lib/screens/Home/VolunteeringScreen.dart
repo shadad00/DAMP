@@ -6,6 +6,7 @@ import 'package:ser_manos/design_system/tokens/SerManosLoading.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/providers/Future/volunteering/VolunteeringProvider.dart';
+import 'package:ser_manos/screens/LoadingScreen.dart';
 
 class VolunteeringScreen extends ConsumerWidget {
   const VolunteeringScreen({super.key});
@@ -48,6 +49,6 @@ class VolunteeringScreen extends ConsumerWidget {
               ),
             ),
         error: (error, stackTrace) => const Text("error"),
-        loading: () => const SerManosLoading());
+        loading: () => const LoadingScreen());
   }
 }

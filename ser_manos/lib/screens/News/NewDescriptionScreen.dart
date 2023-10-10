@@ -6,6 +6,7 @@ import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/design_system/tokens/SerManosLoading.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/providers/Future/news%20/NewsProvider.dart';
+import 'package:ser_manos/screens/LoadingScreen.dart';
 
 import '../../design_system/tokens/colours/colours.dart';
 

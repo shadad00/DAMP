@@ -28,7 +28,7 @@ class VolunteeringLocation extends BeamLocation<BeamState> {
         BeamPage(
           key: ValueKey('volunteering-$id'),
           title: 'volunteering $id',
-          child: const VolunteeringDescriptionScreen(volunteeringId: "1",),
+          child: VolunteeringDescriptionScreen(volunteeringId: id,),
         ),
       );
     }
