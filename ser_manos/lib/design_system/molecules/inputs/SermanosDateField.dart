@@ -38,7 +38,7 @@ class SermanosDateField extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final DateFormat dateFormat = DateFormat("dd/mm/yyyy");
+    final DateFormat dateFormat = DateFormat("dd/MM/yyyy");
     final String initialValue =
         initialDate == null ? '' : dateFormat.format(initialDate!);
 
