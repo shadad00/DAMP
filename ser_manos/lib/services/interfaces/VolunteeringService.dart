@@ -8,4 +8,6 @@ abstract interface class VolunteeringService {
 
   Future<List<Volunteering>> getVolunteerings(); 
 
+  Future<List<Volunteering>> getVolunteeringsByName({required String name}); 
+
 }

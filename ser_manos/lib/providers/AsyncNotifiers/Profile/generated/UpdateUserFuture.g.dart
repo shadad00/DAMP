@@ -6,7 +6,7 @@ part of '../UpdateUserFuture.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$updateUserFutureHash() => r'6e83a830d24112ffc735cd5d0e2ea458320717d3';
+String _$updateUserFutureHash() => r'6dc67f62d326cbfc46a39a3724016733121fafc2';
 
 /// See also [UpdateUserFuture].
 @ProviderFor(UpdateUserFuture)

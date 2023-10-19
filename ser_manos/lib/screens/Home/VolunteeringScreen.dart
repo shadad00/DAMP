@@ -6,14 +6,20 @@ import 'package:ser_manos/design_system/tokens/SerManosLoading.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/providers/Future/volunteering/VolunteeringProvider.dart';
+import 'package:ser_manos/providers/Providers/Providers.dart';
 import 'package:ser_manos/screens/LoadingScreen.dart';
+
+final searchQueryProvider = StateProvider<String>((ref) => '');
 
 class VolunteeringScreen extends ConsumerWidget {
   const VolunteeringScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final service = ref.watch(getVolunteeringsProvider);
+    
+    final searchQuery = ref.watch(searchQueryProvider);
+    final service = ref.watch(getVolunteeringsByNameProvider(volunteeringName: searchQuery));
+
 
     return service.when(
         data: (data) => Padding(
@@ -26,7 +32,9 @@ class VolunteeringScreen extends ConsumerWidget {
                     height: 16,
                   ),
                   SermanosSearchBar(
-                    onChanged: (p0) => {},
+                    onChanged: (value) => {
+                      ref.read(searchQueryProvider.notifier).state = value
+                    },
                   ),
                   const SizedBox(
                     height: 16,
@@ -49,6 +57,6 @@ class VolunteeringScreen extends ConsumerWidget {
               ),
             ),
         error: (error, stackTrace) => const Text("error"),
-        loading: () => const LoadingScreen());
+        loading: () => const SerManosLoading());
   }
 }

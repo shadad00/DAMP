@@ -13,13 +13,12 @@ class FirebaseVolunteeringService implements VolunteeringService {
     final retrievedVolunteering =
         await firestore.collection(collectionName).doc(id).get();
     if (!retrievedVolunteering.exists) {
-      return null; 
+      return null;
     }
     return Volunteering.fromJson(
-      volunteeringId: retrievedVolunteering.id, 
-      eachVolunteering: Map<String, dynamic>.from(
-            retrievedVolunteering.data() as Map<String, dynamic>) 
-      ); 
+        volunteeringId: retrievedVolunteering.id,
+        eachVolunteering: Map<String, dynamic>.from(
+            retrievedVolunteering.data() as Map<String, dynamic>));
   }
 
   @override
@@ -28,10 +27,36 @@ class FirebaseVolunteeringService implements VolunteeringService {
     final retrievedData = await firestore.collection(collectionName).get();
     for (var eachVolunteering in retrievedData.docs) {
       volunteeringList.add(Volunteering.fromJson(
-        volunteeringId: eachVolunteering.id, 
-        eachVolunteering: eachVolunteering.data())
-      );
+          volunteeringId: eachVolunteering.id,
+          eachVolunteering: eachVolunteering.data()));
     }
+    return volunteeringList;
+  }
+
+  @override
+  Future<List<Volunteering>> getVolunteeringsByName(
+      {required String name}) async {
+    final List<Volunteering> volunteeringList = [];
+
+    final lowercaseName = name.toLowerCase();
+
+    final retrievedData = await firestore
+        .collection(collectionName)
+        .get();
+
+    for (var eachVolunteering in retrievedData.docs) {
+      if (eachVolunteering
+          .data()['name']
+          .toString()
+          .toLowerCase()
+          .contains(lowercaseName)) {
+        volunteeringList.add(Volunteering.fromJson(
+          volunteeringId: eachVolunteering.id,
+          eachVolunteering: eachVolunteering.data(),
+        ));
+      }
+    }
+
     return volunteeringList;
   }
 }

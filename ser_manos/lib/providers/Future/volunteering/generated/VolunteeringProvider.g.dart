@@ -170,5 +170,157 @@ class _GetVolunteeringByIdProviderElement
   @override
   String get id => (origin as GetVolunteeringByIdProvider).id;
 }
+
+String _$getVolunteeringsByNameHash() =>
+    r'3b242cdeebe86ff7e946b7618ad59e1065962e5c';
+
+/// See also [getVolunteeringsByName].
+@ProviderFor(getVolunteeringsByName)
+const getVolunteeringsByNameProvider = GetVolunteeringsByNameFamily();
+
+/// See also [getVolunteeringsByName].
+class GetVolunteeringsByNameFamily
+    extends Family<AsyncValue<List<Volunteering>>> {
+  /// See also [getVolunteeringsByName].
+  const GetVolunteeringsByNameFamily();
+
+  /// See also [getVolunteeringsByName].
+  GetVolunteeringsByNameProvider call({
+    required String volunteeringName,
+    String? searchQuery,
+  }) {
+    return GetVolunteeringsByNameProvider(
+      volunteeringName: volunteeringName,
+      searchQuery: searchQuery,
+    );
+  }
+
+  @override
+  GetVolunteeringsByNameProvider getProviderOverride(
+    covariant GetVolunteeringsByNameProvider provider,
+  ) {
+    return call(
+      volunteeringName: provider.volunteeringName,
+      searchQuery: provider.searchQuery,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'getVolunteeringsByNameProvider';
+}
+
+/// See also [getVolunteeringsByName].
+class GetVolunteeringsByNameProvider
+    extends FutureProvider<List<Volunteering>> {
+  /// See also [getVolunteeringsByName].
+  GetVolunteeringsByNameProvider({
+    required String volunteeringName,
+    String? searchQuery,
+  }) : this._internal(
+          (ref) => getVolunteeringsByName(
+            ref as GetVolunteeringsByNameRef,
+            volunteeringName: volunteeringName,
+            searchQuery: searchQuery,
+          ),
+          from: getVolunteeringsByNameProvider,
+          name: r'getVolunteeringsByNameProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$getVolunteeringsByNameHash,
+          dependencies: GetVolunteeringsByNameFamily._dependencies,
+          allTransitiveDependencies:
+              GetVolunteeringsByNameFamily._allTransitiveDependencies,
+          volunteeringName: volunteeringName,
+          searchQuery: searchQuery,
+        );
+
+  GetVolunteeringsByNameProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.volunteeringName,
+    required this.searchQuery,
+  }) : super.internal();
+
+  final String volunteeringName;
+  final String? searchQuery;
+
+  @override
+  Override overrideWith(
+    FutureOr<List<Volunteering>> Function(GetVolunteeringsByNameRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GetVolunteeringsByNameProvider._internal(
+        (ref) => create(ref as GetVolunteeringsByNameRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        volunteeringName: volunteeringName,
+        searchQuery: searchQuery,
+      ),
+    );
+  }
+
+  @override
+  FutureProviderElement<List<Volunteering>> createElement() {
+    return _GetVolunteeringsByNameProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is GetVolunteeringsByNameProvider &&
+        other.volunteeringName == volunteeringName &&
+        other.searchQuery == searchQuery;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, volunteeringName.hashCode);
+    hash = _SystemHash.combine(hash, searchQuery.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin GetVolunteeringsByNameRef on FutureProviderRef<List<Volunteering>> {
+  /// The parameter `volunteeringName` of this provider.
+  String get volunteeringName;
+
+  /// The parameter `searchQuery` of this provider.
+  String? get searchQuery;
+}
+
+class _GetVolunteeringsByNameProviderElement
+    extends FutureProviderElement<List<Volunteering>>
+    with GetVolunteeringsByNameRef {
+  _GetVolunteeringsByNameProviderElement(super.provider);
+
+  @override
+  String get volunteeringName =>
+      (origin as GetVolunteeringsByNameProvider).volunteeringName;
+  @override
+  String? get searchQuery =>
+      (origin as GetVolunteeringsByNameProvider).searchQuery;
+}
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
