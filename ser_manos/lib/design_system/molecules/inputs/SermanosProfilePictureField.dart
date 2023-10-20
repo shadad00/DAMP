@@ -37,7 +37,7 @@ class SermanosProfilePictureField extends HookWidget {
           children: [
             imageUrl.value == null
                 ? UploadProfilePictureCard(userId: userId, field: field)
-                : ExtendedUploadProfilePicture(imageUrl: imageUrl.value!),
+                : ExtendedUploadProfilePicture(imageUrl: imageUrl.value!, field: field, userId: userId),
             if (field.errorText != null)
               Padding(
                 padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
