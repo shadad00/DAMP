@@ -7,9 +7,11 @@ import 'package:ser_manos/services/implementations/FirebaseStorageService.dart';
 import 'package:ser_manos/services/interfaces/StorageService.dart';
 
 class UploadProfilePictureCard extends StatelessWidget {
-  const UploadProfilePictureCard({super.key, required this.userId});
+  const UploadProfilePictureCard(
+      {super.key, required this.userId, required this.field});
 
   final String userId;
+  final FormFieldState field;
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +50,9 @@ class UploadProfilePictureCard extends StatelessWidget {
               final path = results.files.single.path!;
               final fileName = results.files.single.name;
 
-              storageService.uploadFile(
+              final imageUrl = await storageService.uploadFile(
                   path: path, fileName: fileName, userId: userId);
+              field.didChange(imageUrl);
             },
           )
         ],

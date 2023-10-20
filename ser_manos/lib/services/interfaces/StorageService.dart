@@ -1,9 +1,9 @@
 abstract interface class StorageService {
   // uploads an image
-  Future<void> uploadFile(
+  Future<String> uploadFile(
       {required String path, required String fileName, required String userId});
 
   // gets an image
-  Future<void> getFile({required String path, required String fileName});
+  Future<String> getFileURL({required String path});
 
 }

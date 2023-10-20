@@ -63,7 +63,7 @@ class EditProfileScreen extends ConsumerWidget {
                             emailContact: profileForm
                                 .currentState!.fields['email']?.value,
                             profileImageUrl: profileForm.currentState!
-                                .fields['image']!.value);
+                                .fields['image']?.value);
                       },
                       filled: true)
                 ],

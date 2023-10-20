@@ -37,7 +37,7 @@ class FirebaseUserService implements UserService {
         birthdate: json['birthdate'] != null
             ? (json['birthdate'] as Timestamp).toDate()
             : null,
-        profileImageUrl: json['profileImage'],
+        profileImageUrl: json['profileImageUrl'],
         phone: json['phone'],
         emailContact: json['emailContact'],
       );
@@ -102,6 +102,7 @@ class FirebaseUserService implements UserService {
         'emailContact': emailContact,
         'gender': gender.name,
         'phone': phone,
+        'profileImageUrl': profileImageUrl,
       };
 
       await query.update(userDataMap);
