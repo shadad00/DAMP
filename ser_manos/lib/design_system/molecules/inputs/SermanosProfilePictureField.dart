@@ -14,12 +14,14 @@ class SermanosProfilePictureField extends HookWidget {
     required this.initialValue,
     this.enabled = true,
     this.validators,
+    required this.userId,
   }) : image = initialValue;
 
   final String formName;
   final String? initialValue;
   final bool enabled;
   final String? image;
+  final String userId;
 
   final List<String? Function(String?)>? validators;
 
@@ -42,7 +44,7 @@ class SermanosProfilePictureField extends HookWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
          imageUrl == null
-                ? const UploadProfilePictureCard()
+                ?  UploadProfilePictureCard(userId: userId)
                 : ExtendedUploadProfilePicture(imageUrl: imageUrl),
         if (field.errorText != null)
           Padding(

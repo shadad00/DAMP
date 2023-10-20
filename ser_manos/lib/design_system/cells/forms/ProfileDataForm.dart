@@ -1,28 +1,31 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl/intl.dart';
 import 'package:ser_manos/design_system/molecules/inputs/SermanosDateField.dart';
+import 'package:ser_manos/design_system/molecules/inputs/SermanosProfilePictureField.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/model/Gender.dart';
 import 'package:ser_manos/design_system/cells/cards/GenderRadioCard.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 
+
 class ProfileDataForm extends ConsumerWidget {
   final ApplicationUser user;
   final String genderField;
   final String birthdateField;
-  // final String imageField;
+  final String imageField;
 
   const ProfileDataForm({
     super.key,
     required this.user,
     required this.genderField,
     required this.birthdateField,
-    // required this.imageField,
-  }); 
+    required this.imageField,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -124,7 +127,21 @@ class ProfileDataForm extends ConsumerWidget {
               ),
             ),
           ],
-        )
+        ),
+        const SizedBox(height: 16),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(4),
+              topLeft: Radius.circular(4),
+            ),
+            color: SermanosColors.secondary25,
+          ),
+          child: SermanosProfilePictureField(formName: imageField, initialValue: user.profileImageUrl, userId: user.id, enabled: enabled),
+        ),
+        
+
         // const SizedBox(
         //   height: 24,
         // ),

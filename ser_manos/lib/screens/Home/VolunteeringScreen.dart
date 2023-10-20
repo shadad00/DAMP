@@ -49,6 +49,6 @@ class VolunteeringScreen extends ConsumerWidget {
               ),
             ),
         error: (error, stackTrace) => const Text("error"),
-        loading: () => const LoadingScreen());
+        loading: () => const SerManosLoading());
   }
 }

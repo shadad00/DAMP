@@ -17,5 +17,6 @@ abstract interface class UserService {
       required String phone,
       required Gender gender,
       required DateTime birthdate,
-      required String emailContact}); 
+      required String emailContact,
+      required String profileImageUrl}); 
 }
