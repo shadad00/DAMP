@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/design_system/atoms/icons/icons.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/design_system/molecules/components/vacancies.dart';
+import 'package:ser_manos/design_system/tokens/SerManosError.dart';
 import 'package:ser_manos/design_system/tokens/SerManosLoading.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
@@ -220,7 +221,7 @@ class VolunteeringDescriptionScreen extends ConsumerWidget {
                 ),
               );
             },
-            error: (_, s) => const Text("Error"),
+            error: (_, s) => const SerManosError(),
             loading: () => const SerManosLoading()));
   }
 }

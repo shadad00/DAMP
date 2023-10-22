@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/design_system/cells/header.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
+import 'package:ser_manos/design_system/tokens/SerManosError.dart';
 import 'package:ser_manos/design_system/tokens/SerManosLoading.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/providers/Future/news/NewsProvider.dart';
@@ -25,9 +26,7 @@ class NewDescriptionScreen extends ConsumerWidget {
     return Scaffold(
       appBar: SermanosHeader.sectionHeader(title: "Novedades"),
       body: newsRetriever.when(
-          data: (data) => Scaffold(
-                appBar: SermanosHeader.sectionHeader(title: "Novedades"),
-                body: Padding(
+          data: (data) => Padding(
                   padding: const EdgeInsets.fromLTRB(16, 24, 16, 32),
                   child: SingleChildScrollView(
                       child: Column(
@@ -91,8 +90,7 @@ class NewDescriptionScreen extends ConsumerWidget {
                             filled: true)
                       ])),
                 ),
-              ),
-          error: (error, stackTrace) => const Text("Error"),
+          error: (error, stackTrace) => const SerManosError(),
           loading: () => const SerManosLoading()),
     );
   }
