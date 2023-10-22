@@ -37,7 +37,7 @@ class ProfileInformationScreen extends ConsumerWidget {
           InformationCard(
               title: "Información personal",
               firsTitle: "FECHA DE NACIMIENTO",
-              firstSubtitle: user.birthdate.toString(),
+              firstSubtitle: "${user.birthdate!.day.toString().padLeft(2, '0')}/${user.birthdate!.month.toString().padLeft(2, '0')}/${user.birthdate!.year}",
               secondTitle: "GÈNERO",
               secondSubtitle: user.gender!.text),
           const SizedBox(height: 16),

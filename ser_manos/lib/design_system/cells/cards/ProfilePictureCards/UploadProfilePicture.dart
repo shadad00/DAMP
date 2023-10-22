@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Short_button.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:ser_manos/providers/Providers/Providers.dart';
 import 'package:ser_manos/services/implementations/FirebaseStorageService.dart';
 import 'package:ser_manos/services/interfaces/StorageService.dart';
 
-class UploadProfilePictureCard extends StatelessWidget {
+class UploadProfilePictureCard extends ConsumerWidget {
   const UploadProfilePictureCard(
       {super.key, required this.userId, required this.field});
 
@@ -14,8 +16,9 @@ class UploadProfilePictureCard extends StatelessWidget {
   final FormFieldState field;
 
   @override
-  Widget build(BuildContext context) {
-    final StorageService storageService = FirebaseStorageService();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final StorageService storageService = ref.read(storageServiceProvider);
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
@@ -40,12 +43,14 @@ class UploadProfilePictureCard extends StatelessWidget {
                 allowedExtensions: ['jpg', 'png'],
               );
               if (results == null) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('No se seleccionó ninguna imagen'),
-                  ),
-                );
-                return;
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('No se seleccionó ninguna imagen'),
+                    ),
+                  );
+                }
+                  return;
               }
               final path = results.files.single.path!;
               final fileName = results.files.single.name;

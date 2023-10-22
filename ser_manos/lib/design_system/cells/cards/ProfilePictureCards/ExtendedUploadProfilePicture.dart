@@ -1,14 +1,16 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Short_button.dart';
 import 'package:ser_manos/design_system/molecules/components/profile_image.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
+import 'package:ser_manos/providers/Providers/Providers.dart';
 import 'package:ser_manos/services/implementations/FirebaseStorageService.dart';
 import 'package:ser_manos/services/interfaces/StorageService.dart';
 
-class ExtendedUploadProfilePicture extends StatelessWidget {
+class ExtendedUploadProfilePicture extends ConsumerWidget {
   final String imageUrl;
   final FormFieldState field;
   final String userId;
@@ -20,8 +22,8 @@ class ExtendedUploadProfilePicture extends StatelessWidget {
       required this.userId});
 
   @override
-  Widget build(BuildContext context) {
-    final StorageService storageService = FirebaseStorageService();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final StorageService storageService = ref.read(storageServiceProvider);
 
     return Container(
       padding: const EdgeInsets.fromLTRB(8, 16, 8, 16),
