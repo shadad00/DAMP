@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,7 +7,11 @@ import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/design_system/tokens/SerManosLoading.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/providers/Future/news/NewsProvider.dart';
-import 'package:ser_manos/screens/LoadingScreen.dart';
+import 'package:dio/dio.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:path_provider/path_provider.dart';
+
+
 
 import '../../design_system/tokens/colours/colours.dart';
 
@@ -66,7 +71,25 @@ class NewDescriptionScreen extends ConsumerWidget {
                       ),
                       const SizedBox(height: 16),
                       CtaButton(
-                          text: "Compartir", onPressed: () {}, filled: true)
+                          text: "Compartir", onPressed: () async {
+
+                      final response = await Dio().get(
+                        data.imageUrl,
+                        options: Options(
+                          responseType: ResponseType.bytes,
+                        ),
+                      );
+                      final List<int> bytes = response.data;
+                      final temp = await getTemporaryDirectory();
+                      final path = '${temp.path}/image.jpg';
+
+                      File(path).writeAsBytesSync(bytes);
+
+                      await Share.shareXFiles(
+                        [XFile(path)],
+                        text: data.subTitle,
+                      );
+                    }, filled: true)
                     ])),
               ),
             ));
