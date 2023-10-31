@@ -24,8 +24,7 @@ class VolunteeringScreen extends ConsumerWidget {
         data: (data) {
           final List<Volunteering> filteredData = [];
           for (var eachVolunteering in data) {
-            if (eachVolunteering
-                .name
+            if (eachVolunteering.name
                 .toString()
                 .toLowerCase()
                 .contains(searchQuery.toLowerCase())) {
@@ -56,7 +55,7 @@ class VolunteeringScreen extends ConsumerWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                data.isNotEmpty
+                filteredData.isNotEmpty
                     ? Expanded(
                         child: ListView.builder(
                         itemCount: filteredData.length,
@@ -67,7 +66,8 @@ class VolunteeringScreen extends ConsumerWidget {
                       ))
                     : const Padding(
                         padding: EdgeInsets.all(8),
-                        child: Text("No se encontraron resultados."),
+                        child: Center(
+                            child: Text("No se encontraron resultados.")),
                       )
               ],
             ),
