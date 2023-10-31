@@ -8,6 +8,8 @@ import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/providers/Future/volunteering/VolunteeringProvider.dart';
 
+import '../../model/Volunteering.dart';
+
 final searchQueryProvider = StateProvider<String>((ref) => '');
 
 class VolunteeringScreen extends ConsumerWidget {
@@ -15,46 +17,62 @@ class VolunteeringScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    
+    final service = ref.watch(getVolunteeringsProvider);
     final searchQuery = ref.watch(searchQueryProvider);
-    final service = ref.watch(getVolunteeringsByNameProvider(volunteeringName: searchQuery));
-
 
     return service.when(
-        data: (data) => Padding(
-              padding: const EdgeInsets.all(8),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  SermanosSearchBar(
-                    onChanged: (value) => {
-                      ref.read(searchQueryProvider.notifier).state = value
-                    },
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  const Text("Voluntariados",
-                      style: SermanosTypography.headline01(
-                          color: SermanosColors.neutral100)),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Expanded(
-                      child: ListView.builder(
-                    itemCount: data.length,
-                    itemBuilder: (context, index) {
-                      return VolunteeringCard(
-                          volunteeringInformation: data[index]);
-                    },
-                  ))
-                ],
-              ),
+        data: (data) {
+          final List<Volunteering> filteredData = [];
+          for (var eachVolunteering in data) {
+            if (eachVolunteering
+                .name
+                .toString()
+                .toLowerCase()
+                .contains(searchQuery.toLowerCase())) {
+              filteredData.add(eachVolunteering);
+            }
+          }
+
+          return Padding(
+            padding: const EdgeInsets.all(8),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 16,
+                ),
+                SermanosSearchBar(
+                  initialValue: searchQuery,
+                  onChanged: (value) =>
+                      {ref.read(searchQueryProvider.notifier).state = value},
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                const Text("Voluntariados",
+                    style: SermanosTypography.headline01(
+                        color: SermanosColors.neutral100)),
+                const SizedBox(
+                  height: 16,
+                ),
+                data.isNotEmpty
+                    ? Expanded(
+                        child: ListView.builder(
+                        itemCount: filteredData.length,
+                        itemBuilder: (context, index) {
+                          return VolunteeringCard(
+                              volunteeringInformation: filteredData[index]);
+                        },
+                      ))
+                    : const Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Text("No se encontraron resultados."),
+                      )
+              ],
             ),
+          );
+        },
         error: (error, stackTrace) => const SerManosError(),
         loading: () => const SerManosLoading());
   }

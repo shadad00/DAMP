@@ -172,7 +172,7 @@ class _GetVolunteeringByIdProviderElement
 }
 
 String _$getVolunteeringsByNameHash() =>
-    r'3b242cdeebe86ff7e946b7618ad59e1065962e5c';
+    r'ef46a556febc50f1476576e7285a3e3be383a9a2';
 
 /// See also [getVolunteeringsByName].
 @ProviderFor(getVolunteeringsByName)

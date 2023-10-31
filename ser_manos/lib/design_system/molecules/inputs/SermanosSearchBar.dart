@@ -14,9 +14,11 @@ class SermanosSearchBar extends HookWidget {
   const SermanosSearchBar({
     super.key,
     required this.onChanged,
+    required this.initialValue
   });
 
   final void Function(String) onChanged;
+  final String initialValue; 
   static const String formName = "searchBar"; 
 
   @override
@@ -37,7 +39,7 @@ class SermanosSearchBar extends HookWidget {
         ),
         child: ValidatedField(
             formName: formName ,
-            initialValue: '',
+            initialValue: initialValue,
             builder: (state) =>
                 getBuilder(state, isEmpty, focusNode, controller),
             onReset: () => ''));
@@ -87,7 +89,7 @@ class SermanosSearchBar extends HookWidget {
         ),
         onTapOutside: (e) => focusNode.unfocus(),
         onEditingComplete: () => focusNode.unfocus(),
-        onSubmitted: (value) => focusNode.unfocus(),
+        onSubmitted: onChanged
       ); 
 
   }
