@@ -38,7 +38,7 @@ class EditProfileScreen extends ConsumerWidget {
                     user: user!,
                     genderField: "gender",
                     birthdateField: "birthdate",
-                    // imageField: "image"
+                    imageField: "image"
                   ),
                   const SizedBox(height: 32),
                   ContactDataForm(user: user,),
@@ -61,7 +61,9 @@ class EditProfileScreen extends ConsumerWidget {
                                 profileForm
                                     .currentState!.fields['birthdate']!.value),
                             emailContact: profileForm
-                                .currentState!.fields['email']?.value);
+                                .currentState!.fields['email']?.value,
+                            profileImageUrl: profileForm.currentState!
+                                .fields['image']?.value);
                       },
                       filled: true)
                 ],

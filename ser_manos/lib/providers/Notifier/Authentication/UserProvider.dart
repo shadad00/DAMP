@@ -26,7 +26,9 @@ class CurrentUser extends _$CurrentUser {
           phone: map['phone'],
           gender: Gender.getGenderFromString(map['gender'])!,
           birthdate: map['birthdate'],
-          emailContact: map['emailContact']);
+          emailContact: map['emailContact'],
+          profileImageUrl: map['profileImageUrl']
+          );
     }
   }
 }

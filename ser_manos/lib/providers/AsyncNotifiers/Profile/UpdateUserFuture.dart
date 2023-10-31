@@ -20,7 +20,8 @@ class UpdateUserFuture extends _$UpdateUserFuture {
       required String phone,
       required Gender gender,
       required DateTime birthdate,
-      required String emailContact}) async {
+      required String emailContact,
+      required String profileImageUrl}) async {
     state = const AsyncValue.loading();
 
     try {
@@ -31,7 +32,8 @@ class UpdateUserFuture extends _$UpdateUserFuture {
           phone: phone,
           gender: gender,
           birthdate: birthdate,
-          emailContact: emailContact);
+          emailContact: emailContact,
+          profileImageUrl: profileImageUrl);
       final BeamerDelegate delegate = ref.read(delegateProvider);
       delegate.beamToNamed("/profile"); 
     } on firebase.FirebaseAuthException catch (e) {

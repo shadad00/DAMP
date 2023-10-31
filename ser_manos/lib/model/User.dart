@@ -40,7 +40,8 @@ class ApplicationUser extends Equatable {
       {required String phone,
       required Gender gender,
       required DateTime birthdate,
-      required String emailContact}) {
+      required String emailContact,
+      required String profileImageUrl}) {
     return ApplicationUser(
         id: id,
         name: name,

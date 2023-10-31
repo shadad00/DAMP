@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Short_button.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:ser_manos/providers/Providers/Providers.dart';
+import 'package:ser_manos/services/implementations/FirebaseStorageService.dart';
+import 'package:ser_manos/services/interfaces/StorageService.dart';
 
-class UploadProfilePictureCard extends StatelessWidget {
-  const UploadProfilePictureCard({super.key});
+class UploadProfilePictureCard extends ConsumerWidget {
+  const UploadProfilePictureCard(
+      {super.key, required this.userId, required this.field});
+
+  final String userId;
+  final FormFieldState field;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final StorageService storageService = ref.read(storageServiceProvider);
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
@@ -17,17 +28,39 @@ class UploadProfilePictureCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-            const Text(
-                "Foto de perfil",
-                style: SermanosTypography.subtitle01(
-                  color: SermanosColors.neutral100,
-                ),
-              ),
-        ShortButton(
+          const Text(
+            "Foto de perfil",
+            style: SermanosTypography.subtitle01(
+              color: SermanosColors.neutral100,
+            ),
+          ),
+          ShortButton(
             text: "Subir foto",
-            onPressed: () => {}
-            )
-      ],
+            onPressed: () async {
+              final results = await FilePicker.platform.pickFiles(
+                type: FileType.custom,
+                allowMultiple: false,
+                allowedExtensions: ['jpg', 'png'],
+              );
+              if (results == null) {
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('No se seleccionó ninguna imagen'),
+                    ),
+                  );
+                }
+                  return;
+              }
+              final path = results.files.single.path!;
+              final fileName = results.files.single.name;
+
+              final imageUrl = await storageService.uploadFile(
+                  path: path, fileName: fileName, userId: userId);
+              field.didChange(imageUrl);
+            },
+          )
+        ],
       ),
     );
   }

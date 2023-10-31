@@ -64,5 +64,20 @@ final volunteeringServiceProvider = Provider<VolunteeringService>.internal(
 );
 
 typedef VolunteeringServiceRef = ProviderRef<VolunteeringService>;
+String _$storageServiceHash() => r'afa6765cb667e7b953609d9999f624e8662b282c';
+
+/// See also [storageService].
+@ProviderFor(storageService)
+final storageServiceProvider = Provider<StorageService>.internal(
+  storageService,
+  name: r'storageServiceProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$storageServiceHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef StorageServiceRef = ProviderRef<StorageService>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
