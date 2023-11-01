@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/services/implementations/FirebaseStorageService.dart';
 import '../../services/implementations/FirebaseAuthService.dart';
 import '../../services/implementations/FirebaseNewsService.dart';
@@ -39,5 +40,14 @@ VolunteeringService volunteeringService(VolunteeringServiceRef ref) {
 
 @Riverpod(keepAlive: true)
 StorageService storageService(StorageServiceRef ref) {
-  return FirebaseStorageService(); 
+  return FirebaseStorageService();
+}
+
+@Riverpod(keepAlive: true)
+String? imageUrl(ImageUrlRef ref) {
+  final ApplicationUser? user = ref.watch(currentUserProvider);
+  if (user == null) {
+    return "Invalid state"; 
+  }
+  return user.profileImageUrl;
 }

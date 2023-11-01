@@ -21,7 +21,7 @@ class UpdateUserFuture extends _$UpdateUserFuture {
       required Gender gender,
       required DateTime birthdate,
       required String emailContact,
-      required String profileImageUrl}) async {
+      required String? profileImageUrl}) async {
     state = const AsyncValue.loading();
 
     try {

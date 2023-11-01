@@ -4,9 +4,7 @@ import 'package:ser_manos/design_system/molecules/buttons/Short_button.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:ser_manos/providers/Providers/Providers.dart';
-import 'package:ser_manos/services/implementations/FirebaseStorageService.dart';
-import 'package:ser_manos/services/interfaces/StorageService.dart';
+import 'package:ser_manos/providers/Notifier/Profile/PathProvider.dart';
 
 class UploadProfilePictureCard extends ConsumerWidget {
   const UploadProfilePictureCard(
@@ -17,8 +15,6 @@ class UploadProfilePictureCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final StorageService storageService = ref.read(storageServiceProvider);
-
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
@@ -50,14 +46,10 @@ class UploadProfilePictureCard extends ConsumerWidget {
                     ),
                   );
                 }
-                  return;
+                return;
               }
-              final path = results.files.single.path!;
-              final fileName = results.files.single.name;
-
-              final imageUrl = await storageService.uploadFile(
-                  path: path, fileName: fileName, userId: userId);
-              field.didChange(imageUrl);
+              ref.read(pathProvider.notifier).update(results.files.single.path!); 
+              field.didChange(results.files.single.path!);
             },
           )
         ],

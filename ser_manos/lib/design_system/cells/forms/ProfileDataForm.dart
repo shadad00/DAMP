@@ -138,7 +138,11 @@ class ProfileDataForm extends ConsumerWidget {
             ),
             color: SermanosColors.secondary25,
           ),
-          child: SermanosProfilePictureField(formName: imageField, initialValue: user.profileImageUrl, userId: user.id, enabled: enabled),
+          child: SermanosProfilePictureField(
+            formName: imageField, 
+            userId: user.id, 
+            enabled: enabled
+          ),
         ),
         
 

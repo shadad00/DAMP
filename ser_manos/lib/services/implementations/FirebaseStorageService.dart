@@ -12,14 +12,12 @@ class FirebaseStorageService implements StorageService {
   @override
   Future<String> uploadFile(
       {required String path,
-      required String fileName,
       required String userId}) async {
     File file = File(path);
     try {
       await storage.ref('profilePics/$userId').putFile(file);
-      final URL = await storage.ref('profilePics/$userId').getDownloadURL();
-      return URL;
-    } on firebase_core.FirebaseException catch (e) {
+      return await storage.ref('profilePics/$userId').getDownloadURL();
+    } on firebase_core.FirebaseException catch (_) {
       return "Error: File upload failed"; // You can customize the error message
     }
   }
@@ -28,8 +26,7 @@ class FirebaseStorageService implements StorageService {
   Future<String> getFileURL({required String path}) async {
     try {
       return await storage.ref(path).getDownloadURL();
-    } on firebase_core.FirebaseException catch (e) {
-      print(e);
+    } on firebase_core.FirebaseException catch (_) {
       return "";
     }
   }

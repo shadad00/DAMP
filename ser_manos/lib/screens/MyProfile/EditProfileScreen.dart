@@ -8,8 +8,11 @@ import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/providers/AsyncNotifiers/Profile/UpdateUserFuture.dart';
 import 'package:ser_manos/providers/Notifier/Authentication/UserProvider.dart';
+import 'package:ser_manos/providers/Notifier/Profile/PathProvider.dart';
 
 import '../../design_system/cells/forms/ContactDataForm.dart';
+import '../../providers/Providers/Providers.dart';
+import '../../services/interfaces/StorageService.dart';
 
 final profileForm = GlobalKey<FormBuilderState>();
 
@@ -19,8 +22,8 @@ class EditProfileScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final ApplicationUser? user = ref.watch(currentUserProvider);
-    bool loading = false; 
-    
+    bool loading = false;
+
     ref
         .watch(updateUserFutureProvider)
         .maybeWhen(loading: () => loading = true, orElse: () {});
@@ -35,13 +38,14 @@ class EditProfileScreen extends ConsumerWidget {
               child: Column(
                 children: [
                   ProfileDataForm(
-                    user: user!,
-                    genderField: "gender",
-                    birthdateField: "birthdate",
-                    imageField: "image"
-                  ),
+                      user: user!,
+                      genderField: "gender",
+                      birthdateField: "birthdate",
+                      imageField: "path"),
                   const SizedBox(height: 32),
-                  ContactDataForm(user: user,),
+                  ContactDataForm(
+                    user: user,
+                  ),
                   const SizedBox(height: 32),
                   CtaButton(
                       loading: loading,
@@ -50,6 +54,16 @@ class EditProfileScreen extends ConsumerWidget {
                         if (!profileForm.currentState!.validate()) {
                           return;
                         }
+
+                        String? imageUrl;
+
+                        if (ref.read(pathProvider.notifier).wasProvided()) {
+                          final StorageService storageService =
+                              ref.read(storageServiceProvider);
+                          imageUrl = await storageService.uploadFile(
+                              path: ref.read(pathProvider)!, userId: user.id);
+                        }
+
                         ref.read(updateUserFutureProvider.notifier).updateUser(
                             userId: user.id,
                             user: user,
@@ -62,8 +76,7 @@ class EditProfileScreen extends ConsumerWidget {
                                     .currentState!.fields['birthdate']!.value),
                             emailContact: profileForm
                                 .currentState!.fields['email']?.value,
-                            profileImageUrl: profileForm.currentState!
-                                .fields['image']?.value);
+                            profileImageUrl: imageUrl);
                       },
                       filled: true)
                 ],

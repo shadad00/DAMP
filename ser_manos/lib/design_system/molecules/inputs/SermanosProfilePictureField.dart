@@ -1,43 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/design_system/cells/cards/ProfilePictureCards/ExtendedUploadProfilePicture.dart';
 import 'package:ser_manos/design_system/cells/cards/ProfilePictureCards/UploadProfilePicture.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
+import 'package:ser_manos/providers/Notifier/Profile/PathProvider.dart';
+import 'package:ser_manos/providers/Providers/Providers.dart';
 
-class SermanosProfilePictureField extends HookWidget {
+class SermanosProfilePictureField extends ConsumerWidget {
   const SermanosProfilePictureField({
     super.key,
     required this.formName,
-    required this.initialValue,
     this.enabled = true,
     this.validators,
     required this.userId,
-  }) : image = initialValue;
+  });
 
   final String formName;
-  final String? initialValue;
   final bool enabled;
-  final String? image;
   final String userId;
 
   final List<String? Function(String?)>? validators;
 
   @override
-  Widget build(BuildContext context) {
-    ValueNotifier<String?> imageUrl = useState(image);
+  Widget build(BuildContext context, WidgetRef ref) {
+    String? uploaded = ref.watch(pathProvider);
+    String? imageUrl = ref.watch(imageUrlProvider);
+
+    if (uploaded != null) {
+      return const Text(
+        "Imágen guardada correctamente.",
+        style: SermanosTypography.subtitle01(color: SermanosColors.neutral100),
+      );
+    }
 
     return FormBuilderField<String>(
       name: formName,
-      initialValue: initialValue,
+      initialValue: imageUrl,
       builder: (FormFieldState field) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            imageUrl.value == null
+            imageUrl == null
                 ? UploadProfilePictureCard(userId: userId, field: field)
-                : ExtendedUploadProfilePicture(imageUrl: imageUrl.value!, field: field, userId: userId),
+                : ExtendedUploadProfilePicture(
+                    imageUrl: imageUrl, field: field, userId: userId),
             if (field.errorText != null)
               Padding(
                 padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),

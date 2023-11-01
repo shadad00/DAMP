@@ -93,7 +93,7 @@ class FirebaseUserService implements UserService {
       required Gender gender,
       required DateTime birthdate,
       required String emailContact,
-      required String profileImageUrl}) async {
+      required String? profileImageUrl}) async {
     try {
       final query = firestore.collection("/users").doc(userId);
 

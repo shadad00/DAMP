@@ -1,25 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../UserProvider.dart';
+part of '../PathProvider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$currentUserHash() => r'675c1f5f3e82aae98a04ac665306d35f9c3bcdc1';
+String _$pathHash() => r'30258f7fd6f8f41dab12ede1a4ae4ad079553bb8';
 
-/// See also [CurrentUser].
-@ProviderFor(CurrentUser)
-final currentUserProvider =
-    NotifierProvider<CurrentUser, ApplicationUser?>.internal(
-  CurrentUser.new,
-  name: r'currentUserProvider',
+/// See also [Path].
+@ProviderFor(Path)
+final pathProvider = AutoDisposeNotifierProvider<Path, String?>.internal(
+  Path.new,
+  name: r'pathProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$currentUserHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$pathHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$CurrentUser = Notifier<ApplicationUser?>;
+typedef _$Path = AutoDisposeNotifier<String?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
