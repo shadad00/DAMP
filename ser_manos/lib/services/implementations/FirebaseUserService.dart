@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -40,6 +42,7 @@ class FirebaseUserService implements UserService {
         profileImageUrl: json['profileImageUrl'],
         phone: json['phone'],
         emailContact: json['emailContact'],
+        favorites: List.from(json['favorites'])
       );
     } catch (e) {
       return null;
@@ -78,6 +81,7 @@ class FirebaseUserService implements UserService {
         profileImageUrl: json['profileImage'],
         phone: json['phone'],
         emailContact: json['emailContact'],
+        favorites: const []
       );
     } catch (e) {
       logger.e("unable to create user");
@@ -106,7 +110,26 @@ class FirebaseUserService implements UserService {
       };
 
       await query.update(userDataMap);
-      ref.read(currentUserProvider.notifier).update(userDataMap); 
+      ref.read(currentUserProvider.notifier).update(userDataMap);
+    } catch (e) {
+      throw Exception();
+    }
+  }
+
+  @override
+  Future<void> updateFavoriteList(
+      {required String userId, required List<int>? volunteerings}) async {
+    if (volunteerings == null) return; 
+
+    try {
+      final query = firestore.collection("/users").doc(userId);
+
+      final userDataMap = {
+        'favorites': volunteerings,
+      };
+
+      await query.update(userDataMap);
+      
     } catch (e) {
       throw Exception();
     }

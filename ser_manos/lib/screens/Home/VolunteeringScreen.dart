@@ -7,6 +7,7 @@ import 'package:ser_manos/design_system/tokens/SerManosLoading.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/providers/Future/volunteering/VolunteeringProvider.dart';
+import 'package:ser_manos/providers/Notifier/Volunteering/VolunteeringList.dart';
 
 import '../../model/Volunteering.dart';
 
@@ -19,6 +20,8 @@ class VolunteeringScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final service = ref.watch(getVolunteeringsProvider);
     final searchQuery = ref.watch(searchQueryProvider);
+    final List<int>? volunteeringList = ref.watch(volunteeringListProvider); 
+
 
     return service.when(
         data: (data) {
@@ -61,6 +64,7 @@ class VolunteeringScreen extends ConsumerWidget {
                         itemCount: filteredData.length,
                         itemBuilder: (context, index) {
                           return VolunteeringCard(
+                              favorite: volunteeringList!= null && volunteeringList.contains(filteredData[index].id),
                               volunteeringInformation: filteredData[index]);
                         },
                       ))
