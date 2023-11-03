@@ -1,13 +1,14 @@
-
-
 import 'package:ser_manos/model/Volunteering.dart';
 
 abstract interface class VolunteeringService {
+  Future<Volunteering?> getVolunteeringById({required String id});
 
-  Future<Volunteering?> getVolunteeringById({required String id}) ; 
+  Future<List<Volunteering>> getVolunteerings();
 
-  Future<List<Volunteering>> getVolunteerings(); 
+  Future<List<Volunteering>> getVolunteeringsByName({required String name});
 
-  Future<List<Volunteering>> getVolunteeringsByName({required String name}); 
+  Future<void> decrementVolunteerQuantity(int volunteeringId);
+
+  Future<void> incrementVolunteerQuantity(int volunteeringId); 
 
 }

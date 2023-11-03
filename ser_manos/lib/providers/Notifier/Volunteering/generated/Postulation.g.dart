@@ -6,7 +6,7 @@ part of '../Postulation.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$postulationHash() => r'd9c1e76b57d848c2abb9e25392d80adb1702bbfb';
+String _$postulationHash() => r'5d776ee874465df85175c59caf4b31e0d68d714a';
 
 /// See also [Postulation].
 @ProviderFor(Postulation)

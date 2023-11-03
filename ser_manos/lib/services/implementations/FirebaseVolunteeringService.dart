@@ -40,9 +40,7 @@ class FirebaseVolunteeringService implements VolunteeringService {
 
     final lowercaseName = name.toLowerCase();
 
-    final retrievedData = await firestore
-        .collection(collectionName)
-        .get();
+    final retrievedData = await firestore.collection(collectionName).get();
 
     for (var eachVolunteering in retrievedData.docs) {
       if (eachVolunteering
@@ -59,4 +57,53 @@ class FirebaseVolunteeringService implements VolunteeringService {
 
     return volunteeringList;
   }
+
+
+
+  @override
+  Future<void> decrementVolunteerQuantity(int volunteeringId) async {
+    final Volunteering? relatedVolunteering =
+        await getVolunteeringById(id: volunteeringId.toString());
+    if (relatedVolunteering == null) {
+      return;
+    }
+    int newQuantity = relatedVolunteering.volunteerQuantity - 1;
+    if (_validNewQuantity(relatedVolunteering, newQuantity)) {
+      return _changeVolunteerQuantity(relatedVolunteering.id, newQuantity); 
+    }
+  }
+
+  @override 
+  Future<void> incrementVolunteerQuantity(int volunteeringId) async {
+    final Volunteering? relatedVolunteering =
+        await getVolunteeringById(id: volunteeringId.toString());
+    if (relatedVolunteering == null) {
+      return;
+    }
+    int newQuantity = relatedVolunteering.volunteerQuantity + 1;
+    if (_validNewQuantity(relatedVolunteering, newQuantity)) {
+      return _changeVolunteerQuantity(relatedVolunteering.id, newQuantity); 
+    }
+  }
+
+
+
+  Future<void> _changeVolunteerQuantity(
+      int volunteeringId, int newQuantity) async {
+    try {
+      final query =
+          firestore.collection(collectionName).doc(volunteeringId.toString());
+      final dataMap = {
+        'volunteerQuantity': newQuantity,
+      };
+      await query.update(dataMap);
+    } catch (e) {
+      throw Exception();
+    }
+  }
+
+  bool _validNewQuantity(Volunteering volunteering, int newQuantity) {
+    return  0 <= newQuantity &&  newQuantity <= volunteering.capacity;
+  }
+
 }
