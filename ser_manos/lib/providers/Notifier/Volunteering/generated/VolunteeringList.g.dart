@@ -6,7 +6,7 @@ part of '../VolunteeringList.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$volunteeringListHash() => r'796ae53c29b36f7e75b5bd19f5c25a36c52c5759';
+String _$volunteeringListHash() => r'84648a3ff7219358218250d01cb54f8211a9dae7';
 
 /// See also [VolunteeringList].
 @ProviderFor(VolunteeringList)

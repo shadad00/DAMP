@@ -1,3 +1,5 @@
+import 'package:ser_manos/model/VolunteeringPostulation.dart';
+
 import '../../model/Gender.dart';
 import '../../model/User.dart';
 
@@ -21,5 +23,11 @@ abstract interface class UserService {
       required String? profileImageUrl});
 
   Future<void> updateFavoriteList(
-      {required String userId, required List<int>? volunteerings}); 
+      {required String userId, required List<int>? volunteerings});
+
+  Future<void> addPostulation(
+      {required String userId, required VolunteeringPostulation postulation});
+
+  Future<void> removePostulation(
+      {required String userId, required VolunteeringPostulation postulation});
 }

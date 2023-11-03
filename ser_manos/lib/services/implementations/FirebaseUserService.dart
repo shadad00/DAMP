@@ -5,10 +5,14 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/logger/logger.dart';
 import 'package:ser_manos/model/User.dart';
+import 'package:ser_manos/model/VolunteeringPostulation.dart';
 import 'package:ser_manos/providers/Notifier/Authentication/UserProvider.dart';
+import 'package:ser_manos/providers/Providers/Providers.dart';
 import 'package:ser_manos/services/interfaces/UserService.dart';
+import 'package:ser_manos/services/interfaces/VolunteeringService.dart';
 
 import '../../model/Gender.dart';
+import '../../model/Volunteering.dart';
 
 class FirebaseUserService implements UserService {
   ProviderRef<UserService> ref;
@@ -28,22 +32,40 @@ class FirebaseUserService implements UserService {
         return null;
       }
 
+      VolunteeringPostulation? postulation;
+      final volunteerings = await firestore
+          .collection("/users")
+          .doc(userId)
+          .collection("/postulation")
+          .get();
+
+      final currentVolunteering = volunteerings.docs.firstOrNull;
+
+      if (currentVolunteering != null) {
+        postulation = VolunteeringPostulation.fromJson(
+          volunteeringId: currentVolunteering.id,
+          json: currentVolunteering.data(),
+        );
+      }
+
       Map<String, dynamic> json = response.data()!;
 
       return ApplicationUser(
-        id: userId,
-        name: json['name'],
-        surname: json['surname'],
-        email: json['email'],
-        gender: Gender.getGenderFromString(json['gender']),
-        birthdate: json['birthdate'] != null
-            ? (json['birthdate'] as Timestamp).toDate()
-            : null,
-        profileImageUrl: json['profileImageUrl'],
-        phone: json['phone'],
-        emailContact: json['emailContact'],
-        favorites: List.from(json['favorites'])
-      );
+          id: userId,
+          name: json['name'],
+          surname: json['surname'],
+          email: json['email'],
+          gender: Gender.getGenderFromString(json['gender']),
+          birthdate: json['birthdate'] != null
+              ? (json['birthdate'] as Timestamp).toDate()
+              : null,
+          profileImageUrl: json['profileImageUrl'],
+          phone: json['phone'],
+          emailContact: json['emailContact'],
+          favorites: List.from(
+            json['favorites'],
+          ),
+          postulation: postulation);
     } catch (e) {
       return null;
     }
@@ -70,19 +92,18 @@ class FirebaseUserService implements UserService {
       Map<String, dynamic> json = userDataMap;
 
       return ApplicationUser(
-        id: userId,
-        name: json['name'],
-        surname: json['surname'],
-        email: json['email'],
-        gender: Gender.getGenderFromString(json['gender']),
-        birthdate: json['birthdate'] != null
-            ? (json['birthdate'] as Timestamp).toDate()
-            : null,
-        profileImageUrl: json['profileImage'],
-        phone: json['phone'],
-        emailContact: json['emailContact'],
-        favorites: const []
-      );
+          id: userId,
+          name: json['name'],
+          surname: json['surname'],
+          email: json['email'],
+          gender: Gender.getGenderFromString(json['gender']),
+          birthdate: json['birthdate'] != null
+              ? (json['birthdate'] as Timestamp).toDate()
+              : null,
+          profileImageUrl: json['profileImage'],
+          phone: json['phone'],
+          emailContact: json['emailContact'],
+          favorites: const []);
     } catch (e) {
       logger.e("unable to create user");
       return null;
@@ -119,7 +140,7 @@ class FirebaseUserService implements UserService {
   @override
   Future<void> updateFavoriteList(
       {required String userId, required List<int>? volunteerings}) async {
-    if (volunteerings == null) return; 
+    if (volunteerings == null) return;
 
     try {
       final query = firestore.collection("/users").doc(userId);
@@ -129,9 +150,51 @@ class FirebaseUserService implements UserService {
       };
 
       await query.update(userDataMap);
-      
     } catch (e) {
       throw Exception();
     }
+  }
+
+  @override
+  Future<void> addPostulation(
+      {required String userId,
+      required VolunteeringPostulation postulation}) async {
+    try {
+      Volunteering? relatedVolunteering = await ref
+          .read(volunteeringServiceProvider)
+          .getVolunteeringById(id: postulation.volunteeringId.toString());
+
+      if (relatedVolunteering == null ||
+          relatedVolunteering.volunteerQuantity >=
+              relatedVolunteering.capacity) {
+        return;
+      }
+
+      final userPostulationQuery = firestore
+          .collection("/users")
+          .doc(userId)
+          .collection("/postulation")
+          .doc(relatedVolunteering.id.toString());
+
+      await userPostulationQuery.set({
+        'volunteering_id': relatedVolunteering.id,
+        'status': PostulationStatus.pending.name
+      });
+    } catch (_) {
+      throw Exception();
+    }
+  }
+
+  @override
+  Future<void> removePostulation(
+      {required String userId,
+      required VolunteeringPostulation postulation}) async {
+    final userPostulationQuery = firestore
+        .collection("/users")
+        .doc(userId)
+        .collection("/postulation")
+        .doc(postulation.volunteeringId.toString());
+
+    await userPostulationQuery.delete();
   }
 }

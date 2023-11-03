@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:ser_manos/model/Gender.dart';
+import 'package:ser_manos/model/VolunteeringPostulation.dart';
+import 'package:ser_manos/providers/Notifier/Volunteering/Postulation.dart';
 
 class ApplicationUser extends Equatable {
   final String id;
@@ -12,6 +14,7 @@ class ApplicationUser extends Equatable {
   final String? profileImageUrl;
   final String? emailContact;
   List<int>? favorites;
+  VolunteeringPostulation? postulation;
 
   ApplicationUser(
       {required this.id,
@@ -23,7 +26,9 @@ class ApplicationUser extends Equatable {
       this.birthdate,
       this.profileImageUrl,
       this.emailContact,
-      this.favorites});
+      this.favorites,
+      this.postulation
+      });
 
   bool isProfileFilled() {
     return birthdate != null &&
@@ -52,11 +57,12 @@ class ApplicationUser extends Equatable {
         gender: gender,
         birthdate: birthdate,
         emailContact: emailContact,
-        profileImageUrl: profileImageUrl);
+        profileImageUrl: profileImageUrl,
+        postulation: postulation);
   }
 
   void addFavoriteVolunteering(int newFavoriteVolunteering) {
-    favorites ??= List.empty(); 
+    favorites ??= List.empty();
     favorites!.add(newFavoriteVolunteering);
   }
 
@@ -68,6 +74,14 @@ class ApplicationUser extends Equatable {
 
   List<int>? getFavorites() {
     return favorites;
+  }
+
+  set setPostulation(VolunteeringPostulation postulation) {
+    this.postulation = postulation;
+  }
+
+  get getPostulation {
+    return postulation;
   }
 
   @override
