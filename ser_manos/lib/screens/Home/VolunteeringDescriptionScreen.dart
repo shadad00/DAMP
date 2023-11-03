@@ -10,7 +10,11 @@ import 'package:ser_manos/design_system/tokens/SerManosLoading.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/design_system/tokens/shimmer/PictureShimmer.dart';
+import 'package:ser_manos/model/Volunteering.dart';
 import 'package:ser_manos/providers/Future/volunteering/VolunteeringProvider.dart';
+import 'package:ser_manos/providers/Notifier/Volunteering/Postulation.dart';
+
+import '../../model/VolunteeringPostulation.dart';
 
 class VolunteeringDescriptionScreen extends ConsumerWidget {
   final String volunteeringId;
@@ -21,6 +25,7 @@ class VolunteeringDescriptionScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final service = ref.watch(getVolunteeringByIdProvider(id: volunteeringId));
+    final VolunteeringPostulation? postulation = ref.watch(postulationProvider);
 
     return Scaffold(
         body: service.when(
@@ -208,10 +213,26 @@ class VolunteeringDescriptionScreen extends ConsumerWidget {
                           ),
                           Column(
                             children: [
-                              CtaButton(
-                                  text: "Postularme",
-                                  onPressed: () {},
-                                  filled: true)
+                              volunteeringInformation.isFull()
+                                  ? const FullVolunteering()
+                                  : postulation == null
+                                      ? CtaButton(
+                                          text: "Postularme",
+                                          onPressed: () => ref
+                                              .read(
+                                                  postulationProvider.notifier)
+                                              .addPostulation(
+                                                  volunteeringInformation.id),
+                                          filled: true)
+                                      : postulation.volunteeringId ==
+                                              int.parse(volunteeringId)
+                                          ? QuitPostulation(
+                                              volunteering:
+                                                  volunteeringInformation)
+                                          : QuitOtherPostulation(
+                                              otherVolunteeringId:
+                                                  postulation.volunteeringId,
+                                            )
                             ],
                           )
                         ],
@@ -223,5 +244,98 @@ class VolunteeringDescriptionScreen extends ConsumerWidget {
             },
             error: (_, s) => const SerManosError(),
             loading: () => const SerManosLoading()));
+  }
+}
+
+class QuitPostulation extends ConsumerWidget {
+  final Volunteering volunteering;
+  const QuitPostulation({
+    super.key,
+    required this.volunteering,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text(
+          "Te has postulado",
+          style: SermanosTypography.headline02(
+            color: SermanosColors.neutral100,
+          ),
+        ),
+        const SizedBox(height: 8),
+        const Text(
+          "Pronto la organización se pondrá en contacto contigo y te inscribirá como participante.",
+          style: SermanosTypography.body01(),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 20),
+        CtaButton(
+          text: 'Retirar postulación',
+          onPressed: () => ref
+              .read(postulationProvider.notifier)
+              .removePostulation(volunteering.id),
+          textColor: SermanosColors.primary100,
+          filled: false,
+        ),
+      ],
+    );
+  }
+}
+
+class QuitOtherPostulation extends ConsumerWidget {
+  const QuitOtherPostulation({
+    super.key,
+    required this.otherVolunteeringId,
+  });
+
+  final int otherVolunteeringId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text(
+          "Ya estas participando en otro voluntariado, debes abandonarlo primero para postularte a este.",
+          style: SermanosTypography.body01(),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 20),
+        CtaButton(
+          text: "Abandonar voluntariado actual",
+          onPressed: () =>
+              context.beamToNamed('/volunteering/$otherVolunteeringId'),
+          textColor: SermanosColors.primary100,
+          filled: false,
+        ),
+      ],
+    );
+  }
+}
+
+class FullVolunteering extends StatelessWidget {
+  const FullVolunteering({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const Text(
+          "No hay vacantes disponibles para postularse",
+          style: SermanosTypography.body01(),
+        ),
+        const SizedBox(height: 24),
+        CtaButton(
+          text: 'Postularme',
+          enabled: false,
+          filled: true,
+          onPressed: () {},
+        ),
+      ],
+    );
   }
 }

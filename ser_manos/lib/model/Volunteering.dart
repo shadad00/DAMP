@@ -34,7 +34,7 @@ class Volunteering extends Equatable {
   List<Object?> get props => [id];
 
   bool isFull() {
-    return capacity == volunteerQuantity;
+    return capacity <= volunteerQuantity;
   }
 
   factory Volunteering.fromJson({
@@ -57,4 +57,5 @@ class Volunteering extends Equatable {
         volunteerQuantity: eachVolunteering['volunteerQuantity'],
         creationTime: DateTime.now());
   }
+
 }
