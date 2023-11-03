@@ -19,13 +19,13 @@ Future<Volunteering?> getVolunteeringById(GetVolunteeringByIdRef ref,
   return await newsRepository.getVolunteeringById(id: id);
 }
 
-@Riverpod(keepAlive: true)
-Future<List<Volunteering>> getVolunteeringsByName(GetVolunteeringsByNameRef ref, {required String volunteeringName, String? searchQuery}) async {
-  final newsRepository = ref.read(volunteeringServiceProvider);
+// @Riverpod(keepAlive: true)
+// Future<List<Volunteering>> getVolunteeringsByName(GetVolunteeringsByNameRef ref, {required String volunteeringName, String? searchQuery}) async {
+//   final newsRepository = ref.read(volunteeringServiceProvider);
 
-  if (volunteeringName.isEmpty || volunteeringName == '') {
-    return getVolunteerings(ref);
-  }
-  final allVolunteerings = await newsRepository.getVolunteeringsByName(name: volunteeringName);
-  return allVolunteerings;
-}
+//   if (volunteeringName.isEmpty || volunteeringName == '') {
+//     return getVolunteerings(ref);
+//   }
+//   final allVolunteerings = await newsRepository.getVolunteeringsByName(name: volunteeringName);
+//   return allVolunteerings;
+// }

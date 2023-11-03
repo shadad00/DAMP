@@ -26,8 +26,11 @@ class Postulation extends _$Postulation {
         .addPostulation(userId: user.id, postulation: newPostulation);
     ref
         .read(volunteeringServiceProvider)
-        .incrementVolunteerQuantity(volunteeringId);
-    
+        .decrementVolunteerQuantity(volunteeringId);
+
+    ref.invalidate(getVolunteeringsProvider); 
+    ref.invalidate(getVolunteeringByIdProvider);
+
     user.postulation = newPostulation;
     state = user.postulation;
   }
@@ -41,7 +44,10 @@ class Postulation extends _$Postulation {
         .removePostulation(userId: user.id, postulation: state!);
     ref
         .read(volunteeringServiceProvider)
-        .decrementVolunteerQuantity(volunteeringId);
+        .incrementVolunteerQuantity(volunteeringId);
+
+    ref.invalidate(getVolunteeringsProvider); 
+    ref.invalidate(getVolunteeringByIdProvider);
 
     user.postulation = null;
     state = user.postulation;
