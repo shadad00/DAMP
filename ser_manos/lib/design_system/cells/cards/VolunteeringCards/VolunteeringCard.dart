@@ -21,84 +21,87 @@ class VolunteeringCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return InkWell(
-      onTap: () =>
-          {context.beamToNamed('/volunteering/${volunteeringInformation.id}')},
-      child: Container(
-        decoration: BoxDecoration(
-          color: SermanosColors.neutral0,
-          borderRadius: BorderRadius.circular(2),
-          boxShadow: SermanosShadows.shadow2,
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(2),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              NetworkImageWrapper(imageUrl: volunteeringInformation.imageUrl),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            volunteeringInformation.category.toUpperCase(),
-                            style: const SermanosTypography.overline(
-                              color: SermanosColors.neutral75,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 24),
+      child: InkWell(
+        onTap: () =>
+            {context.beamToNamed('/volunteering/${volunteeringInformation.id}')},
+        child: Container(
+          decoration: BoxDecoration(
+            color: SermanosColors.neutral0,
+            borderRadius: BorderRadius.circular(2),
+            boxShadow: SermanosShadows.shadow2,
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(2),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                NetworkImageWrapper(imageUrl: volunteeringInformation.imageUrl),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              volunteeringInformation.category.toUpperCase(),
+                              style: const SermanosTypography.overline(
+                                color: SermanosColors.neutral75,
+                              ),
                             ),
+                            Text(
+                              volunteeringInformation.name,
+                              style: const SermanosTypography.subtitle01(),
+                            ),
+                            const SizedBox(
+                              height: 4,
+                            ),
+                            Vacancies(
+                              vacancy: volunteeringInformation.capacity -
+                                  volunteeringInformation.volunteerQuantity,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              final volunteeringList = ref.read(volunteeringListProvider.notifier); 
+                              if (favorite) { 
+                                    volunteeringList.removeFavorite(volunteeringInformation.id);
+                              } else {
+                                    volunteeringList.addFavorite(volunteeringInformation.id);
+                              }
+                            },
+                            child: favorite
+                                ? SermanosIcons.favoriteFilled(
+                                    status: SermanosIconStatus.activated,
+                                  )
+                                : SermanosIcons.favoriteOutlined(
+                                    status: SermanosIconStatus.activated,
+                                  ),
                           ),
-                          Text(
-                            volunteeringInformation.name,
-                            style: const SermanosTypography.subtitle01(),
-                          ),
-                          const SizedBox(
-                            height: 4,
-                          ),
-                          Vacancies(
-                            vacancy: volunteeringInformation.capacity -
-                                volunteeringInformation.volunteerQuantity,
+                          const SizedBox(width: 23),
+                          InkWell(
+                            onTap: () => {},
+                            child: SermanosIcons.locationFilled(
+                              status: SermanosIconStatus.activated,
+                            ),
                           ),
                         ],
                       ),
-                    ),
-                    Row(
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            final volunteeringList = ref.read(volunteeringListProvider.notifier); 
-                            if (favorite) { 
-                                  volunteeringList.removeFavorite(volunteeringInformation.id);
-                            } else {
-                                  volunteeringList.addFavorite(volunteeringInformation.id);
-                            }
-                          },
-                          child: favorite
-                              ? SermanosIcons.favoriteFilled(
-                                  status: SermanosIconStatus.activated,
-                                )
-                              : SermanosIcons.favoriteOutlined(
-                                  status: SermanosIconStatus.activated,
-                                ),
-                        ),
-                        const SizedBox(width: 23),
-                        InkWell(
-                          onTap: () => {},
-                          child: SermanosIcons.locationFilled(
-                            status: SermanosIconStatus.activated,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
