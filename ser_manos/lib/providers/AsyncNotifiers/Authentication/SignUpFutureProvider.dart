@@ -25,7 +25,22 @@ class SignUpFuture extends _$SignUpFuture {
       final BeamerDelegate delegate = ref.read(delegateProvider);
       delegate.beamToNamed("/welcome");
     } on firebase.FirebaseAuthException catch (e) {
-      state = AsyncError(e.message!, StackTrace.current);
+      final errorMessage = _mapFirebaseErrorToMessage(e);
+      state = AsyncError(errorMessage, StackTrace.current);
     }
+  }
+
+  String _mapFirebaseErrorToMessage(Exception e) {
+    final errorCode = (e as firebase.FirebaseAuthException).code;
+    final errorMessages = {
+      "INVALID_LOGIN_CREDENTIALS": "Email o contraseña incorrectos",
+      "invalid-email": "Email inválido",
+      "email-already-in-use": "Email ya en uso",
+      "weak-password": "Contraseña débil",
+      "timeout": "Tiempo de espera agotado",
+      // Add more error codes and messages as needed
+    };
+
+    return errorMessages[errorCode] ?? "Ocurrió un error inesperado";
   }
 }
