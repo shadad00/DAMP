@@ -21,6 +21,7 @@ class SerManos extends ConsumerWidget {
     return BeamerProvider(
       routerDelegate: delegate,
       child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
         title: 'ser manos',
         theme: ThemeData(
           useMaterial3: true,

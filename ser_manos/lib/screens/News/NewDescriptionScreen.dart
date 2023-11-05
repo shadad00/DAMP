@@ -27,69 +27,69 @@ class NewDescriptionScreen extends ConsumerWidget {
       appBar: SermanosHeader.sectionHeader(title: "Novedades"),
       body: newsRetriever.when(
           data: (data) => Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 24, 16, 32),
-                  child: SingleChildScrollView(
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                        Text(
-                          data!.category.toUpperCase(),
-                          style: const SermanosTypography.overline(
-                            color: SermanosColors.neutral75,
-                          ),
+                padding: const EdgeInsets.fromLTRB(16, 24, 16, 32),
+                child: SingleChildScrollView(
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                      Text(
+                        data!.category.toUpperCase(),
+                        style: const SermanosTypography.overline(
+                          color: SermanosColors.neutral75,
                         ),
-                        Text(
-                          data.title,
-                          style: const SermanosTypography.headline02(
-                            color: SermanosColors.neutral100,
-                          ),
+                      ),
+                      Text(
+                        data.title,
+                        style: const SermanosTypography.headline02(
+                          color: SermanosColors.neutral100,
                         ),
-                        const SizedBox(height: 16),
-                        CachedNetworkImage(imageUrl: data.imageUrl),
-                        const SizedBox(height: 16),
-                        Text(
-                          data.subTitle,
-                          style: const SermanosTypography.subtitle01(
-                            color: SermanosColors.secondary200,
-                          ),
+                      ),
+                      const SizedBox(height: 16),
+                      CachedNetworkImage(imageUrl: data.imageUrl),
+                      const SizedBox(height: 16),
+                      Text(
+                        data.subTitle,
+                        style: const SermanosTypography.subtitle01(
+                          color: SermanosColors.secondary200,
                         ),
-                        const SizedBox(height: 16),
-                        Text(
-                          data.content,
-                          style: const SermanosTypography.body01(
-                              color: SermanosColors.neutral100),
-                        ),
-                        const SizedBox(height: 16),
-                        const Text(
-                          "Comparte esta nota",
-                          style: SermanosTypography.headline02(
-                              color: SermanosColors.neutral100),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 16),
-                        CtaButton(
-                            text: "Compartir",
-                            onPressed: () async {
-                              final response = await Dio().get(
-                                data.imageUrl,
-                                options: Options(
-                                  responseType: ResponseType.bytes,
-                                ),
-                              );
-                              final List<int> bytes = response.data;
-                              final temp = await getTemporaryDirectory();
-                              final path = '${temp.path}/image.jpg';
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        data.content,
+                        style: const SermanosTypography.body01(
+                            color: SermanosColors.neutral100),
+                      ),
+                      const SizedBox(height: 16),
+                      const Text(
+                        "Comparte esta nota",
+                        style: SermanosTypography.headline02(
+                            color: SermanosColors.neutral100),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 16),
+                      CtaButton(
+                          text: "Compartir",
+                          onPressed: () async {
+                            final response = await Dio().get(
+                              data.imageUrl,
+                              options: Options(
+                                responseType: ResponseType.bytes,
+                              ),
+                            );
+                            final List<int> bytes = response.data;
+                            final temp = await getTemporaryDirectory();
+                            final path = '${temp.path}/image.jpg';
 
-                              File(path).writeAsBytesSync(bytes);
+                            File(path).writeAsBytesSync(bytes);
 
-                              await Share.shareXFiles(
-                                [XFile(path)],
-                                text: data.subTitle,
-                              );
-                            },
-                            filled: true)
-                      ])),
-                ),
+                            await Share.shareXFiles(
+                              [XFile(path)],
+                              text: '${data.subTitle} \nsermanos.com/news/${newsId}',
+                            );
+                          },
+                          filled: true)
+                    ])),
+              ),
           error: (error, stackTrace) => const SerManosError(),
           loading: () => const SerManosLoading()),
     );
