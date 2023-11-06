@@ -10,8 +10,10 @@ import 'package:ser_manos/design_system/tokens/SerManosLoading.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/design_system/tokens/shimmer/PictureShimmer.dart';
+import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/model/Volunteering.dart';
 import 'package:ser_manos/providers/Future/volunteering/VolunteeringProvider.dart';
+import 'package:ser_manos/providers/Notifier/Authentication/UserProvider.dart';
 import 'package:ser_manos/providers/Notifier/Volunteering/Postulation.dart';
 import 'package:ser_manos/providers/Providers/Providers.dart';
 
@@ -27,6 +29,7 @@ class VolunteeringDescriptionScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final service = ref.watch(getVolunteeringByIdProvider(id: volunteeringId));
     final VolunteeringPostulation? postulation = ref.watch(postulationProvider);
+    final ApplicationUser? user = ref.watch(currentUserProvider);
 
     return Scaffold(
         body: service.when(
@@ -214,39 +217,55 @@ class VolunteeringDescriptionScreen extends ConsumerWidget {
                           ),
                           Column(
                             children: [
-                              volunteeringInformation.isFull()
-                                  ? const FullVolunteering()
-                                  : postulation == null
-                                      ? CtaButton(
-                                          text: "Postularme",
-                                          onPressed: () async {
-                                            ref
-                                                .read(postulationProvider
-                                                    .notifier)
-                                                .addPostulation(
-                                                    volunteeringInformation.id);
-
-                                            await ref
-                                                .read(analyticsProvider)
-                                                .logEvent(
-                                              name:
-                                                  "add_user_postulation",
-                                              parameters: {
-                                                "voluteering_id":
-                                                    volunteeringInformation.id,
-                                              },
-                                            );
-                                          },
+                              !user!.isProfileFilled()
+                                  ? Column(children: [
+                                      const Text(
+                                        "Para postularte, debes completar tu perfil.",
+                                        style: SermanosTypography.body01(
+                                          color: SermanosColors.neutral100,
+                                        ),
+                                      ),
+                                      CtaButton(
+                                          text: "Completar perfil",
+                                          onPressed: () => context
+                                              .beamToNamed("/profile/edit"),
                                           filled: true)
-                                      : postulation.volunteeringId ==
-                                              int.parse(volunteeringId)
-                                          ? QuitPostulation(
-                                              volunteering:
-                                                  volunteeringInformation)
-                                          : QuitOtherPostulation(
-                                              otherVolunteeringId:
-                                                  postulation.volunteeringId,
-                                            )
+                                    ])
+                                  : volunteeringInformation.isFull()
+                                      ? const FullVolunteering()
+                                      : postulation == null
+                                          ? CtaButton(
+                                              text: "Postularme",
+                                              onPressed: () async {
+                                                ref
+                                                    .read(postulationProvider
+                                                        .notifier)
+                                                    .addPostulation(
+                                                        volunteeringInformation
+                                                            .id);
+
+                                                await ref
+                                                    .read(analyticsProvider)
+                                                    .logEvent(
+                                                  name: "add_user_postulation",
+                                                  parameters: {
+                                                    "voluteering_id":
+                                                        volunteeringInformation
+                                                            .id,
+                                                  },
+                                                );
+                                              },
+                                              filled: true)
+                                          : postulation.volunteeringId ==
+                                                  int.parse(volunteeringId)
+                                              ? QuitPostulation(
+                                                  volunteering:
+                                                      volunteeringInformation)
+                                              : QuitOtherPostulation(
+                                                  otherVolunteeringId:
+                                                      postulation
+                                                          .volunteeringId,
+                                                )
                             ],
                           )
                         ],

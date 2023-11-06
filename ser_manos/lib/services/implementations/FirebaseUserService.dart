@@ -85,6 +85,7 @@ class FirebaseUserService implements UserService {
         'name': name,
         'surname': surname,
         'email': email,
+        'favorites': const []
       };
 
       await query.set(userDataMap);
@@ -103,7 +104,8 @@ class FirebaseUserService implements UserService {
           profileImageUrl: json['profileImage'],
           phone: json['phone'],
           emailContact: json['emailContact'],
-          favorites: const []);
+          favorites: json['favorites']
+          );
     } catch (e) {
       logger.e("unable to create user");
       return null;

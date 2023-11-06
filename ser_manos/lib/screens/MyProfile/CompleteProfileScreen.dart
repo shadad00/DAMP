@@ -4,12 +4,14 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/design_system/atoms/icons/icons.dart';
 import 'package:ser_manos/design_system/cells/header.dart';
+import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Short_button.dart';
 import 'package:ser_manos/design_system/molecules/components/profile_image.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/providers/Notifier/Authentication/UserProvider.dart';
+import 'package:ser_manos/providers/Providers/Providers.dart';
 
 class CompleteProfileScreen extends ConsumerWidget {
   const CompleteProfileScreen({super.key});
@@ -17,7 +19,6 @@ class CompleteProfileScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final ApplicationUser? user = ref.watch(currentUserProvider);
-
 
     return Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -45,7 +46,15 @@ class CompleteProfileScreen extends ConsumerWidget {
               ShortButton(
                   text: "Completar",
                   icon: SermanosIcons.add(status: SermanosIconStatus.back),
-                  onPressed: () => context.beamToNamed("/profile/edit") )
+                  onPressed: () => context.beamToNamed("/profile/edit")),
+              const SizedBox(height: 8),
+              CtaButton(
+                  text: "Cerrar Sesión",
+                  onPressed: () {
+                    ref.read(authServiceProvider).signOut();
+                    context.beamToNamed("/login");
+                  },
+                  filled: false)
             ],
           )
         ]);
