@@ -20,17 +20,25 @@ class VolunteeringScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final service = ref.watch(getVolunteeringsProvider);
     final searchQuery = ref.watch(searchQueryProvider);
-    final List<int>? volunteeringList = ref.watch(volunteeringListProvider); 
-
+    final List<int>? volunteeringList = ref.watch(volunteeringListProvider);
 
     return service.when(
         data: (data) {
           final List<Volunteering> filteredData = [];
+          final String query = searchQuery.toLowerCase();
           for (var eachVolunteering in data) {
             if (eachVolunteering.name
-                .toString()
-                .toLowerCase()
-                .contains(searchQuery.toLowerCase())) {
+                    .toString()
+                    .toLowerCase()
+                    .contains(query) ||
+                eachVolunteering.description
+                    .toString()
+                    .toLowerCase()
+                    .contains(query) ||
+                eachVolunteering.about
+                    .toString()
+                    .toLowerCase()
+                    .contains(query)) {
               filteredData.add(eachVolunteering);
             }
           }
@@ -64,7 +72,9 @@ class VolunteeringScreen extends ConsumerWidget {
                         itemCount: filteredData.length,
                         itemBuilder: (context, index) {
                           return VolunteeringCard(
-                              favorite: volunteeringList!= null && volunteeringList.contains(filteredData[index].id),
+                              favorite: volunteeringList != null &&
+                                  volunteeringList
+                                      .contains(filteredData[index].id),
                               volunteeringInformation: filteredData[index]);
                         },
                       ))
