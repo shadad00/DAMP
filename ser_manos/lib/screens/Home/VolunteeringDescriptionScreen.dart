@@ -13,6 +13,7 @@ import 'package:ser_manos/design_system/tokens/shimmer/PictureShimmer.dart';
 import 'package:ser_manos/model/Volunteering.dart';
 import 'package:ser_manos/providers/Future/volunteering/VolunteeringProvider.dart';
 import 'package:ser_manos/providers/Notifier/Volunteering/Postulation.dart';
+import 'package:ser_manos/providers/Providers/Providers.dart';
 
 import '../../model/VolunteeringPostulation.dart';
 
@@ -218,11 +219,24 @@ class VolunteeringDescriptionScreen extends ConsumerWidget {
                                   : postulation == null
                                       ? CtaButton(
                                           text: "Postularme",
-                                          onPressed: () => ref
-                                              .read(
-                                                  postulationProvider.notifier)
-                                              .addPostulation(
-                                                  volunteeringInformation.id),
+                                          onPressed: () async {
+                                            ref
+                                                .read(postulationProvider
+                                                    .notifier)
+                                                .addPostulation(
+                                                    volunteeringInformation.id);
+
+                                            await ref
+                                                .read(analyticsProvider)
+                                                .logEvent(
+                                              name:
+                                                  "add_user_postulation",
+                                              parameters: {
+                                                "voluteering_id":
+                                                    volunteeringInformation.id,
+                                              },
+                                            );
+                                          },
                                           filled: true)
                                       : postulation.volunteeringId ==
                                               int.parse(volunteeringId)
@@ -274,9 +288,18 @@ class QuitPostulation extends ConsumerWidget {
         const SizedBox(height: 20),
         CtaButton(
           text: 'Retirar postulación',
-          onPressed: () => ref
-              .read(postulationProvider.notifier)
-              .removePostulation(volunteering.id),
+          onPressed: () async {
+            ref
+                .read(postulationProvider.notifier)
+                .removePostulation(volunteering.id);
+
+            await ref.read(analyticsProvider).logEvent(
+              name: "remove_user_postulation",
+              parameters: {
+                "voluteering_id": volunteering.id,
+              },
+            );
+          },
           textColor: SermanosColors.primary100,
           filled: false,
         ),

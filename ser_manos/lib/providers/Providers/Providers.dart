@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:ser_manos/model/User.dart';
 import 'package:ser_manos/services/implementations/FirebaseStorageService.dart';
@@ -47,7 +48,14 @@ StorageService storageService(StorageServiceRef ref) {
 String? imageUrl(ImageUrlRef ref) {
   final ApplicationUser? user = ref.watch(currentUserProvider);
   if (user == null) {
-    return "Invalid state"; 
+    return "Invalid state";
   }
   return user.profileImageUrl;
+}
+
+@Riverpod(keepAlive: true)
+FirebaseAnalytics analytics(AnalyticsRef ref) {
+  FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  analytics.setAnalyticsCollectionEnabled(true);
+  return analytics; 
 }

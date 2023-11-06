@@ -22,6 +22,7 @@ class LoginFuture extends _$LoginFuture {
     try {
       final authRepository = ref.read(authServiceProvider);
       await authRepository.signIn(userLoginData: userLoginData);
+      await ref.read(analyticsProvider).logLogin(loginMethod: "email_and_password");
       final BeamerDelegate delegate = ref.read(delegateProvider);
       delegate.beamToNamed("/volunteering");
     } on firebase.FirebaseAuthException catch (e) {

@@ -93,5 +93,19 @@ final imageUrlProvider = Provider<String?>.internal(
 );
 
 typedef ImageUrlRef = ProviderRef<String?>;
+String _$analyticsHash() => r'f66b0f3988f2bdee2805f4799ddf61c0d1c58198';
+
+/// See also [analytics].
+@ProviderFor(analytics)
+final analyticsProvider = Provider<FirebaseAnalytics>.internal(
+  analytics,
+  name: r'analyticsProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$analyticsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef AnalyticsRef = ProviderRef<FirebaseAnalytics>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

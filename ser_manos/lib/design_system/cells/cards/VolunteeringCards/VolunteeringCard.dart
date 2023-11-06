@@ -7,6 +7,7 @@ import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/design_system/tokens/shadows/shadows.dart';
 import 'package:ser_manos/model/Volunteering.dart';
 import 'package:ser_manos/providers/Notifier/Volunteering/VolunteeringList.dart';
+import 'package:ser_manos/providers/Providers/Providers.dart';
 import '../../../tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/utils/NetworkImageWrapper.dart';
 
@@ -24,8 +25,9 @@ class VolunteeringCard extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 24),
       child: InkWell(
-        onTap: () =>
-            {context.beamToNamed('/volunteering/${volunteeringInformation.id}')},
+        onTap: () => {
+          context.beamToNamed('/volunteering/${volunteeringInformation.id}')
+        },
         child: Container(
           decoration: BoxDecoration(
             color: SermanosColors.neutral0,
@@ -72,12 +74,29 @@ class VolunteeringCard extends ConsumerWidget {
                       Row(
                         children: [
                           InkWell(
-                            onTap: () {
-                              final volunteeringList = ref.read(volunteeringListProvider.notifier); 
-                              if (favorite) { 
-                                    volunteeringList.removeFavorite(volunteeringInformation.id);
+                            onTap: () async {
+                              final volunteeringList =
+                                  ref.read(volunteeringListProvider.notifier);
+                              if (favorite) {
+                                volunteeringList
+                                    .removeFavorite(volunteeringInformation.id);
+                                await ref.read(analyticsProvider).logEvent(
+                                  name: "remove_user_favorite",
+                                  parameters: {
+                                    "voluteering_id":
+                                        volunteeringInformation.id,
+                                  },
+                                );
                               } else {
-                                    volunteeringList.addFavorite(volunteeringInformation.id);
+                                volunteeringList
+                                    .addFavorite(volunteeringInformation.id);
+                                await ref.read(analyticsProvider).logEvent(
+                                  name: "add_user_favorite",
+                                  parameters: {
+                                    "voluteering_id":
+                                        volunteeringInformation.id,
+                                  },
+                                );
                               }
                             },
                             child: favorite
