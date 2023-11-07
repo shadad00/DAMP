@@ -1,25 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/shadows/shadows.dart';
 import 'package:ser_manos/design_system/molecules/inputs/ValidatedField.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/design_system/atoms/icons/icons.dart';
-
-
-
-
+import 'package:ser_manos/providers/Notifier/Volunteering/HomeScreenMode.dart';
 
 class SermanosSearchBar extends HookWidget {
-  const SermanosSearchBar({
-    super.key,
-    required this.onChanged,
-    required this.initialValue
-  });
+  const SermanosSearchBar(
+      {super.key, required this.onChanged, required this.initialValue});
 
   final void Function(String) onChanged;
-  final String initialValue; 
-  static const String formName = "searchBar"; 
+  final String initialValue;
+  static const String formName = "searchBar";
 
   @override
   Widget build(BuildContext context) {
@@ -38,19 +33,15 @@ class SermanosSearchBar extends HookWidget {
           boxShadow: SermanosShadows.shadow1,
         ),
         child: ValidatedField(
-            formName: formName ,
+            formName: formName,
             initialValue: initialValue,
             builder: (state) =>
                 getBuilder(state, isEmpty, focusNode, controller),
             onReset: () => ''));
   }
 
-    Widget getBuilder(
-    FormFieldState field,
-    bool isEmpty, 
-    FocusNode focusNode,
-    TextEditingController controller   
-    ){
+  Widget getBuilder(FormFieldState field, bool isEmpty, FocusNode focusNode,
+      TextEditingController controller) {
     return TextField(
         focusNode: focusNode,
         controller: controller,
@@ -76,7 +67,29 @@ class SermanosSearchBar extends HookWidget {
             status: SermanosIconStatus.enabledSecondary,
           ),
           suffixIcon: isEmpty
-              ? null //todo: ver 
+              ? Consumer(
+                  builder:
+                      (BuildContext context, WidgetRef ref, Widget? child) {
+                    final viewMode = ref.watch(homeScreenModeProvider);
+                    return viewMode == viewModes.carrusel
+                        ? IconButton(
+                            icon: SermanosIcons.list(
+                              status: SermanosIconStatus.activated,
+                            ),
+                            onPressed: () => ref
+                                .watch(homeScreenModeProvider.notifier)
+                                .changeMode(),
+                          )
+                        : IconButton(
+                            icon: SermanosIcons.map(
+                              status: SermanosIconStatus.activated,
+                            ),
+                            onPressed: () => ref
+                                .watch(homeScreenModeProvider.notifier)
+                                .changeMode(),
+                          );
+                  },
+                )
               : IconButton(
                   icon: SermanosIcons.close(
                     status: SermanosIconStatus.enabledSecondary,
@@ -89,11 +102,6 @@ class SermanosSearchBar extends HookWidget {
         ),
         onTapOutside: (e) => focusNode.unfocus(),
         onEditingComplete: () => focusNode.unfocus(),
-        onSubmitted: onChanged
-      ); 
-
+        onSubmitted: onChanged);
   }
-
-
-
 }

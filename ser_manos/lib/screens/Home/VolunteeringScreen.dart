@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ser_manos/providers/Notifier/Volunteering/HomeScreenMode.dart';
 import 'package:ser_manos/screens/Home/VolunteeringListScreen.dart';
+import 'package:ser_manos/screens/Home/VolunteeringMapScreen.dart';
 
 
 
@@ -11,6 +13,9 @@ class VolunteeringScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const VolunteeringListScreen();
+    final homeScreenMode = ref.watch(homeScreenModeProvider);
+    return homeScreenMode == viewModes.carrusel
+        ? const VolunteeringMapScreen()
+        : const VolunteeringListScreen();
   }
 }
