@@ -137,14 +137,10 @@ class VolunteeringDescriptionScreen extends ConsumerWidget {
                                 volunteeringInformation.about,
                                 style: const SermanosTypography.body01(),
                               ),
-                              SizedBox(
-                                height: 155,
-                                child: VolunteeringMaps(volunteering:
-                                    volunteeringInformation),
-                              ),
                               const SizedBox(height: 24),
-                              Text(
-                                volunteeringInformation.lat.toString() + volunteeringInformation.long.toString(),
+                              SizedBox(
+                                child: VolunteeringMaps(
+                                    volunteering: volunteeringInformation),
                               ),
                               const SizedBox(height: 24),
                               const Text(
