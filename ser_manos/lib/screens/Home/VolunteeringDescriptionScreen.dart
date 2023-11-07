@@ -16,6 +16,7 @@ import 'package:ser_manos/providers/Future/volunteering/VolunteeringProvider.dar
 import 'package:ser_manos/providers/Notifier/Authentication/UserProvider.dart';
 import 'package:ser_manos/providers/Notifier/Volunteering/Postulation.dart';
 import 'package:ser_manos/providers/Providers/Providers.dart';
+import 'package:ser_manos/screens/Home/VolunteeringMaps.dart';
 
 import '../../model/VolunteeringPostulation.dart';
 
@@ -135,6 +136,15 @@ class VolunteeringDescriptionScreen extends ConsumerWidget {
                               Text(
                                 volunteeringInformation.about,
                                 style: const SermanosTypography.body01(),
+                              ),
+                              SizedBox(
+                                height: 155,
+                                child: VolunteeringMaps(volunteering:
+                                    volunteeringInformation),
+                              ),
+                              const SizedBox(height: 24),
+                              Text(
+                                volunteeringInformation.lat.toString() + volunteeringInformation.long.toString(),
                               ),
                               const SizedBox(height: 24),
                               const Text(

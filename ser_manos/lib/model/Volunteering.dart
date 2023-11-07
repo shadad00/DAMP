@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:equatable/equatable.dart';
 
 class Volunteering extends Equatable {
@@ -13,6 +15,8 @@ class Volunteering extends Equatable {
   final int capacity;
   final int volunteerQuantity;
   final DateTime creationTime;
+  final double lat;
+  final double long;
 
   const Volunteering({
     required this.id,
@@ -27,6 +31,8 @@ class Volunteering extends Equatable {
     required this.capacity,
     required this.volunteerQuantity,
     required this.creationTime,
+    required this.lat,
+    required this.long,
   });
 
   //This is used to compare with equatable.
@@ -55,7 +61,9 @@ class Volunteering extends Equatable {
         requirements: List<String>.from(
             eachVolunteering['requirements'] as List<dynamic>),
         volunteerQuantity: eachVolunteering['volunteerQuantity'],
-        creationTime: DateTime.now());
+        creationTime: DateTime.now(),
+        lat: eachVolunteering['lat'],
+        long: eachVolunteering['long']);
   }
 
 }
