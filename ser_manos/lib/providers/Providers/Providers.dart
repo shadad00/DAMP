@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:ser_manos/model/User.dart';
+import 'package:ser_manos/providers/Future/authentication/SessionRestoreController.dart';
 import 'package:ser_manos/services/implementations/FirebaseStorageService.dart';
 import '../../services/implementations/FirebaseAuthService.dart';
 import '../../services/implementations/FirebaseNewsService.dart';
@@ -58,4 +59,9 @@ FirebaseAnalytics analytics(AnalyticsRef ref) {
   FirebaseAnalytics analytics = FirebaseAnalytics.instance;
   analytics.setAnalyticsCollectionEnabled(true);
   return analytics; 
+}
+
+Future<void> initProviders(ProviderContainer container)async{
+  container.read(authServiceProvider);
+  await container.read(sessionRestoreControllerProvider.future);
 }
