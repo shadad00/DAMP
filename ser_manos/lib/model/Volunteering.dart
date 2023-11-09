@@ -66,4 +66,21 @@ class Volunteering extends Equatable {
         long: eachVolunteering['long']);
   }
 
+  Map<String, dynamic> toMap() {
+    return {
+      "address": address,
+      "about": about,
+      "name": name,
+      "category": category,
+      "description": description,
+      "requirements": requirements,
+      "availability": availability,
+      "lat": lat,
+      "long": long,
+      "imageUrl": imageUrl,
+      "capacity": capacity,
+      "volunteerQuantity": volunteerQuantity,
+    };
+  }
+  
 }

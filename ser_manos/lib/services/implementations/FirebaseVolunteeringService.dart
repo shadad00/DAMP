@@ -3,9 +3,12 @@ import 'package:ser_manos/model/Volunteering.dart';
 import '../interfaces/VolunteeringService.dart';
 
 class FirebaseVolunteeringService implements VolunteeringService {
-  const FirebaseVolunteeringService();
+  const FirebaseVolunteeringService(
+    {required this.firestore}
+  );
 
-  static final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  final FirebaseFirestore firestore;
   static const String collectionName = "volunteering";
 
   @override
