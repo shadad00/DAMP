@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ser_manos/model/News.dart';
 import 'package:ser_manos/providers/Future/news/NewsProvider.dart';
 import 'package:ser_manos/screens/News/NewsScreen.dart';
 
-import '../mocked_list/list.dart';
+import 'mocks/news_screen_provider.dart';
 
-Future<List<News>> getNewsMock(GetNewsRef ref) async {
-  return newsList; 
-}
+
 
 void main() {
   testWidgets(
