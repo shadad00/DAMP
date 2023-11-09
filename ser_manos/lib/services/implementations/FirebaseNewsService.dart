@@ -3,9 +3,11 @@ import 'package:ser_manos/model/News.dart';
 import 'package:ser_manos/services/interfaces/NewsService.dart';
 
 class FirebaseNewsService implements NewsService {
-  const FirebaseNewsService();
+  const FirebaseNewsService({
+    required this.firestore
+  });
 
-  static final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore firestore; 
 
   @override
   Future<List<News>> getNews() async {

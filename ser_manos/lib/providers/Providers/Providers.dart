@@ -19,7 +19,6 @@ import '../../services/interfaces/VolunteeringService.dart';
 import '../Notifier/Authentication/UserProvider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 part 'generated/Providers.g.dart';
 
 @Riverpod(keepAlive: true)
@@ -36,7 +35,7 @@ AuthService authService(AuthServiceRef ref) {
 
 @Riverpod(keepAlive: true)
 NewsService newsService(NewsServiceRef ref) {
-  return const FirebaseNewsService();
+  return FirebaseNewsService(firestore: ref.read(storageProvider));
 }
 
 @Riverpod(keepAlive: true)
@@ -67,7 +66,7 @@ FirebaseAnalytics analytics(AnalyticsRef ref) {
 
 @Riverpod(keepAlive: true)
 FirebaseFirestore storage(StorageRef ref) {
-  return FirebaseFirestore.instance; 
+  return FirebaseFirestore.instance;
 }
 
 Future<void> initializeProviders(ProviderContainer container) async {
@@ -83,8 +82,6 @@ Future<void> initializeProviders(ProviderContainer container) async {
   /// Try Session Restore
   await container.read(sessionRestoreControllerProvider.future);
 }
-
-
 
 @Riverpod(keepAlive: true)
 Future<void> sessionRestoreController(
@@ -104,17 +101,14 @@ Future<void> sessionRestoreController(
           .read(userServiceProvider)
           .getUserById(userId: firebaseAuthUser.uid);
 
-      await ref
-          .read(analyticsProvider)
-          .logEvent(name: "restored_session");
+      await ref.read(analyticsProvider).logEvent(name: "restored_session");
 
       ref.read(currentUserProvider.notifier).set(user);
       ref.read(delegateProvider).popToNamed("/volunteering");
-
     } catch (e) {
       logger.d("Error restoring Firebase session");
       ref.read(currentUserProvider.notifier).set(null);
       ref.read(delegateProvider).popToNamed("/login");
     }
-  } 
+  }
 }

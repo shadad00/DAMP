@@ -23,14 +23,24 @@ class News extends Equatable {
     required Map<String, dynamic> json,
   }) {
     return News(
-      reportId: int.parse(newsId),
-      category: json['category'],
-      content: json['content'],
-      imageUrl: json['imageUrl'],
-      subTitle: json['subtitle'],
-      title: json['title'],
-      summary: json['summary']
-    );
+        reportId: int.parse(newsId),
+        category: json['category'],
+        content: json['content'],
+        imageUrl: json['imageUrl'],
+        subTitle: json['subtitle'],
+        title: json['title'],
+        summary: json['summary']);
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      "title": title,
+      "subtitle": subTitle,
+      "summary": summary,
+      "content": content,
+      "category": category,
+      "imageUrl": imageUrl,
+    }; 
   }
 
   @override
