@@ -50,6 +50,7 @@ class DefaultFirebaseOptions {
     projectId: 'sermanos-fe867',
     authDomain: 'sermanos-fe867.firebaseapp.com',
     storageBucket: 'sermanos-fe867.appspot.com',
+    measurementId: 'G-9FLD06FQJL',
   );
 
   static const FirebaseOptions android = FirebaseOptions(

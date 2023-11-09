@@ -5,12 +5,11 @@ import 'package:ser_manos/navigation/navigation.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:ser_manos/bootstrap.dart';
 
-
 void main() async {
   ProviderContainer container = await bootstrap();
 
   await FlutterConfig.loadEnvVariables();
-    runApp(
+  runApp(
     UncontrolledProviderScope(
       container: container,
       child: const SerManos(),
