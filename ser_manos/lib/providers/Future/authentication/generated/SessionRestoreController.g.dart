@@ -7,7 +7,7 @@ part of '../SessionRestoreController.dart';
 // **************************************************************************
 
 String _$sessionRestoreControllerHash() =>
-    r'8f604bc52e28b05c2e9d0cc57226480617490e47';
+    r'acb6060f7ed3c9a72ebb8b2a611e4260d80b6940';
 
 /// See also [SessionRestoreController].
 @ProviderFor(SessionRestoreController)

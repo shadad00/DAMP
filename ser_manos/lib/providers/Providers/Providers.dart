@@ -70,17 +70,12 @@ FirebaseFirestore storage(StorageRef ref) {
 }
 
 Future<void> initializeProviders(ProviderContainer container) async {
-  /// Firebase Analytics Setup
+
   container.read(analyticsProvider);
-
-  /// Firebase Auth Setup
   container.read(firebaseAuthProvider);
-
-  /// Firebase Database Setup
   container.read(storageProvider);
-
-  /// Try Session Restore
   await container.read(sessionRestoreControllerProvider.future);
+
 }
 
 @Riverpod(keepAlive: true)
@@ -91,12 +86,9 @@ Future<void> sessionRestoreController(
   final User? firebaseAuthUser = firebaseAuthClient.currentUser;
 
   if (firebaseAuthUser != null) {
-    /// Restore firebase user session
     try {
-      /// Returns the current token if it has not expired. Otherwise, this will
-      /// restore the token and return a new one.
-      await firebaseAuthUser.getIdToken(true);
 
+      await firebaseAuthUser.getIdToken(true);
       final user = await ref
           .read(userServiceProvider)
           .getUserById(userId: firebaseAuthUser.uid);

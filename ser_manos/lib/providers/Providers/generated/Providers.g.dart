@@ -34,7 +34,7 @@ final authServiceProvider = Provider<AuthService>.internal(
 );
 
 typedef AuthServiceRef = ProviderRef<AuthService>;
-String _$newsServiceHash() => r'ab59314bdb891779334848168af743028bd18889';
+String _$newsServiceHash() => r'8df85cd9d9c14f06bc4cb88b67a39542601e019b';
 
 /// See also [newsService].
 @ProviderFor(newsService)
@@ -49,7 +49,7 @@ final newsServiceProvider = Provider<NewsService>.internal(
 
 typedef NewsServiceRef = ProviderRef<NewsService>;
 String _$volunteeringServiceHash() =>
-    r'ac4bdeac778cc9cc8a70009f3affb5dbe808bfe3';
+    r'95f9b0b6649663235e687b6b6f723a72db045f7e';
 
 /// See also [volunteeringService].
 @ProviderFor(volunteeringService)
