@@ -1,9 +1,11 @@
-import 'package:flutter/widgets.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:ser_manos/logger/logger.dart';
 import 'package:ser_manos/model/User.dart';
-import 'package:ser_manos/providers/Future/authentication/SessionRestoreController.dart';
+import 'package:ser_manos/navigation/navigation.dart';
+import 'package:ser_manos/providers/Future/authentication/AuthProviders.dart';
 import 'package:ser_manos/services/implementations/FirebaseStorageService.dart';
 import '../../services/implementations/FirebaseAuthService.dart';
 import '../../services/implementations/FirebaseNewsService.dart';
@@ -15,6 +17,8 @@ import '../../services/interfaces/NewsService.dart';
 import '../../services/interfaces/UserService.dart';
 import '../../services/interfaces/VolunteeringService.dart';
 import '../Notifier/Authentication/UserProvider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 part 'generated/Providers.g.dart';
 
@@ -58,10 +62,59 @@ String? imageUrl(ImageUrlRef ref) {
 FirebaseAnalytics analytics(AnalyticsRef ref) {
   FirebaseAnalytics analytics = FirebaseAnalytics.instance;
   analytics.setAnalyticsCollectionEnabled(true);
-  return analytics; 
+  return analytics;
 }
 
-Future<void> initProviders(ProviderContainer container)async{
-  container.read(authServiceProvider);
+@Riverpod(keepAlive: true)
+FirebaseFirestore storage(StorageRef ref) {
+  return FirebaseFirestore.instance; 
+}
+
+Future<void> initializeProviders(ProviderContainer container) async {
+  /// Firebase Analytics Setup
+  container.read(analyticsProvider);
+
+  /// Firebase Auth Setup
+  container.read(firebaseAuthProvider);
+
+  /// Firebase Database Setup
+  container.read(storageProvider);
+
+  /// Try Session Restore
   await container.read(sessionRestoreControllerProvider.future);
+}
+
+
+
+@Riverpod(keepAlive: true)
+Future<void> sessionRestoreController(
+  SessionRestoreControllerRef ref,
+) async {
+  final firebaseAuthClient = ref.read(firebaseAuthProvider);
+  final User? firebaseAuthUser = firebaseAuthClient.currentUser;
+
+  if (firebaseAuthUser != null) {
+    /// Restore firebase user session
+    try {
+      /// Returns the current token if it has not expired. Otherwise, this will
+      /// restore the token and return a new one.
+      await firebaseAuthUser.getIdToken(true);
+
+      final user = await ref
+          .read(userServiceProvider)
+          .getUserById(userId: firebaseAuthUser.uid);
+
+      await ref
+          .read(analyticsProvider)
+          .logEvent(name: "restored_session");
+
+      ref.read(currentUserProvider.notifier).set(user);
+      ref.read(delegateProvider).popToNamed("/volunteering");
+
+    } catch (e) {
+      logger.d("Error restoring Firebase session");
+      ref.read(currentUserProvider.notifier).set(null);
+      ref.read(delegateProvider).popToNamed("/login");
+    }
+  } 
 }

@@ -107,5 +107,35 @@ final analyticsProvider = Provider<FirebaseAnalytics>.internal(
 );
 
 typedef AnalyticsRef = ProviderRef<FirebaseAnalytics>;
+String _$storageHash() => r'911edc096552cc94432a898294a8c415d42002f2';
+
+/// See also [storage].
+@ProviderFor(storage)
+final storageProvider = Provider<FirebaseFirestore>.internal(
+  storage,
+  name: r'storageProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$storageHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef StorageRef = ProviderRef<FirebaseFirestore>;
+String _$sessionRestoreControllerHash() =>
+    r'c669972117c8be45d8cef1306e053725fabf130a';
+
+/// See also [sessionRestoreController].
+@ProviderFor(sessionRestoreController)
+final sessionRestoreControllerProvider = FutureProvider<void>.internal(
+  sessionRestoreController,
+  name: r'sessionRestoreControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$sessionRestoreControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef SessionRestoreControllerRef = FutureProviderRef<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
