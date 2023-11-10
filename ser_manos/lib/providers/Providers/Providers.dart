@@ -96,7 +96,7 @@ Future<void> sessionRestoreController(
       await ref.read(analyticsProvider).logEvent(name: "restored_session");
 
       ref.read(currentUserProvider.notifier).set(user);
-      ref.read(delegateProvider).popToNamed("/volunteering");
+      // ref.read(delegateProvider).popToNamed("/volunteering");
     } catch (e) {
       logger.d("Error restoring Firebase session");
       ref.read(currentUserProvider.notifier).set(null);

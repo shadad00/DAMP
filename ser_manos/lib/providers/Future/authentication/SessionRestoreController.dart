@@ -16,23 +16,16 @@ Future<void> SessionRestoreController(SessionRestoreControllerRef ref) async {
   final authRepository = ref.read(firebaseAuthProvider);
   final User? oldUser = authRepository.currentUser;
 
-  logger.i('sermanos_DEBUG?');
 
   if (oldUser != null) {
     // restore firebase user session
     try {
-      logger.i('sermanos_DEBUG old user not null');
       await oldUser.getIdToken(true);
 
       final user =
           await ref.read(userServiceProvider).getUserById(userId: oldUser.uid);
-      logger.i('sermanos_DEBUG new user: $user');
       if (user != null) {
         ref.read(currentUserProvider.notifier).set(user);
-        final BeamerDelegate delegate = ref.read(delegateProvider);
-        delegate.beamToNamed("/volunteering");
-        var loggedin = ref.watch(currentUserProvider.notifier).isLoggedIn();
-        logger.i('sermanos_DEBUG loggedin: $loggedin');
       }
     } catch (e) {
       logger.d('Error al restaurar la sesion: $e');

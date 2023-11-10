@@ -5,6 +5,8 @@ import 'package:ser_manos/navigation/navigation.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:ser_manos/bootstrap.dart';
 
+import 'logger/logger.dart';
+
 void main() async {
   ProviderContainer container = await bootstrap();
 
@@ -32,7 +34,12 @@ class SerManos extends ConsumerWidget {
         theme: ThemeData(
           useMaterial3: true,
         ),
-        routeInformationParser: BeamerParser(),
+        routeInformationParser: BeamerParser(
+          onParse: (routeInformation) {
+            logger.d('Beamer: ${routeInformation.location}');
+            return routeInformation;
+          },
+        ),
         routerDelegate: delegate,
         backButtonDispatcher: BeamerBackButtonDispatcher(
           delegate: delegate,
