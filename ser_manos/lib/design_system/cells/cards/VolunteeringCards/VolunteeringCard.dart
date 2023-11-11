@@ -10,6 +10,8 @@ import 'package:ser_manos/providers/Notifier/Volunteering/VolunteeringList.dart'
 import 'package:ser_manos/providers/Providers/Providers.dart';
 import '../../../tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/utils/NetworkImageWrapper.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class VolunteeringCard extends ConsumerWidget {
   final Volunteering volunteeringInformation;
@@ -109,7 +111,13 @@ class VolunteeringCard extends ConsumerWidget {
                           ),
                           const SizedBox(width: 23),
                           InkWell(
-                            onTap: () => {},
+                            onTap: () async {
+                              double lat = volunteeringInformation.lat;
+                              double long = volunteeringInformation.long;
+                              String googleMapsUrl =
+                                  "https://www.google.com/maps/search/?api=1&query=$lat,$long";
+                              launch(googleMapsUrl);
+                            },
                             child: SermanosIcons.locationFilled(
                               status: SermanosIconStatus.activated,
                             ),

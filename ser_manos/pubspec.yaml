@@ -61,6 +61,7 @@ dependencies:
   fake_cloud_firestore: ^2.4.3
   firebase_crashlytics: ^3.4.4
   permission_handler: ^11.0.1
+  url_launcher: ^6.1.14
 
 dev_dependencies:
   flutter_test:
