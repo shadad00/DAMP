@@ -1,15 +1,20 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:ser_manos/design_system/cells/modals/PermissionModal.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/design_system/tokens/colours/colours.dart';
 import 'package:ser_manos/design_system/tokens/font/font.dart';
 import 'package:ser_manos/design_system/atoms/icons/logo.dart';
+import 'package:ser_manos/providers/Future/permission/permission.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends ConsumerWidget {
   const WelcomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // todo: add the status bar.
     return Scaffold(
         body: Padding(
@@ -39,7 +44,15 @@ class WelcomeScreen extends StatelessWidget {
             ]),
             Column(
               children: [
-                CtaButton(text: "Comenzar", onPressed: () => context.beamToNamed("/volunteering"), filled: true),
+                CtaButton(
+                    text: "Comenzar",
+                    onPressed: () async {
+                      await _checkEventTrackerPermission(context, ref);
+                      if (context.mounted) {
+                        context.popToNamed("/volunteering");
+                      }
+                    },
+                    filled: true),
               ],
             )
           ],
@@ -47,4 +60,32 @@ class WelcomeScreen extends StatelessWidget {
       ),
     ));
   }
+
+  Future<void> _checkEventTrackerPermission(
+      BuildContext context, WidgetRef ref) async {
+    if (defaultTargetPlatform == TargetPlatform.iOS) {
+      var permission = await ref.read(eventTrackerPermissionProvider.future);
+      if (context.mounted) {
+        if (permission.isDenied) {
+          await _showEventPermissionDialog(context);
+          permission = await Permission.appTrackingTransparency.request();
+        }
+        if (permission.isGranted) {
+          ref.invalidate(eventTrackerPermissionProvider);
+        }
+      }
+    }
+  }
+
+_showEventPermissionDialog(BuildContext context) async =>
+    await showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) => const PermissionModal(
+        title: "Monitoreo de eventos",
+        content:
+            "Sermanos solicita permiso para monitorear tu actividad en la aplicación. Esto no será compartido con nadie.",
+       ),
+    );
+
 }

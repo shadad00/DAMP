@@ -7,7 +7,7 @@ part of '../CurrentPositionController.dart';
 // **************************************************************************
 
 String _$currentPositionControllerHash() =>
-    r'4619d163e466f453f7571362c5df89f680c879c6';
+    r'cf262f13cafc58224d031d5d38f2aacb98394f7d';
 
 /// See also [CurrentPositionController].
 @ProviderFor(CurrentPositionController)
