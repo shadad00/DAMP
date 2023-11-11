@@ -6,7 +6,7 @@ part of '../navigation.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$delegateHash() => r'003464715aa7a36cf0d6c70ffcd15e441084d19f';
+String _$delegateHash() => r'6543d95753a9a6b544495942712663ad68dfcd15';
 
 /// See also [delegate].
 @ProviderFor(delegate)

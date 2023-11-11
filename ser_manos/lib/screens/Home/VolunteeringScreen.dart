@@ -14,6 +14,7 @@ class VolunteeringScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final homeScreenMode = ref.watch(homeScreenModeProvider);
+    // return VolunteeringMapScreen();
     return homeScreenMode == viewModes.carrusel
         ? const VolunteeringMapScreen()
         : const VolunteeringListScreen();

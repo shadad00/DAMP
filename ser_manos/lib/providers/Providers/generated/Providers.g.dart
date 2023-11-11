@@ -122,7 +122,7 @@ final storageProvider = Provider<FirebaseFirestore>.internal(
 
 typedef StorageRef = ProviderRef<FirebaseFirestore>;
 String _$sessionRestoreControllerHash() =>
-    r'c669972117c8be45d8cef1306e053725fabf130a';
+    r'a5e9de219738c504cf7317b3a02a0a5778bec784';
 
 /// See also [sessionRestoreController].
 @ProviderFor(sessionRestoreController)

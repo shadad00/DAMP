@@ -12,8 +12,11 @@ class NetworkImageWrapper extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: imageUrl,
       fit: BoxFit.cover,
+      // width: 328,
+      height: 138,
       errorWidget: (BuildContext context, String url, dynamic error) {
-        return Image.asset("assets/images/notFound.png");
+        return Image.asset("assets/images/notFound.png",
+        height: 138,);
       },
       placeholder: (BuildContext context, String url) {
         return const PictureShimmer(rounded: false);
