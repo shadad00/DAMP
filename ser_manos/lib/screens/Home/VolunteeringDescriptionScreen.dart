@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ser_manos/design_system/atoms/icons/icons.dart';
+import 'package:ser_manos/design_system/cells/modals/modal.dart';
 import 'package:ser_manos/design_system/molecules/buttons/Cta_button.dart';
 import 'package:ser_manos/design_system/molecules/components/vacancies.dart';
 import 'package:ser_manos/design_system/tokens/SerManosError.dart';
@@ -242,25 +243,7 @@ class VolunteeringDescriptionScreen extends ConsumerWidget {
                                       : postulation == null
                                           ? CtaButton(
                                               text: "Postularme",
-                                              onPressed: () async {
-                                                ref
-                                                    .read(postulationProvider
-                                                        .notifier)
-                                                    .addPostulation(
-                                                        volunteeringInformation
-                                                            .id);
-
-                                                await ref
-                                                    .read(analyticsProvider)
-                                                    .logEvent(
-                                                  name: "add_user_postulation",
-                                                  parameters: {
-                                                    "voluteering_id":
-                                                        volunteeringInformation
-                                                            .id,
-                                                  },
-                                                );
-                                              },
+                                              onPressed: () async => _showConfirmDialog(context, volunteeringInformation),
                                               filled: true)
                                           : postulation.volunteeringId ==
                                                   int.parse(volunteeringId)
@@ -284,6 +267,39 @@ class VolunteeringDescriptionScreen extends ConsumerWidget {
             error: (_, s) => const SerManosError(),
             loading: () => const SerManosLoading()));
   }
+
+  void _showConfirmDialog(
+    BuildContext context,
+    Volunteering volunteering,
+  ) async =>
+      await showDialog<bool?>(
+          barrierDismissible: false,
+          context: context,
+          builder: (BuildContext c) => Consumer(
+                builder: (BuildContext context, WidgetRef ref, Widget? child) {
+                  return Modal(
+                    firstText: "Te estas por postular a",
+                    isLoading: false,
+                    onConfirm: () async {
+                      ref
+                          .read(postulationProvider.notifier)
+                          .addPostulation(volunteering.id);
+                      await ref.read(analyticsProvider).logEvent(
+                        name: "add_user_postulation",
+                        parameters: {
+                          "voluteering_id": volunteering.id,
+                        },
+                      );
+                      if (context.mounted) {
+                        Navigator.of(c).pop(true);
+                      }
+                    },
+                    secondText: volunteering.name,
+                    cancelButtonText: "Cancelar",
+                    confirmButtonText: "Confirmar",
+                  );
+                },
+              ));
 }
 
 class QuitPostulation extends ConsumerWidget {

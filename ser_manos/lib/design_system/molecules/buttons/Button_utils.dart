@@ -49,12 +49,12 @@ class SerManosFilledButton extends StatelessWidget {
 
 class LoadingFrame extends StatelessWidget {
   const LoadingFrame({
-    Key? key,
+    super.key,
     required this.loading,
     required this.boxColor,
     required this.text,
     required this.textColor,
-  }) : super(key: key);
+  });
 
   final bool loading;
   final Color boxColor;
@@ -166,7 +166,7 @@ class SerManosTextButton extends StatelessWidget {
       child: Center(
           child: LoadingFrame(
               loading: loading,
-              boxColor: boxColor!,
+              boxColor: boxColor == null ? Colors.transparent : boxColor! ,
               text: text,
               textColor: textColor)),
     );

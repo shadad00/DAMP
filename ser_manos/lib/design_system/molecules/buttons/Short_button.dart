@@ -4,7 +4,7 @@ import 'package:ser_manos/design_system/molecules/buttons/Button_utils.dart';
 
 class ShortButton extends StatelessWidget {
   const ShortButton({
-    Key? key,
+    super.key,
     this.icon,
     required this.text,
     required this.onPressed,
@@ -13,7 +13,7 @@ class ShortButton extends StatelessWidget {
     this.enabled = true,
     this.loading = false,
     this.boxColor
-  }) : super(key: key);
+  });
 
   final Icon? icon;
   final String text;
