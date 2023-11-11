@@ -21,12 +21,12 @@ class Postulation extends _$Postulation {
     final ApplicationUser user = ref.read(currentUserProvider)!;
     VolunteeringPostulation newPostulation = VolunteeringPostulation(
         volunteeringId: volunteeringId, status: PostulationStatus.pending);
-    ref
+    await ref
         .read(userServiceProvider)
         .addPostulation(userId: user.id, postulation: newPostulation);
-    ref
+    await ref
         .read(volunteeringServiceProvider)
-        .decrementVolunteerQuantity(volunteeringId);
+        .incrementVolunteerQuantity(volunteeringId);
 
     ref.invalidate(getVolunteeringsProvider); 
     ref.invalidate(getVolunteeringByIdProvider);
@@ -39,12 +39,12 @@ class Postulation extends _$Postulation {
     if (state == null) return;
 
     final ApplicationUser user = ref.read(currentUserProvider)!;
-    ref
+     await ref
         .read(userServiceProvider)
         .removePostulation(userId: user.id, postulation: state!);
-    ref
+     await ref
         .read(volunteeringServiceProvider)
-        .incrementVolunteerQuantity(volunteeringId);
+        .decrementVolunteerQuantity(volunteeringId);
 
     ref.invalidate(getVolunteeringsProvider); 
     ref.invalidate(getVolunteeringByIdProvider);
