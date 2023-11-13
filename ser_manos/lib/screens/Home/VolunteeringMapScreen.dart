@@ -48,71 +48,86 @@ class VolunteeringMapScreen extends ConsumerWidget {
           return Stack(
             children: [
               const Positioned.fill(
-                child: FullMap(), // TODO poner el mapa
+                child: FullMap(),
               ),
               Positioned.fill(
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
                       children: [
                         const SizedBox(height: 24),
-                        SermanosSearchBar(
-                          initialValue: searchQuery,
-                          onChanged: (value) => {
-                            ref.read(searchQueryProvider.notifier).state = value
-                          },
-                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: SermanosSearchBar(
+                            initialValue: searchQuery,
+                            onChanged: (value) => {
+                              ref.read(searchQueryProvider.notifier).state =
+                                  value
+                            },
+                          ),
+                        )
                       ],
                     ),
-                    Expanded(
-                      child: Column(
-                        // mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: IconButton(
-                                icon: SermanosIcons.nearMeFilled(
-                                  status: SermanosIconStatus.activated,
-                                ),
-                                onPressed: () => {
-                                      ref.read(currentPositionControllerProvider.notifier)
-                                        .set(ref.read(getUserPositionProvider).value!)
-                                } 
-                                ),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: IconButton(
+                            icon: SermanosIcons.nearMeFilled(
+                              status: SermanosIconStatus.activated,
+                            ),
+                            onPressed: () => {
+                              ref
+                                  .read(currentPositionControllerProvider
+                                      .notifier)
+                                  .set(ref.read(getUserPositionProvider).value!)
+                            },
                           ),
-                          const SizedBox(height: 16),
-                          filteredData.isEmpty
-                              ? const Padding(
-                                  padding: EdgeInsets.all(8),
-                                  child: Center(
-                                      child: Text(
-                                          "No se encontraron resultados.")),
-                                )
-                              : Expanded(
-                                  child: CarouselSlider.builder(
+                        ),
+                        const SizedBox(height: 16),
+                        filteredData.isEmpty
+                            ? const Padding(
+                                padding: EdgeInsets.all(8),
+                                child: Center(
+                                  child: Text("No se encontraron resultados."),
+                                ),
+                              )
+                            : Flexible(
+                                child: CarouselSlider.builder(
                                   options: CarouselOptions(
-                                    // height: 390,
+                                    height: 259,
                                     enableInfiniteScroll: false,
                                     initialPage: 0,
                                     onPageChanged: (index, _) => {
-                                      ref.read(currentPositionControllerProvider.notifier)
-                                        .set(LatLng(filteredData[index].lat, filteredData[index].long))
-                                    } //TODO: mover el mapa
+                                      ref
+                                          .read(
+                                              currentPositionControllerProvider
+                                                  .notifier)
+                                          .set(LatLng(filteredData[index].lat,
+                                              filteredData[index].long))
+                                    },
                                   ),
                                   itemCount: filteredData.length,
                                   itemBuilder: (context, index, pageViewIndex) {
-                                    return VolunteeringCard(
+                                    return Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 8.0),
+                                      child: VolunteeringCard(
                                         favorite: volunteeringList != null &&
                                             volunteeringList.contains(
                                                 filteredData[index].id),
                                         volunteeringInformation:
-                                            filteredData[index]);
+                                            filteredData[index],
+                                      ),
+                                    );
                                   },
-                                )),
-                          const SizedBox(height: 16),
-                        ],
-                      ),
+                                ),
+                              ),
+                        const SizedBox(height: 16),
+                      ],
                     ),
                   ],
                 ),

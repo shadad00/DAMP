@@ -16,7 +16,7 @@ class FullMap extends HookConsumerWidget {
   const FullMap({
     Key? key,
   }) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentPosition = ref.watch(currentPositionControllerProvider);
@@ -44,8 +44,8 @@ class FullMap extends HookConsumerWidget {
           target: coordinates,
           zoom: 15,
         ),
-        markers: _volunteeringToMarkers(volunteerings),
-        circles: _userCoordinatesCircle(
+        markers: mapsMarkers(volunteerings),
+        circles: userPosition(
           ref.read(getUserPositionProvider).value!,
         ),
         myLocationButtonEnabled: false,
@@ -60,25 +60,9 @@ class FullMap extends HookConsumerWidget {
       ),
       loading: () => const SerManosLoading(),
     );
-    // return GoogleMap(
-    //     initialCameraPosition: CameraPosition(
-    //       // target: ref.read(getUserPositionProvider).value!,
-    //       target: LatLng(volunteerings[0].lat, volunteerings[0].long),
-    //       zoom: 15,
-    //     ),
-    //     markers: _volunteeringToMarkers(volunteerings),
-    //     // circles: _userCoordinatesCircle(
-    //     //   ref.read(getUserPositionProvider).value!,
-    //     // ),
-    //     myLocationButtonEnabled: false,
-    //     zoomControlsEnabled: false,
-    //     onMapCreated: (GoogleMapController controller) {
-    //       mapController.value = controller;
-    //     },
-    //   );
   }
 
-  Set<Marker> _volunteeringToMarkers(
+  Set<Marker> mapsMarkers(
     List<Volunteering> volunteerings,
   ) {
     Set<Marker> markers = {};
@@ -87,38 +71,40 @@ class FullMap extends HookConsumerWidget {
       markers.add(
         Marker(
           markerId: MarkerId(volunteering.id.toString()),
-          onTap: () {},
+          onTap: () {
+            // TODO: move the carrousel
+          },
           position: LatLng(
             volunteering.lat,
             volunteering.long,
           ),
-          icon: BitmapDescriptor.defaultMarker,
+          icon: BitmapDescriptor.defaultMarkerWithHue(210.0),
         ),
       );
     }
     return markers;
   }
 
-  Set<Circle> _userCoordinatesCircle(
+  Set<Circle> userPosition(
     LatLng userCoordinates,
   ) {
     return {
       Circle(
         circleId: const CircleId("user_coordinates1"),
-        radius: 40,
+        radius: 48,
         strokeWidth: 1,
         zIndex: 10,
         fillColor: SermanosColors.neutral0,
-        strokeColor: SermanosColors.secondary200,
+        strokeColor: SermanosColors.neutral0,
         center: userCoordinates,
       ),
       Circle(
         circleId: const CircleId("user_coordinates2"),
-        radius: 30,
+        radius: 32,
         strokeWidth: 1,
         zIndex: 50,
-        fillColor: SermanosColors.secondary200,
-        strokeColor: SermanosColors.secondary200,
+        fillColor: SermanosColors.secondary90,
+        strokeColor: SermanosColors.secondary90,
         center: userCoordinates,
       ),
     };
