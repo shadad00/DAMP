@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ser_manos/design_system/atoms/icons/icons.dart';
 import 'package:ser_manos/design_system/cells/cards/VolunteeringCards/VolunteeringCard.dart';
+import 'package:ser_manos/design_system/molecules/buttons/floating_button.dart';
 import 'package:ser_manos/design_system/molecules/inputs/SermanosSearchBar.dart';
 import 'package:ser_manos/design_system/tokens/SerManosError.dart';
 import 'package:ser_manos/design_system/tokens/SerManosLoading.dart';
@@ -74,20 +75,36 @@ class VolunteeringMapScreen extends ConsumerWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Align(
-                          alignment: Alignment.centerRight,
-                          child: IconButton(
-                            icon: SermanosIcons.nearMeFilled(
-                              status: SermanosIconStatus.activated,
+                            alignment: Alignment.centerRight,
+                            child: Padding(
+                              padding: EdgeInsets.all(16),
+                              child: FloatingButton(
+                                  icon: SermanosIcons.nearMeFilled(
+                                      status: SermanosIconStatus.activated),
+                                  onPressed: () => {
+                                        ref
+                                            .read(
+                                                currentPositionControllerProvider
+                                                    .notifier)
+                                            .set(ref
+                                                .read(getUserPositionProvider)
+                                                .value!)
+                                      }),
+                            )
+
+                            // IconButton(
+                            //   icon: SermanosIcons.nearMeFilled(
+                            //     status: SermanosIconStatus.activated,
+                            //   ),
+                            //   onPressed: () => {
+                            //     ref
+                            //         .read(currentPositionControllerProvider
+                            //             .notifier)
+                            //         .set(ref.read(getUserPositionProvider).value!)
+                            //   },
+                            // ),
                             ),
-                            onPressed: () => {
-                              ref
-                                  .read(currentPositionControllerProvider
-                                      .notifier)
-                                  .set(ref.read(getUserPositionProvider).value!)
-                            },
-                          ),
-                        ),
-                        const SizedBox(height: 16),
+                        // const SizedBox(height: 16),
                         filteredData.isEmpty
                             ? const Padding(
                                 padding: EdgeInsets.all(8),
