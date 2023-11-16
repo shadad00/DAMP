@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ser_manos/design_system/cells/cards/VolunteeringCards/ActivityCard.dart';
 import 'package:ser_manos/design_system/cells/cards/VolunteeringCards/VolunteeringCard.dart';
 import 'package:ser_manos/design_system/molecules/inputs/SermanosSearchBar.dart';
 import 'package:ser_manos/design_system/tokens/SerManosError.dart';
@@ -55,9 +56,8 @@ class VolunteeringListScreen extends ConsumerWidget{
                   onChanged: (value) =>
                       {ref.read(searchQueryProvider.notifier).state = value},
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
+              const SizedBox(height: 24),
+                const ActivityCard(),
                 const Text("Voluntariados",
                     style: SermanosTypography.headline01(
                         color: SermanosColors.neutral100)),
