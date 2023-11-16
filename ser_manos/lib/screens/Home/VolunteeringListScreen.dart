@@ -42,13 +42,13 @@ class VolunteeringListScreen extends ConsumerWidget{
           }
 
           return Padding(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
-                  height: 16,
+                  height: 24,
                 ),
                 SermanosSearchBar(
                   initialValue: searchQuery,
