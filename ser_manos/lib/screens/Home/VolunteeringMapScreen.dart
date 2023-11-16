@@ -91,20 +91,7 @@ class VolunteeringMapScreen extends ConsumerWidget {
                                                 .value!)
                                       }),
                             )
-
-                            // IconButton(
-                            //   icon: SermanosIcons.nearMeFilled(
-                            //     status: SermanosIconStatus.activated,
-                            //   ),
-                            //   onPressed: () => {
-                            //     ref
-                            //         .read(currentPositionControllerProvider
-                            //             .notifier)
-                            //         .set(ref.read(getUserPositionProvider).value!)
-                            //   },
-                            // ),
                             ),
-                        // const SizedBox(height: 16),
                         filteredData.isEmpty
                             ? const Padding(
                                 padding: EdgeInsets.all(8),
@@ -131,7 +118,7 @@ class VolunteeringMapScreen extends ConsumerWidget {
                                   itemBuilder: (context, index, pageViewIndex) {
                                     return Padding(
                                       padding:
-                                          const EdgeInsets.only(right: 8.0),
+                                          const EdgeInsets.symmetric(horizontal: 4.0),
                                       child: VolunteeringCard(
                                         favorite: volunteeringList != null &&
                                             volunteeringList.contains(

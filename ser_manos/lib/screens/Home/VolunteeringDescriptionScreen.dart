@@ -243,7 +243,9 @@ class VolunteeringDescriptionScreen extends ConsumerWidget {
                                       : postulation == null
                                           ? CtaButton(
                                               text: "Postularme",
-                                              onPressed: () async => _showConfirmDialog(context, volunteeringInformation),
+                                              onPressed: () async =>
+                                                  _showConfirmDialog(context,
+                                                      volunteeringInformation),
                                               filled: true)
                                           : postulation.volunteeringId ==
                                                   int.parse(volunteeringId)
@@ -329,24 +331,48 @@ class QuitPostulation extends ConsumerWidget {
         const SizedBox(height: 20),
         CtaButton(
           text: 'Retirar postulación',
-          onPressed: () async {
-            ref
-                .read(postulationProvider.notifier)
-                .removePostulation(volunteering.id);
-
-            await ref.read(analyticsProvider).logEvent(
-              name: "remove_user_postulation",
-              parameters: {
-                "voluteering_id": volunteering.id,
-              },
-            );
-          },
+          onPressed: () async => _showConfirmDialog(context, volunteering),
           textColor: SermanosColors.primary100,
           filled: false,
         ),
       ],
     );
   }
+
+  void _showConfirmDialog(
+    BuildContext context,
+    Volunteering volunteering,
+  ) async =>
+      await showDialog<bool?>(
+          barrierDismissible: false,
+          context: context,
+          builder: (BuildContext c) => Consumer(
+                builder: (BuildContext context, WidgetRef ref, Widget? child) {
+                  return Modal(
+                    firstText:
+                        "¿Estás seguro que querés retirar tu postulación?",
+                    isLoading: false,
+                    onConfirm: () async {
+                      ref
+                          .read(postulationProvider.notifier)
+                          .removePostulation(volunteering.id);
+
+                      await ref.read(analyticsProvider).logEvent(
+                        name: "remove_user_postulation",
+                        parameters: {
+                          "voluteering_id": volunteering.id,
+                        },
+                      );
+                      if (context.mounted) {
+                        Navigator.of(c).pop(true);
+                      }
+                    },
+                    secondText: volunteering.name,
+                    cancelButtonText: "Cancelar",
+                    confirmButtonText: "Confirmar",
+                  );
+                },
+              ));
 }
 
 class QuitOtherPostulation extends ConsumerWidget {
