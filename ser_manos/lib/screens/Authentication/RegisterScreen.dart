@@ -26,64 +26,69 @@ class RegisterScreen extends ConsumerWidget {
 
     return Scaffold(
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              const SizedBox(height: 100),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SermanosLogos.square(
-                      logoUrl: "assets/images/SquareLogo.png"),
-                  const SizedBox(height: 32),
-                  RegisterForm(
-                    isLoading: loading,
-                    errorText: errorText,
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SermanosLogos.square(
+                          logoUrl: "assets/images/SquareLogo.png"),
+                      const SizedBox(height: 32),
+                      RegisterForm(
+                        isLoading: loading,
+                        errorText: errorText,
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              const SizedBox(height: 90),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Consumer(
-                    builder: (context, ref, child) => CtaButton(
-                        text: "Registrarse",
-                        onPressed: () {
-                          if (!registerFormKey.currentState!.validate()) {
-                            return;
-                          }
-                          final UserRegisterData userRegisterData =
-                              UserRegisterData(
-                                  email: registerFormKey
-                                      .currentState!.fields['email']!.value,
-                                  password: registerFormKey
-                                      .currentState!.fields['password']!.value,
-                                  name: registerFormKey
-                                      .currentState!.fields['name']!.value,
-                                  surname: registerFormKey
-                                      .currentState!.fields['surname']!.value);
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Consumer(
+                      builder: (context, ref, child) => CtaButton(
+                          text: "Registrarse",
+                          onPressed: () {
+                            if (!registerFormKey.currentState!.validate()) {
+                              return;
+                            }
+                            final UserRegisterData userRegisterData =
+                                UserRegisterData(
+                                    email: registerFormKey
+                                        .currentState!.fields['email']!.value,
+                                    password: registerFormKey.currentState!
+                                        .fields['password']!.value,
+                                    name: registerFormKey
+                                        .currentState!.fields['name']!.value,
+                                    surname: registerFormKey.currentState!
+                                        .fields['surname']!.value);
 
-                          ref
-                              .read(signUpFutureProvider.notifier)
-                              .singUp(userRegisterData: userRegisterData);
-                        },
-                        filled: true),
-                  ),
-                  const SizedBox(height: 16),
-                  CtaButton(
-                    loading: loading,
-                    text: 'Ya tengo cuenta',
-                    onPressed: () => context.beamToNamed("/login"),
-                    textColor: SermanosColors.primary100,
-                    filled: false,
-                  ),
-                ],
-              ),
-            ],
+                            ref
+                                .read(signUpFutureProvider.notifier)
+                                .singUp(userRegisterData: userRegisterData);
+                          },
+                          filled: true),
+                    ),
+                    const SizedBox(height: 16),
+                    CtaButton(
+                      loading: loading,
+                      text: 'Ya tengo cuenta',
+                      onPressed: () => context.beamToNamed("/login"),
+                      textColor: SermanosColors.primary100,
+                      filled: false,
+                    ),
+                    const SizedBox(height: 16),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

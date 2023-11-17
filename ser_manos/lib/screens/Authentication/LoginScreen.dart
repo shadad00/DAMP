@@ -22,61 +22,66 @@ class LoginScreen extends ConsumerWidget {
           orElse: () {},
         );
 
-
     return Scaffold(
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              const SizedBox(height: 100),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SermanosLogos.square(
-                      logoUrl: "assets/images/SquareLogo.png"),
-                  const SizedBox(height: 32),
-                  LoginForm(
-                    isLoading: loading,
-                    errorText: errorText,
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SermanosLogos.square(
+                          logoUrl: "assets/images/SquareLogo.png"),
+                      const SizedBox(height: 32),
+                      LoginForm(
+                        isLoading: loading,
+                        errorText: errorText,
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              const SizedBox(height: 160),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  CtaButton(
-                      text: "Iniciar sesión",
-                      onPressed: () async {
-                        if (!loginFormKey.currentState!.validate()) {
-                          return;
-                        }
-                        final UserLoginData userLoginData = UserLoginData(
-                          email:
-                              loginFormKey.currentState!.fields['email']!.value,
-                          password: loginFormKey
-                              .currentState!.fields['password']!.value,
-                        );
+                ),
+                // const SizedBox(height: 147),
 
-                        await ref
-                            .read(loginFutureProvider.notifier)
-                            .signIn(userLoginData: userLoginData);
-                      },
-                      filled: true),
-                  const SizedBox(height: 16),
-                  CtaButton(
-                    loading: loading,
-                    text: 'No tengo cuenta',
-                    onPressed: () => context.beamToNamed("/register"),
-                    textColor: SermanosColors.primary100,
-                    filled: false,
-                  ),
-                ],
-              ),
-            ],
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    CtaButton(
+                        text: "Iniciar sesión",
+                        onPressed: () async {
+                          if (!loginFormKey.currentState!.validate()) {
+                            return;
+                          }
+                          final UserLoginData userLoginData = UserLoginData(
+                            email: loginFormKey
+                                .currentState!.fields['email']!.value,
+                            password: loginFormKey
+                                .currentState!.fields['password']!.value,
+                          );
+
+                          await ref
+                              .read(loginFutureProvider.notifier)
+                              .signIn(userLoginData: userLoginData);
+                        },
+                        filled: true),
+                    const SizedBox(height: 16),
+                    CtaButton(
+                      loading: loading,
+                      text: 'No tengo cuenta',
+                      onPressed: () => context.beamToNamed("/register"),
+                      textColor: SermanosColors.primary100,
+                      filled: false,
+                    ),
+                    const SizedBox(height: 16),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
