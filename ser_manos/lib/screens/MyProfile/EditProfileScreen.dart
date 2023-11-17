@@ -78,6 +78,11 @@ class EditProfileScreen extends ConsumerWidget {
                                 .currentState!.fields['email']?.value,
                             profileImageUrl: imageUrl);
                         if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Perfil editado correctamente'),
+                            ),
+                          );
                           Navigator.of(context).pop(true);
                         }
                       },
