@@ -18,13 +18,14 @@ class ProfileInformationScreen extends ConsumerWidget {
     ApplicationUser? user = ref.watch(currentUserProvider);
 
     return Padding(
-      padding: const EdgeInsets.only(left: 32, right: 32),
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 32, bottom: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const SizedBox(height: 16),
           ProfileImage(imageUrl: user!.profileImageUrl),
-          const Text("Voluntario",
+          const SizedBox(height: 16),
+          const Text("VOLUNTARIO",
               style:
                   SermanosTypography.overline(color: SermanosColors.neutral75)),
           Text('${user.name} ${user.surname}',
@@ -33,7 +34,7 @@ class ProfileInformationScreen extends ConsumerWidget {
           Text(user.email,
               style: const SermanosTypography.body01(
                   color: SermanosColors.secondary200)),
-          const SizedBox(height: 16),
+          const SizedBox(height: 32),
           InformationCard(
               title: "Información personal",
               firsTitle: "FECHA DE NACIMIENTO",
@@ -41,7 +42,7 @@ class ProfileInformationScreen extends ConsumerWidget {
                   "${user.birthdate!.day.toString().padLeft(2, '0')}/${user.birthdate!.month.toString().padLeft(2, '0')}/${user.birthdate!.year}",
               secondTitle: "GÈNERO",
               secondSubtitle: user.gender!.text),
-          const SizedBox(height: 16),
+          const SizedBox(height: 32),
           InformationCard(
               title: "Datos de contacto",
               firsTitle: "TELÈFONO",
@@ -50,7 +51,7 @@ class ProfileInformationScreen extends ConsumerWidget {
               secondSubtitle: user.emailContact == null
                   ? "No especificado"
                   : user.emailContact!),
-          const SizedBox(height: 16),
+          const SizedBox(height: 32),
           CtaButton(
               text: "Editar Perfil",
               onPressed: () => context.beamToNamed("/profile/edit"),

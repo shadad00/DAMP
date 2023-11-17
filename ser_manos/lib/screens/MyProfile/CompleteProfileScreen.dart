@@ -28,7 +28,7 @@ class CompleteProfileScreen extends ConsumerWidget {
             children: [
               ProfileImage(imageUrl: user!.profileImageUrl),
               const SizedBox(height: 16),
-              const Text("Voluntario",
+              const Text("VOLUNTARIO",
                   style: SermanosTypography.overline(
                       color: SermanosColors.neutral75)),
               Text('${user.name} ${user.surname}',
