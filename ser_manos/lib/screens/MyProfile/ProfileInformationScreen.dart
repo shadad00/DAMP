@@ -15,7 +15,7 @@ class ProfileInformationScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ApplicationUser? user = ref.watch(currentUserProvider); 
+    ApplicationUser? user = ref.watch(currentUserProvider);
 
     return Padding(
       padding: const EdgeInsets.only(left: 32, right: 32),
@@ -37,7 +37,8 @@ class ProfileInformationScreen extends ConsumerWidget {
           InformationCard(
               title: "Información personal",
               firsTitle: "FECHA DE NACIMIENTO",
-              firstSubtitle: "${user.birthdate!.day.toString().padLeft(2, '0')}/${user.birthdate!.month.toString().padLeft(2, '0')}/${user.birthdate!.year}",
+              firstSubtitle:
+                  "${user.birthdate!.day.toString().padLeft(2, '0')}/${user.birthdate!.month.toString().padLeft(2, '0')}/${user.birthdate!.year}",
               secondTitle: "GÈNERO",
               secondSubtitle: user.gender!.text),
           const SizedBox(height: 16),
@@ -46,7 +47,9 @@ class ProfileInformationScreen extends ConsumerWidget {
               firsTitle: "TELÈFONO",
               firstSubtitle: user.phone!,
               secondTitle: "E-MAIL",
-              secondSubtitle: user.email),
+              secondSubtitle: user.emailContact == null
+                  ? "No especificado"
+                  : user.emailContact!),
           const SizedBox(height: 16),
           CtaButton(
               text: "Editar Perfil",
@@ -54,6 +57,7 @@ class ProfileInformationScreen extends ConsumerWidget {
               filled: true),
           const SizedBox(height: 8),
           CtaButton(
+              textColor: SermanosColors.error100,
               text: "Cerrar Sesión",
               onPressed: () {
                 ref.read(authServiceProvider).signOut();

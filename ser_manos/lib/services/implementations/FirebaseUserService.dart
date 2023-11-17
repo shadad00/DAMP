@@ -131,6 +131,11 @@ class FirebaseUserService implements UserService {
         'phone': phone,
         'profileImageUrl': profileImageUrl,
       };
+      if (profileImageUrl == null) {
+        final imageEntry = {
+          'profileImageUrl': ref.watch(currentUserProvider)?.profileImageUrl,};
+        userDataMap.addEntries(imageEntry.entries);
+      }
 
       await query.update(userDataMap);
       ref.read(currentUserProvider.notifier).update(userDataMap);

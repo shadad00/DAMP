@@ -50,6 +50,7 @@ class CompleteProfileScreen extends ConsumerWidget {
               const SizedBox(height: 8),
               CtaButton(
                   text: "Cerrar Sesión",
+                  textColor: SermanosColors.error100,
                   onPressed: () {
                     ref.read(authServiceProvider).signOut();
                     context.beamToNamed("/login");
