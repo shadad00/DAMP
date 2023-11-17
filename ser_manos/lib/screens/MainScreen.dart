@@ -32,10 +32,11 @@ class MainScreen extends HookWidget {
       appBar: AppBar(
         systemOverlayStyle: const SermanosStatusBar.secondary(),
         backgroundColor: SermanosColors.secondary90,
-        title: const Padding(
-            padding: EdgeInsets.only(left: 16, top: 8, bottom: 8),
-            child: SermanosLogos.rectangular(
-                logoUrl: "assets/images/rectangularLogo.png")),
+        title: const Image(
+          image: AssetImage('assets/images/rectangularLogo.png'),
+          height: 30,
+          fit: BoxFit.contain,
+        ),
       ),
       body: Column(
         children: [
