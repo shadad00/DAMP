@@ -23,7 +23,7 @@ class ProfileInformationScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          ProfileImage(imageUrl: user!.profileImageUrl),
+          ProfileImage(imageUrl: user!.profileImageUrl,  height: 110, width: 110),
           const SizedBox(height: 16),
           const Text("VOLUNTARIO",
               style:

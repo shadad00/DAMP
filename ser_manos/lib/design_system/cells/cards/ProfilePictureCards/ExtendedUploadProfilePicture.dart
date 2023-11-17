@@ -21,7 +21,7 @@ class ExtendedUploadProfilePicture extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(8, 16, 8, 16),
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
         color: SermanosColors.secondary25,
@@ -61,7 +61,9 @@ class ExtendedUploadProfilePicture extends ConsumerWidget {
               )
             ],
           ),
-          ProfileImage(imageUrl: imageUrl)
+          ProfileImage(imageUrl: imageUrl,
+          height: 84,
+          width: 84,)
         ],
       ),
     );

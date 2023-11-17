@@ -24,22 +24,27 @@ class CompleteProfileScreen extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Column(
-            children: [
-              ProfileImage(imageUrl: user!.profileImageUrl),
-              const SizedBox(height: 16),
-              const Text("VOLUNTARIO",
-                  style: SermanosTypography.overline(
-                      color: SermanosColors.neutral75)),
-              Text('${user.name} ${user.surname}',
-                  style: const SermanosTypography.subtitle01(
-                      color: SermanosColors.neutral100)),
-              const Text(
-                  "¡Completá tu perfil para tener acceso a mejores oportunidades!",
-                  textAlign: TextAlign.center,
-                  style: SermanosTypography.body01(
-                      color: SermanosColors.neutral75))
-            ],
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ProfileImage(imageUrl: user!.profileImageUrl, height: 110, width: 110,),
+                const SizedBox(height: 16),
+                const Text("VOLUNTARIO",
+                    style: SermanosTypography.overline(
+                        color: SermanosColors.neutral75)),
+                const SizedBox(height: 8),
+                Text('${user.name} ${user.surname}',
+                    style: const SermanosTypography.subtitle01(
+                        color: SermanosColors.neutral100)),
+                const SizedBox(height: 8),
+                const Text(
+                    "¡Completá tu perfil para tener\n acceso a mejores oportunidades!",
+                    textAlign: TextAlign.center,
+                    style: SermanosTypography.body01(
+                        color: SermanosColors.neutral75))
+              ],
+            ),
           ),
           Column(
             children: [
@@ -47,15 +52,7 @@ class CompleteProfileScreen extends ConsumerWidget {
                   text: "Completar",
                   icon: SermanosIcons.add(status: SermanosIconStatus.back),
                   onPressed: () => context.beamToNamed("/profile/edit")),
-              const SizedBox(height: 8),
-              CtaButton(
-                  text: "Cerrar Sesión",
-                  textColor: SermanosColors.error100,
-                  onPressed: () {
-                    ref.read(authServiceProvider).signOut();
-                    context.beamToNamed("/login");
-                  },
-                  filled: false)
+              const SizedBox(height: 96),
             ],
           )
         ]);

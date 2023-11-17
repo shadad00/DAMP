@@ -8,8 +8,8 @@ class ProfileImage extends StatelessWidget {
   const ProfileImage({
     Key? key,
     this.imageUrl,
-    this.height = 110,
-    this.width = 110,
+    required this.height,
+    required this.width,
     this.fromNetwork = true,
   }) : super(key: key);
 
