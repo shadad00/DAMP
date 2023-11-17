@@ -18,6 +18,7 @@ import 'package:ser_manos/providers/Notifier/Authentication/UserProvider.dart';
 import 'package:ser_manos/providers/Notifier/Volunteering/Postulation.dart';
 import 'package:ser_manos/providers/Providers/Providers.dart';
 import 'package:ser_manos/screens/Home/VolunteeringMaps.dart';
+import 'package:ser_manos/screens/MyProfile/EditProfileScreen.dart';
 
 import '../../model/VolunteeringPostulation.dart';
 
@@ -226,16 +227,21 @@ class VolunteeringDescriptionScreen extends ConsumerWidget {
                             children: [
                               !user!.isProfileFilled()
                                   ? Column(children: [
-                                      const Text(
-                                        "Para postularte, debes completar tu perfil.",
-                                        style: SermanosTypography.body01(
-                                          color: SermanosColors.neutral100,
-                                        ),
-                                      ),
                                       CtaButton(
-                                          text: "Completar perfil",
-                                          onPressed: () => context
-                                              .beamToNamed("/profile/edit"),
+                                          text: "Postularme",
+                                          onPressed: () async {
+                                            ApplicationUser user =
+                                                ref.watch(currentUserProvider)!;
+                                            if (user.isProfileFilled() ||
+                                                await _showCompleteProfileDialog(
+                                                    context,
+                                                    volunteeringInformation)) {
+                                              if (context.mounted) {
+                                                _showConfirmDialog(context,
+                                                    volunteeringInformation);
+                                              }
+                                            }
+                                          },
                                           filled: true)
                                     ])
                                   : volunteeringInformation.isFull()
@@ -302,6 +308,47 @@ class VolunteeringDescriptionScreen extends ConsumerWidget {
                   );
                 },
               ));
+
+  Future<bool> _showCompleteProfileDialog(
+    BuildContext context,
+    Volunteering volunteering,
+  ) async {
+    bool isCompleted = false;
+    if (context.mounted) {
+      await showDialog<bool?>(
+          barrierDismissible: false,
+          context: context,
+          builder: (BuildContext c) => Consumer(
+                builder: (BuildContext context, WidgetRef ref, Widget? child) {
+                  // ApplicationUser user = ref.watch(currentUserProvider)!;
+                  return Modal(
+                    firstText:
+                        "Para postularte debes primero completar tus datos.",
+                    isLoading: false,
+                    onConfirm: () async {
+                      final isComplete = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const EditProfileScreen(),
+                        ),
+                      );
+                      if (isComplete != null && isComplete) {
+                        if (context.mounted) {
+                          Navigator.of(context).pop();
+                          isCompleted = true;
+                        }
+                      } else {
+                        isCompleted = false;
+                      }
+                    },
+                    cancelButtonText: "Cancelar",
+                    confirmButtonText: "Completar datos",
+                  );
+                },
+              ));
+    }
+    return isCompleted;
+  }
 }
 
 class QuitPostulation extends ConsumerWidget {

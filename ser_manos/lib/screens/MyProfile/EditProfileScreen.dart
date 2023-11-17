@@ -77,6 +77,9 @@ class EditProfileScreen extends ConsumerWidget {
                             emailContact: profileForm
                                 .currentState!.fields['email']?.value,
                             profileImageUrl: imageUrl);
+                        if (context.mounted) {
+                          Navigator.of(context).pop(true);
+                        }
                       },
                       filled: true)
                 ],

@@ -34,8 +34,8 @@ class UpdateUserFuture extends _$UpdateUserFuture {
           birthdate: birthdate,
           emailContact: emailContact,
           profileImageUrl: profileImageUrl);
-      final BeamerDelegate delegate = ref.read(delegateProvider);
-      delegate.beamToNamed("/profile"); 
+      // final BeamerDelegate delegate = ref.read(delegateProvider);
+      // delegate.beamToNamed("/profile"); 
     } on firebase.FirebaseAuthException catch (e) {
       state = AsyncError(e.message!, StackTrace.current);
     }
