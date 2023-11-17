@@ -45,7 +45,11 @@ class NewDescriptionScreen extends ConsumerWidget {
                         ),
                       ),
                       const SizedBox(height: 16),
-                      CachedNetworkImage(imageUrl: data.imageUrl),
+                      CachedNetworkImage(
+                        imageUrl: data.imageUrl,
+                        height: 160,
+                        fit: BoxFit.cover,
+                      ),
                       const SizedBox(height: 16),
                       Text(
                         data.subTitle,
@@ -84,7 +88,8 @@ class NewDescriptionScreen extends ConsumerWidget {
 
                             await Share.shareXFiles(
                               [XFile(path)],
-                              text: '${data.subTitle} \nsermanos.com/news/${newsId}',
+                              text:
+                                  '${data.subTitle} \nsermanos.com/news/${newsId}',
                             );
                           },
                           filled: true)
