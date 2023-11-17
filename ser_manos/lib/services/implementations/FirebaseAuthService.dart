@@ -35,19 +35,22 @@ class FirebaseAuthService implements AuthService {
       password: userRegisterData.password,
     );
 
-    final createdUser = await userService.createUser(
+    await userService.createUser(
       name: userRegisterData.getName,
       surname: userRegisterData.getSurname,
       email: userCredentials.user!.email!,
       userId: userCredentials.user!.uid,
     );
 
-    user.set(createdUser);
-    return createdUser; 
+    return signIn(
+        userLoginData: UserLoginData(
+            email: userRegisterData.email,
+            password: userRegisterData.password));
   }
 
   @override
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
+    user.set(null);
   }
 }
